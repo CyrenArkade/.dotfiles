@@ -1,0 +1,62 @@
+:root {
+    /* --background-mentioned-hover: rgba(183, 189, 248, 0.1) !important;
+    --background-mentioned: rgba(183, 189, 248, 0.15) !important;
+    --info-warning-foreground: rgb(183, 189, 248) !important; */
+
+    /* --background-message-hover: #b7bdf811 !important; */
+    /* --text-primary: #cad3f5 !important;
+    --interactive-hover: #cad3f5 !important;
+    --icon-primary: #cad3f5 !important;
+    --icon-secondary: #cad3f5 !important;
+    --background-modifier-selected: #b7bdf833 !important; */
+
+    --background-mentioned: #b7bdf826 !important;
+    --background-mentioned-hover: #b7bdf819 !important;
+
+    /* anti-refresh */
+    --custom-app-top-bar-height: 0px;
+    --custom-guild-list-width: 60px;
+
+    --ctp-rainbow-thread-disabled: ;
+}
+
+div[class^="messagesWrapper"] ::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* ::-webkit-scrollbar {
+    width: 4px !important;
+} */
+
+div[class*='mentioned_']::before {
+    background: rgb(183, 189, 248);
+}
+
+div[class^="channelAppLauncher_"],
+div[class^="channelTextArea_"] button[aria-label="Send a gift"],
+div[class^="channelTextArea_"] button[aria-label="Open sticker picker"] {
+    display: none !important;
+}
+
+div[class^="jumpToPresentBar_"] {
+    right: 16px;
+}
+
+/* anti-refresh */
+nav[class*="guilds_"] {
+    margin-top: 10px;
+}
+
+div[class*="channelTextArea_"] {
+    margin-top: var(--custom-chat-input-margin-bottom);
+    margin-bottom: 8px;
+}
+
+div[class*="typing_"] {
+    top: 0;
+}
+
+div[role="menuitem"] {
+    padding-top: 0;
+    padding-bottom: 0;
+}

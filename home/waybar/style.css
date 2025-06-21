@@ -1,0 +1,63 @@
+@import "./catppuccin.css";
+
+* {
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: alpha(@crust, 0.5);
+    color: @text;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+.modules-left {
+    padding: 0 5px;
+}
+
+.modules-center {
+    background-color: @base;
+    border-radius: 99px;
+    padding: 0 5px;
+}
+
+#workspaces button {
+    background-color: transparent;
+    color: @lavender;
+    border: none;
+    padding: 0 2px;
+}
+
+#workspaces button:hover {
+    background: transparent;
+    border: none;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+.modules-right {
+    background-color: @base;
+    border-radius: 99px;
+    padding: 0 5px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 8px;
+}

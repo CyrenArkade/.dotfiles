@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware.nix
     ./software.nix
   ];
 
@@ -36,11 +36,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     packages = with pkgs; [];
-  };
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
   };
 
   # DO NOT CHANGE

@@ -3,9 +3,9 @@
 {
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
-    ./display_managers/sddm.nix
+    # ./display_managers/sddm.nix
     # ./display_managers/greetd.nix
-    # ./display_managers/ly.nix
+    ./display_managers/ly.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -23,6 +23,11 @@
   catppuccin = {
     flavor = "mocha";
     accent = "lavender";
+  };
+
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
   };
 
   environment.sessionVariables = {

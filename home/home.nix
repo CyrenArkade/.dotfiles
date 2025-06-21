@@ -19,6 +19,7 @@
     kdePackages.dolphin
     nix-tree
     xdg-desktop-portal-termfilechooser
+    xivlauncher
   ];
 
   xdg.portal.enable = true;
@@ -39,6 +40,7 @@
     enable = true;
     extraConfig = {
       init.defaultBranch = "main";
+      core.editor = "code --wait";
     };
   };
 

@@ -243,7 +243,7 @@ in {
     gtk.enable = true;
     x11.enable = true;
     name = "Fuchsia";
-    size = 48;
+    size = 24;
     package = pkgs.fuchsia-cursor;
   };
 

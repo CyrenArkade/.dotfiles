@@ -23,7 +23,7 @@
   wayland.windowManager.hyprland = {
     settings = {
       bindr = [
-        "$mainMod, Super_L, exec, pkill wofi || fish -c \"wofi -i --width 250\""
+        "$mainMod, Super_L, exec, pkill wofi || wofi -i --width 250"
       ];
     };
   };

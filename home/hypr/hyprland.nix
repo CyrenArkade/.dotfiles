@@ -56,7 +56,7 @@ in {
         "hyprpaper"
         "wl-paste -p --watch wl-copy -pc" # fixes middle click paste
         "[workspace 2] firefox"
-        "workspace 3 silent vesktop"
+        "[workspace 3 silent] vesktop"
       ];
 
       general = {

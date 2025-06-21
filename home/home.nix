@@ -12,17 +12,19 @@
   ];
 
   home.packages = with pkgs; [
+    ncdu
+    file
+    tree
     vivid
     kdePackages.dolphin
     nix-tree
-    ncdu
-    file
     xdg-desktop-portal-termfilechooser
   ];
 
   xdg.portal.enable = true;
 
   programs.home-manager.enable = true;
+  programs.bash.enable = true;
   programs.eza.enable = true;
   programs.firefox.enable = true;
   programs.vscode.enable = true;

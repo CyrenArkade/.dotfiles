@@ -3,6 +3,7 @@
 {
   programs.starship = {
     enable = true;
+    enableBashIntegration = false;
     # https://starship.rs/config/
     settings = {
       add_newline = false;
@@ -38,8 +39,8 @@
         disabled = true;
       };
       nix_shell = {
-        format = "$symbol$state";
-        symbol = "❄️";
+        format = "$state$symbol";
+        symbol = "❄️ ";
         pure_msg = "❄️";
         impure_msg = "";
       };

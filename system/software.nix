@@ -10,6 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     fuchsia-cursor
+    gnome-keyring
   ];
 
   programs.nix-ld.enable = true;
@@ -17,6 +18,8 @@
   programs.steam.enable = true;
 
   services.openssh.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
 
   fonts.enableDefaultPackages = true;
 
@@ -31,9 +34,7 @@
   };
 
   environment.sessionVariables = {
-    # Not set before kitty is launched, so it won't appear in ctrl+f
-    # Needs to be set here, not through home manager.
-    FZF_DEFAULT_OPTS = "--color bg:#1e1e2e,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,header:#b4befe,hl:#b4befe,hl+:#b4befe,info:#b4befe,marker:#b4befe,pointer:#b4befe,prompt:#b4befe,spinner:#f5e0dc";
+    
   };
 
 }

@@ -39,9 +39,9 @@
         disabled = true;
       };
       nix_shell = {
-        format = "$state$symbol";
-        symbol = "❄️ ";
-        pure_msg = "❄️";
+        format = "$symbol$state";
+        symbol = "[❯](bold blue)";
+        pure_msg = "[❯](bold sky)";
         impure_msg = "";
       };
       username = {

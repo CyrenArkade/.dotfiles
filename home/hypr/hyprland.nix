@@ -52,9 +52,10 @@ in {
       xwayland.force_zero_scaling = true;
       
       exec-once = [
-        "hyprlock --immediate --immediate-render --no-fade-in" # if using autologin
+        # "hyprlock --immediate --immediate-render --no-fade-in" # if using autologin
         "hyprpaper"
-        "wl-paste -p --watch wl-copy -pc" # fixes middle click paste
+        "hypridle"
+        "wl-paste -p --watch wl-copy -pc"
         "[workspace 2] firefox"
         "[workspace 3 silent] vesktop"
       ];
@@ -204,7 +205,7 @@ in {
         "$mainMod, E, exec, kitty"
         "$mainMod, F, exec, firefox"
         "$mainMod, R, exec, kitty fish -C y"
-        "CTRL, Space, exec, hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
+        "$mainMod, Space, exec, hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
         ", mouse:276, exec, ${hshot}"
         "$mainMod, L, exec, hyprlock"
 

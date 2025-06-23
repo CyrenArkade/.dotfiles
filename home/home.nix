@@ -16,9 +16,11 @@
     file
     tree
     vivid
+    unzip
     kdePackages.dolphin
     nix-tree
     xdg-desktop-portal-termfilechooser
+    brightnessctl
     xivlauncher
   ];
 
@@ -29,9 +31,16 @@
   programs.eza.enable = true;
   programs.firefox.enable = true;
   programs.vscode.enable = true;
+  
 
   programs.bat.enable = true;
   catppuccin.bat.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    silent = true;
+    nix-direnv.enable = true;
+  };
 
   programs.fzf.enable = true;
   catppuccin.fzf.enable = true;
@@ -63,6 +72,7 @@
     options = [ "--cmd cd" ];
   };
 
+
   catppuccin = {
     flavor = "mocha";
     accent = "lavender";
@@ -85,6 +95,7 @@
       NIXOS_OZONE_WL = 1;
       FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
       QT_SCALE_FACTOR_ROUNDING_POLICY = "Round";
+      FZF_DEFAULT_OPTS = "--color bg:#1e1e2e,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,header:#b4befe,hl:#b4befe,hl+:#b4befe,info:#b4befe,marker:#b4befe,pointer:#b4befe,prompt:#b4befe,spinner:#f5e0dc";
     };
 
     # DO NOT CHANGE

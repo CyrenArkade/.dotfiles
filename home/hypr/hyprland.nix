@@ -6,15 +6,15 @@ let
     fileName="$(date +"%Y-%m-%d_%H:%M:%S").png"
     hyprshot -z -m region -o "$folderName" -f "$fileName"
   '';
-  wallpaper = toString ../../images/xilmo2.jpg;
 in {
   imports = [
     ../waybar/waybar.nix
     ../wofi/wofi.nix
     ./hypridle.nix
     ./hyprlock.nix
-    ./hyprspace.nix
+    ./hyprpaper.nix
     ./hypredge.nix
+    ./hyprspace.nix
   ];
 
   home.packages = with pkgs; [
@@ -22,14 +22,6 @@ in {
     hyprshot
     hdrop
   ];
-
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = wallpaper;
-      wallpaper = " , ${wallpaper}";
-    };
-  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -53,8 +45,8 @@ in {
       
       exec-once = [
         # "hyprlock --immediate --immediate-render --no-fade-in" # if using autologin
-        "hyprpaper"
-        "hypridle"
+        "systemctl --user start hyprpaper" # 
+        "systemctl --user start hypridle"
         "wl-paste -p --watch wl-copy -pc"
         "[workspace 2] firefox"
         "[workspace 3 silent] vesktop"
@@ -143,6 +135,7 @@ in {
 
       input = {
         kb_layout = "us";
+        kb_options = "caps:backspace";
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = 0;
@@ -205,7 +198,7 @@ in {
         "$mainMod, E, exec, kitty"
         "$mainMod, F, exec, firefox"
         "$mainMod, R, exec, kitty fish -C y"
-        "$mainMod, Space, exec, hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
+        "$mainMod, Backspace, exec, hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
         ", mouse:276, exec, ${hshot}"
         "$mainMod, L, exec, hyprlock"
 
@@ -222,6 +215,9 @@ in {
 
         "$mainMod, A, workspace, e-1"
         "$mainMod, D, workspace, e+1"
+
+        "$mainMod Shift, A, movetoworkspace, e-1"
+        "$mainMod Shift, D, movetoworkspace, e+1"
 
         "$mainMod, W, togglespecialworkspace, mini"
         "$mainMod, S, movetoworkspacesilent, special:mini"

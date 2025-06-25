@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -12,6 +12,23 @@
     "/nix".options = [ "compress=zstd" "noatime" ];
   };
 
+  # Power management
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+    };
+  };
+  services.logind.lidSwitch = "suspend";
+  services.logind.lidSwitchExternalPower = "suspend";
+
   # Swap
   swapDevices = [{
     device = "/var/lib/swapfile";
@@ -19,7 +36,7 @@
   }];
   zramSwap.enable = true;
 
-  # Nvidia and power management
+  # Nvidia
   services.xserver.videoDrivers = [
     "modesetting"
     "nvidia"

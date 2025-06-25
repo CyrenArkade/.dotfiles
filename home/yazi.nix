@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    xdg-desktop-portal-termfilechooser
+  ];
+
   programs.yazi = {
     enable = true;
     shellWrapperName = "y";
@@ -21,8 +25,17 @@
       };
       plugin = {
         prepend_fetchers = [
-          { id = "git"; name = "*";  run = "git";}
-          { id = "git"; name = "*/"; run = "git";}
+          { id = "git"; name = "*";  run = "git"; }
+          { id = "git"; name = "*/"; run = "git"; }
+        ];
+        prepend_previewers = [
+          { mime = "application/*zip";            run = "ouch"; }
+          { mime = "application/x-tar";           run = "ouch"; }
+          { mime = "application/x-bzip2";         run = "ouch"; }
+          { mime = "application/x-7z-compressed"; run = "ouch"; }
+          { mime = "application/x-rar";           run = "ouch"; }
+          { mime = "application/x-xz";            run = "ouch"; }
+          { mime = "application/xz";              run = "ouch"; }
         ];
       };
     };
@@ -52,6 +65,7 @@
     plugins = {
       full-border = pkgs.yaziPlugins.full-border;
       git = pkgs.yaziPlugins.git;
+      ouch = pkgs.yaziPlugins.ouch;
       starship = pkgs.yaziPlugins.starship;
     };
     initLua = ''
@@ -67,6 +81,17 @@
       end, 999, Header.LEFT)
       require("starship"):setup()
     '';
+  };
+
+  xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
+    text = ''
+      [filechooser]
+      cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+      default_dir=$HOME
+      open_mode=last
+      save_mode=last
+    '';
+    recursive = true;
   };
 
   catppuccin.yazi.enable = true;

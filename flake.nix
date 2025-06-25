@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
     hyprland.url = "github:hyprwm/Hyprland/v0.49.0";
     Hyprspace = {
       url = "github:KZDKM/Hyprspace";
@@ -17,7 +18,6 @@
       # url = "git+file:///home/cyren/dev/cpp/hypredge";
       inputs.hyprland.follows = "hyprland";
     };
-    catppuccin.url = "github:catppuccin/nix";
     nixcord.url = "github:kaylorben/nixcord";
   };
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # maybe I'll do something with this script at some point
 
 entries=" Logout\n Suspend\n Reboot\n Shutdown"

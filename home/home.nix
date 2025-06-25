@@ -12,14 +12,17 @@
   ];
 
   home.packages = with pkgs; [
-    ncdu
+    brightnessctl
     file
+    ncdu
+    nix-tree
     ouch
+    ov
     tree
     vivid
+    
+    gimp3
     kdePackages.dolphin
-    nix-tree
-    brightnessctl
     xivlauncher
   ];
 
@@ -70,6 +73,7 @@
     extraConfig = ''
       map ctrl+f       launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env /home/cyren/.nix-profile/bin/fzf --ansi --no-sort --no-mouse --exact -i --tac --wrap
       map ctrl+shift+f launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env /home/cyren/.nix-profile/bin/fzf --ansi --no-sort --no-mouse --exact -i --tac --wrap --no-extended
+      show_scrollback moar
     '';
   };
   catppuccin.kitty.enable = true;

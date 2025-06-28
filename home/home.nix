@@ -4,6 +4,7 @@
   imports = [
     inputs.catppuccin.homeModules.catppuccin
     ./hypr/hyprland.nix
+    ./neovim/neovim.nix
     ./vesktop/vesktop.nix
     ./fonts.nix
     ./fish.nix
@@ -23,6 +24,7 @@
     
     gimp3
     kdePackages.dolphin
+    lutris
     xivlauncher
   ];
 

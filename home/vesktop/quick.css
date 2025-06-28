@@ -42,6 +42,11 @@ div[class^="jumpToPresentBar_"] {
     right: 16px;
 }
 
+/* Hide "Invite to channel" button on channels in channel list */
+div[aria-label="Create Invite"] {
+    display: none !important;
+}
+
 /* anti-refresh */
 nav[class*="guilds_"] {
     margin-top: 10px;

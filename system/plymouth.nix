@@ -1,7 +1,19 @@
 { pkgs, ... }:
 
-# https://wiki.nixos.org/wiki/Plymouth
 {
+  # nixpkgs.overlays = [
+  #   # Overlay plymouth to call plymouth quit with --retain-splash.
+  #   (final: prev: {
+  #     plymouth = prev.plymouth.overrideAttrs ( prevAttrs: {
+  #       postInstall = ''
+  #         ${prevAttrs.postInstall}
+  #         sed -i 's|/bin/plymouth quit|/bin/plymouth quit --retain-splash|g' $out/lib/systemd/system/plymouth-quit.service
+  #       '';
+  #     });
+  #   })
+  # ];
+
+  # https://wiki.nixos.org/wiki/Plymouth
   boot = {
     plymouth = {
       enable = true;

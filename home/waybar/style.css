@@ -8,17 +8,17 @@
 window#waybar {
     background-color: alpha(@crust, 0.5);
     color: @text;
-    transition-property: background-color;
-    transition-duration: .5s;
+    border-radius: 99px;
+    /* transition-property: background-color;
+    transition-duration: .5s; */
 }
 
 .modules-left {
-    padding: 0 7px;
+    padding: 0 9px;
 }
 
 .modules-center {
     background-color: @base;
-    border-radius: 99px;
     padding: 0 5px;
 }
 
@@ -38,7 +38,6 @@ window#waybar {
 
 .modules-right {
     background-color: @base;
-    border-radius: 99px;
     padding: 0 5px;
 }
 

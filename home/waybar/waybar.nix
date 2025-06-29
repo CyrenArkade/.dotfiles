@@ -19,6 +19,10 @@
       main = {
         position = "bottom";
         height = 30;
+        margin-top = -7;
+        margin-bottom = 6;
+        margin-left = 13;
+        margin-right = 13;
 
         modules-left = [
           "hyprland/window"

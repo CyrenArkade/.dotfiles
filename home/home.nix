@@ -3,11 +3,17 @@
 {
   imports = [
     inputs.catppuccin.homeModules.catppuccin
+
     ./hypr/hyprland.nix
     ./neovim/neovim.nix
     ./vesktop/vesktop.nix
+    
+    ./gtk.nix
+    ./qt.nix
+
     ./cursor.nix
     ./fonts.nix
+
     ./fish.nix
     ./starship.nix
     ./yazi.nix
@@ -29,6 +35,7 @@
     gimp3
     kdePackages.dolphin
     lutris
+    qbittorrent
     xivlauncher
   ];
 
@@ -83,6 +90,9 @@
     '';
   };
   catppuccin.kitty.enable = true;
+
+  programs.mpv.enable = true;
+  catppuccin.mpv.enable = true;
 
   programs.zoxide = {
     enable = true;

@@ -52,6 +52,7 @@
       
         { on = [ "g" "c" ]; run = "ignore";         desc = "Go ~/.config"; }
         { on = [ "g" "n" ]; run = "cd ~/.dotfiles"; desc = "Go ~/.dotfiles"; }
+        { on = [ "g" "s" ]; run = "cd ~/Pictures/Screenshots"; desc = "Go ~/.dotfiles"; }
 
         { on = "<T>"; run = "close"; desc = "Close the current tab, or quit if it's last"; }
 

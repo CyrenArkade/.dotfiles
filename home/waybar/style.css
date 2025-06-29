@@ -7,30 +7,29 @@
 
 window#waybar {
     background-color: alpha(@crust, 0.5);
-    color: @text;
+    color: @lavender;
     border-radius: 99px;
-    /* transition-property: background-color;
-    transition-duration: .5s; */
 }
 
 .modules-left {
     padding: 0 9px;
+    color: @text;
 }
 
 .modules-center {
     background-color: @base;
     padding: 0 5px;
+    border-radius: 99px;
 }
 
-#workspaces button {
-    background-color: transparent;
-    color: @lavender;
+#workspaces * {
     border: none;
+    color: @lavender;
     padding: 0 2px;
 }
 
-#workspaces button:hover {
-    background: transparent;
+#workspaces *:hover {
+    background-color: transparent;
     border: none;
     box-shadow: inherit;
     text-shadow: inherit;
@@ -39,6 +38,7 @@ window#waybar {
 .modules-right {
     background-color: @base;
     padding: 0 5px;
+    border-radius: 99px;
 }
 
 #clock,

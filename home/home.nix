@@ -6,6 +6,7 @@
     ./hypr/hyprland.nix
     ./neovim/neovim.nix
     ./vesktop/vesktop.nix
+    ./cursor.nix
     ./fonts.nix
     ./fish.nix
     ./starship.nix
@@ -14,9 +15,12 @@
 
   home.packages = with pkgs; [
     brightnessctl
+    fd
+    ffmpeg
     file
     ncdu
     nix-tree
+    nvd
     ouch
     ov
     tree
@@ -98,6 +102,10 @@
     homeDirectory = "/home/cyren";
 
     file = {};
+
+    activation.report-changes = lib.hm.dag.entryAnywhere ''
+      ${pkgs.nvd}/bin/nvd diff $oldGenPath $newGenPath
+    '';
 
     sessionVariables = {
       LS_COLORS =  builtins.readFile (

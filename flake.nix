@@ -28,7 +28,6 @@
       system = "x86_64-linux";
     in {
       
-      # sudo nixos-rebuild switch --flake .
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -37,7 +36,6 @@
         };
       };
 
-      # home-manager switch --flake .
       homeConfigurations = {
         cyren = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};

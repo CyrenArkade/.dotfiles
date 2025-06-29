@@ -13,7 +13,7 @@ window#waybar {
 }
 
 .modules-left {
-    padding: 0 5px;
+    padding: 0 7px;
 }
 
 .modules-center {
@@ -53,11 +53,12 @@ window#waybar {
 #pulseaudio,
 #wireplumber,
 #custom-media,
+#custom-power,
 #tray,
 #mode,
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 0 8px;
+    padding: 0 6px;
 }

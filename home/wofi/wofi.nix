@@ -11,19 +11,26 @@
       hide_scroll = true;
       prompt = ";-;";
       key_expand = "Right";
+      insensitive = true;
     };
   };
 
   home.file = {
-    ".config/wofi/no-input.css" = {
-      source = ./no-input.css;
-    };
+    # There is an option for this in git, but css can emulate it.
+    ".config/wofi/no-input.css".text = ''
+      @import "${./style.css}";
+
+      #input {
+        opacity: 0;
+        margin-top: -999px;
+      }
+    '';
   };
 
   wayland.windowManager.hyprland = {
     settings = {
       bindr = [
-        "$mainMod, Super_L, exec, pkill wofi || wofi -i --width 250"
+        "$mainMod, Super_L, exec, pkill wofi || wofi --width 250"
       ];
     };
   };

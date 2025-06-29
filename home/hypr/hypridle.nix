@@ -1,6 +1,13 @@
 { inputs, lib, pkgs, ... }:
 
 {
+  wayland.windowManager.hyprland.settings = {
+    exec-once = [
+      "systemctl --user start hypridle"
+    ];
+  };
+  
+
   services.hypridle = {
     enable = true;
     settings = {

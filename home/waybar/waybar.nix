@@ -27,18 +27,23 @@
           "hyprland/workspaces"
         ];
         modules-right = [
+          "tray"
           "pulseaudio"
           "network"
           "power-profiles-daemon"
           # "backlight"
           "battery"
-          "tray"
+          "custom/power"
           "clock"
         ];
 
         # https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#window
         "hyprland/window" = {
-
+          rewrite = {
+            "(.*) — Mozilla Firefox" = "$1";
+            "(.*) - Visual Studio Code" = "$1";
+            "• Discord \\| ([^|]*) \\| ([^|]*)" = "$2 | $1";
+          };
         };
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -112,6 +117,10 @@
             ];
           };
           on-click = "pavucontrol";
+        };
+        "custom/power" = {
+          format = "⏻";
+          on-click = ./power.sh;
         };
       };
     };

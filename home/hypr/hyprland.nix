@@ -18,9 +18,10 @@ in {
   ];
 
   home.packages = with pkgs; [
-    wl-clipboard
-    hyprshot
     hdrop
+    hyprshot
+    # fuchsia-cursor
+    wl-clipboard
   ];
 
   wayland.windowManager.hyprland = {
@@ -44,9 +45,6 @@ in {
       xwayland.force_zero_scaling = true;
       
       exec-once = [
-        # "hyprlock --immediate --immediate-render --no-fade-in" # if using autologin
-        "systemctl --user start hyprpaper" # 
-        "systemctl --user start hypridle"
         "wl-paste -p --watch wl-copy -pc"
         "[workspace 2] firefox"
         "[workspace 3 silent] vesktop"
@@ -128,14 +126,14 @@ in {
       };
 
       misc = {
-        force_default_wallpaper = -1;
-        disable_hyprland_logo = false;
+        disable_hyprland_logo = true;
+        background_color = "rgb(000000)";
         middle_click_paste = true; # required or electron will emulate it.
       };
 
       input = {
         kb_layout = "us";
-        kb_options = "caps:backspace";
+        kb_options = "caps:escape";
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = 0;
@@ -198,9 +196,8 @@ in {
         "$mainMod, E, exec, kitty"
         "$mainMod, F, exec, firefox"
         "$mainMod, R, exec, kitty fish -C y"
-        "$mainMod, Backspace, exec, hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
+        "$mainMod, Escape, exec, hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
         ", mouse:276, exec, ${hshot}"
-        "$mainMod, L, exec, hyprlock"
 
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
@@ -235,41 +232,4 @@ in {
       );
     };
   };
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    name = "Fuchsia";
-    size = 24;
-    package = pkgs.fuchsia-cursor;
-  };
-
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  #   name = "Fuchsia";
-  #   size = 48;
-  #   package = 
-  #     pkgs.runCommand "moveUp" {} ''
-  #       mkdir -p $out/share/icons
-  #       ln -s ${pkgs.fetchzip {
-  #         url = "https://github.com/ful1e5/fuchsia-cursor/releases/download/v2.0.1/Fuchsia.tar.xz";
-  #         hash = "sha256-TuhU8UFo0hbVShqsWy9rTKnMV8/WHqsxmpqWg1d9f84=";
-  #       }} $out/share/icons/Fuchsia
-  #     ''
-  #     # pkgs.stdenv.mkDerivation {
-  #     #   name = "bibata-hyprcursor-modern-ice";
-  #     #   src = fetchurl {
-  #     #     url = "https://github.com/LOSEARDES77/Bibata-Cursor-hyprcursor/releases/download/1.0/hypr_Bibata-Modern-Ice.tar.gz";
-  #     #     hash = "";
-  #     #   };
-  #     #   sourceRoot = ".";
-  #     #   installPhase = ''
-  #     #     tar -xzf *
-  #     #     mkdir -p $out/share/icons/bibata-hyprcursor-modern-ice
-  #     #     cp * $out/share/icons/bibata-hyprcursor-modern-ice
-  #     #   '';
-  #     # }
-  #   ;
-  # };
 }

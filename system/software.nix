@@ -6,10 +6,10 @@
     # ./display_managers/sddm.nix
     # ./display_managers/greetd.nix
     ./display_managers/ly.nix
+    ./plymouth.nix
   ];
 
   environment.systemPackages = with pkgs; [
-    fuchsia-cursor
     gnome-keyring
   ];
 
@@ -17,9 +17,9 @@
   programs.fish.enable = true; # here AND home-manager
   programs.steam.enable = true;
 
-  services.openssh.enable = true;
-
   services.gnome.gnome-keyring.enable = true;
+
+  services.openssh.enable = true;
 
   fonts.enableDefaultPackages = true;
 
@@ -36,5 +36,7 @@
   environment.sessionVariables = {
     
   };
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
 }

@@ -54,4 +54,17 @@
     };
   };
 
+  # Remap copilot to ctrl
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+      settings = {
+        main = {
+          "f23+leftshift+leftmeta" = "layer(control)"; # copilot to ctrl
+        };
+      };
+    };
+  };
+
 }

@@ -21,6 +21,11 @@
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
+  system.activationScripts.report-changes = ''
+    PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+    nvd diff $(ls -dv /nix/var/nix/profiles/system-*-link | tail -2)
+  '';
+
 
   # ============= #
   # SYSTEM CONFIG #

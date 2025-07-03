@@ -33,10 +33,9 @@
     pulse.enable = true;
   };
 
-  environment.sessionVariables = {
-    
-  };
+  # environment.sessionVariables = {};
 
+  # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
 }

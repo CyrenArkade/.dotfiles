@@ -29,10 +29,13 @@
     in {
       
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        ll5i = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./system/configuration.nix ];
+          modules = [
+            ./nixos/hardware/ll5i/hardware.nix
+            ./nixos/system.nix
+          ];
         };
       };
 

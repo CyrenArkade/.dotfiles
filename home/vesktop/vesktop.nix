@@ -34,7 +34,7 @@
         alwaysTrust.enable = true;
         betterUploadButton.enable = true;
         copyFileContents.enable = true;
-        expressionCloner.enable = true;
+        emoteCloner.enable = true;
         fixCodeblockGap.enable = true;
         fixSpotifyEmbeds.enable = true;
         fixYoutubeEmbeds.enable = true;

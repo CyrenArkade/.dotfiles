@@ -9,6 +9,9 @@
     bind = [
       "$mainMod, L, exec, hyprlock"
     ];
+    bindl = [
+      ",switch:on:Lid Switch, exec, pidof hyprlock || hyprlock"
+    ];
   };
 
   programs.hyprlock = {
@@ -61,7 +64,7 @@
 
       image = {
         monitor = "";
-        path = toString ../../images/icon.webp;
+        path = toString ../../images/icon.jpg;
         size = 100;
         border_color = "rgb(b4befe)";
         position = "0, 75";

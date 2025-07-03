@@ -5,6 +5,7 @@
     inputs.catppuccin.homeModules.catppuccin
 
     ./hypr/hyprland.nix
+    ./kitty/kitty.nix
     ./neovim/neovim.nix
     ./vesktop/vesktop.nix
     
@@ -76,21 +77,6 @@
       core.editor = "code --wait";
     };
   };
-
-  programs.kitty = {
-    enable = true;
-    settings = {
-      shell = "fish";
-      confirm_os_window_close = 0;
-      enable_audio_bell = 0;
-    };
-    extraConfig = ''
-      map ctrl+f       launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env /home/cyren/.nix-profile/bin/fzf --ansi --no-sort --no-mouse --exact -i --tac --wrap
-      map ctrl+shift+f launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env /home/cyren/.nix-profile/bin/fzf --ansi --no-sort --no-mouse --exact -i --tac --wrap --no-extended
-      show_scrollback moar
-    '';
-  };
-  catppuccin.kitty.enable = true;
 
   programs.mpv.enable = true;
   catppuccin.mpv.enable = true;

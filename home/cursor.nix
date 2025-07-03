@@ -35,7 +35,6 @@
         sed -i 's/create svg-dark-nord//g' build.sh
       '';
       buildPhase = ''
-        # find src/svg-light -type f -exec sed -i 's/#333333/#f5c2e7/g' {} +
         find src/svg-light -type f -exec sed -i 's/#333333/#11111b/g' {} +
         find src/svg-light -type f -exec sed -i 's/#ffffff/#b4befe/g' {} +
         ./build.sh

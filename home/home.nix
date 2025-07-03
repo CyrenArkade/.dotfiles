@@ -31,6 +31,7 @@
     ov
     tree
     vivid
+    wl-clipboard
     
     gimp3
     kdePackages.dolphin

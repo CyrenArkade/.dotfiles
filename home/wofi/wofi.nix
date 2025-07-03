@@ -15,17 +15,15 @@
     };
   };
 
-  home.file = {
-    # There is an option for this in git, but css can emulate it.
-    ".config/wofi/no-input.css".text = ''
-      @import "${./style.css}";
+  # There is an option for this in git, but css can emulate it.
+  xdg.configFile."wofi/no-input.css".text = ''
+    @import "${./style.css}";
 
-      #input {
-        opacity: 0;
-        margin-top: -999px;
-      }
-    '';
-  };
+    #input {
+      opacity: 0;
+      margin-top: -999px;
+    }
+  '';
 
   wayland.windowManager.hyprland = {
     settings = {

@@ -1,27 +1,15 @@
-{ inputs, pkgs, fetchurl, ... }:
+{ inputs, pkgs, fetchurl, lib, ... }:
 
-let
-  hshot = pkgs.writeShellScript "hshot" ''
-    folderName="$HOME/Pictures/Screenshots/$(date +%Y)-$(date +%m)"
-    fileName="$(date +"%Y-%m-%d_%H:%M:%S").png"
-    hyprshot -z -m region -o "$folderName" -f "$fileName"
-  '';
-in {
+{
   imports = [
     ../waybar/waybar.nix
     ../wofi/wofi.nix
+    ../flameshot.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
     ./hypredge.nix
     ./hyprspace.nix
-  ];
-
-  home.packages = with pkgs; [
-    hdrop
-    hyprshot
-    # fuchsia-cursor
-    wl-clipboard
   ];
 
   wayland.windowManager.hyprland = {
@@ -45,7 +33,7 @@ in {
       xwayland.force_zero_scaling = true;
       
       exec-once = [
-        "wl-paste -p --watch wl-copy -pc"
+        "${pkgs.wl-clipboard}/bin/wl-paste -p --watch ${pkgs.wl-clipboard}/bin/wl-copy -pc"
         "[workspace 2] firefox"
         "[workspace 3 silent] vesktop"
       ];
@@ -196,8 +184,7 @@ in {
         "$mainMod, E, exec, kitty"
         "$mainMod, F, exec, firefox"
         "$mainMod, R, exec, kitty fish -C y"
-        "$mainMod, Escape, exec, hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
-        ", mouse:276, exec, ${hshot}"
+        "$mainMod, Escape, exec, ${pkgs.hdrop}/bin/hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
 
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"

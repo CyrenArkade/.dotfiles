@@ -1,6 +1,17 @@
 { pkgs, ... }:
 
-{
+let
+  pref-by-location = pkgs.stdenvNoCC.mkDerivation {
+    name = "pref-by-location";
+    src = pkgs.fetchFromGitHub {
+      owner = "boydaihungst";
+      repo = "pref-by-location.yazi";
+      rev = "68f006da24870761a3926eed13c877ce2b4a4559";
+      hash = "sha256-mmEQBigbHkxmRBQDEt4WSqlZGC+200k+4/4tjUk+484=";
+    };
+    installPhase = "cp -r . $out/";
+  };
+in {
   home.packages = with pkgs; [
     xdg-desktop-portal-termfilechooser
   ];
@@ -60,12 +71,41 @@
       
         { on = "v"; run = "paste";         desc = "Paste yanked files"; }
 	      { on = "V"; run = "paste --force"; desc = "Paste yanked files (overwrite if the destination exists)"; }
+
+        { on = "."; run = [ "hidden toggle" "plugin pref-by-location -- save" ]; desc = "Toggle the visibility of hidden files"; }
+
+        # pref-by-location linemode
+        { on = [ "m" "s" ]; run = [ "linemode size" "plugin pref-by-location -- save" ];        desc = "Linemode: size"; }
+        { on = [ "m" "p" ]; run = [ "linemode permissions" "plugin pref-by-location -- save" ]; desc = "Linemode: permissions"; }
+        { on = [ "m" "b" ]; run = [ "linemode btime" "plugin pref-by-location -- save" ];       desc = "Linemode: btime"; }
+        { on = [ "m" "m" ]; run = [ "linemode mtime" "plugin pref-by-location -- save" ];       desc = "Linemode: mtime"; }
+        { on = [ "m" "o" ]; run = [ "linemode owner" "plugin pref-by-location -- save" ];       desc = "Linemode: owner"; }
+        { on = [ "m" "n" ]; run = [ "linemode none" "plugin pref-by-location -- save" ];        desc = "Linemode: none"; }
+
+        # pref-by-location linemode
+        { on = [ "," "t" ]; run = "plugin pref-by-location -- toggle";                                              desc = "Toggle pref auto-save"; }
+        # { on = [ "," "d" ]; run = "plugin pref-by-location -- disable";                                             desc = "Disable auto-save preferences"; }
+        { on = [ "," "R" ]; run = [ "plugin pref-by-location -- reset" ];                                           desc = "Reset saved pref"; }
+        { on = [ "," "m" ]; run = [ "sort mtime --reverse=no" "linemode mtime" "plugin pref-by-location -- save" ]; desc = "󰌼 Modified"; }
+        { on = [ "," "M" ]; run = [ "sort mtime --reverse" "linemode mtime" "plugin pref-by-location -- save" ];    desc = "󰒿 Modified"; }
+        { on = [ "," "b" ]; run = [ "sort btime --reverse=no" "linemode btime" "plugin pref-by-location -- save" ]; desc = "󰌼 Birth"; }
+        { on = [ "," "B" ]; run = [ "sort btime --reverse" "linemode btime" "plugin pref-by-location -- save" ];    desc = "󰒿 Birth"; }
+        { on = [ "," "e" ]; run = [ "sort extension --reverse=no" "plugin pref-by-location -- save" ];              desc = "󰌼 Extension"; }
+        { on = [ "," "E" ]; run = [ "sort extension --reverse" "plugin pref-by-location -- save" ];                 desc = "󰒿 Extension"; }
+        { on = [ "," "a" ]; run = [ "sort alphabetical --reverse=no" "plugin pref-by-location -- save" ];           desc = "󰌼 Alphabetically"; }
+        { on = [ "," "A" ]; run = [ "sort alphabetical --reverse" "plugin pref-by-location -- save" ];              desc = "󰒿 Alphabetically"; }
+        { on = [ "," "n" ]; run = [ "sort natural --reverse=no" "plugin pref-by-location -- save" ];                desc = "󰌼 Naturally"; }
+        { on = [ "," "N" ]; run = [ "sort natural --reverse" "plugin pref-by-location -- save" ];                   desc = "󰒿 Naturally"; }
+        { on = [ "," "s" ]; run = [ "sort size --reverse=no" "linemode size" "plugin pref-by-location -- save" ];   desc = "󰌼 Size"; }
+        { on = [ "," "S" ]; run = [ "sort size --reverse" "linemode size" "plugin pref-by-location -- save" ];      desc = "󰒿 Size"; }
+        { on = [ "," "r" ]; run = [ "sort random --reverse=no" "plugin pref-by-location -- save" ];                 desc = "Sort randomly"; }
       ];
     };
     plugins = {
       full-border = pkgs.yaziPlugins.full-border;
       git = pkgs.yaziPlugins.git;
       ouch = pkgs.yaziPlugins.ouch;
+      pref-by-location = pref-by-location;
       starship = pkgs.yaziPlugins.starship;
     };
     initLua = ''
@@ -74,6 +114,9 @@
       })
 
       require("git"):setup()
+
+      -- requires keymaps to work
+      require("pref-by-location"):setup({})
       
       -- Add padding before starship
       Header:children_add(function(self)

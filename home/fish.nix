@@ -5,6 +5,7 @@
     enable = true;
     shellAliases = {
       ls = "eza --icons";
+      fd = "fd -u";
       fzk = "ps -e | fzf | awk '{print $1}' | xargs kill";
       run = "hyprctl dispatch exec";
     };

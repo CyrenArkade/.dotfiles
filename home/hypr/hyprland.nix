@@ -188,6 +188,7 @@
 
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
+        "$mainMod, C, fullscreen,"
         "$mainMod, V, togglefloating,"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"

@@ -8,7 +8,7 @@
     ./kitty/kitty.nix
     ./neovim/neovim.nix
     ./vesktop/vesktop.nix
-    
+
     ./gtk.nix
     ./qt.nix
 
@@ -37,6 +37,8 @@
     gimp3
     kdePackages.dolphin
     lutris
+    mullvad-vpn
+    prismlauncher # jdk 8, 17, 21
     qbittorrent
     xivlauncher
   ];

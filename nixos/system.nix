@@ -34,7 +34,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  time.timeZone = "America/Chicago";
+  # time.timeZone = "America/Chicago";
+  time.timeZone = "America/Los_Angeles";
 
   users.users.cyren = {
     isNormalUser = true;

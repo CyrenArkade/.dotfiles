@@ -30,6 +30,8 @@
     nvd
     ouch
     ov
+    python313
+    ripgrep
     tree
     vivid
     wl-clipboard

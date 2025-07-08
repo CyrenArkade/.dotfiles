@@ -8,7 +8,10 @@
     
     settings = {
       plugin = {
-        overview = {
+        hypredge = {
+          # blacklist = [
+          #   "class, code"
+          # ];
           edge-effect = [
             "left, workspace, e-1"
             "left, hypredge:movecursortoedge, right"

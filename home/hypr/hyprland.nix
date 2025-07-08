@@ -12,6 +12,10 @@
     ./hyprspace.nix
   ];
 
+  home.packages = with pkgs; [
+    hyprpicker
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
 

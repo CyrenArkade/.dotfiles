@@ -62,6 +62,7 @@ in {
         { on = [ "<A-c>" "n" ]; run = "copy name_without_ext"; desc = "Copy the filename without extension"; }
       
         { on = [ "g" "c" ]; run = "cd ~/.dotfiles"; desc = "Go ~/.dotfiles"; }
+        { on = [ "g" "d" ]; run = "cd ~/dev"; desc = "Go ~/dev"; }
         { on = [ "g" "s" ]; run = "cd ~/Pictures/Screenshots"; desc = "Go Screenshots"; }
 
         { on = "<T>"; run = "close"; desc = "Close the current tab, or quit if it's last"; }

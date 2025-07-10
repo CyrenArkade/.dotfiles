@@ -5,19 +5,26 @@
     sessionPackages = [
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
     ];
+    # Map black->crust, white->base, brightblack->mantle, brightwhite->lavender
+    # https://wiki.gentoo.org/wiki/Terminal_emulator/Colors#Linux_console
+    preStart = "printf '\\e]P0181825\\e]P71e1e2e\\e]P811111b\\e]Pfb4befe'";
     ly = {
       enable = true;
       settings = {
-        animation = "colormix";
         auth_fails = 3;
         hide_version_string = true;
         hide_key_hints = true;
-        bg = "0x001e1e2e";
-        fg = "0x00b4befe";
-        border_fg = "0x00cdd6f4";
-        colormix_col1 = "0x0000FFFF";
-        colormix_col2 = "0x00FF00FF";
-        colormix_col3 = "0x00FFFFFF";
+        clear_password = true;
+
+        bg = "0x00555555";
+        fg = "0x00ffffff";
+        border_fg = "0x00ffffff";
+        error_bg = "0x00555555";
+
+        animation = "colormix";
+        colormix_col1 = "0x00aaaaaa";
+        colormix_col2 = "0x00555555";
+        colormix_col3 = "0x00000000";
       };
     };
   };

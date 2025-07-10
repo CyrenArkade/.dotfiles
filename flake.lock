@@ -208,11 +208,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751431351,
-        "narHash": "sha256-NF86ML2I8FoCHWyRgUaYWI5jDI2bXDxWHdUo+RRO7QA=",
+        "lastModified": 1752176037,
+        "narHash": "sha256-dMF1/2U2+3A31Jvjo+XY5QOXaToFJvshsFsz+bWQgfw=",
         "owner": "CyrenArkade",
         "repo": "hypredge",
-        "rev": "08b069399cb298d92fbdf0b204bc7333abd63b2c",
+        "rev": "3d824ea21db0c2dcc41a128bea4d7ca86468f316",
         "type": "github"
       },
       "original": {

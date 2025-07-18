@@ -8,14 +8,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
-    hyprland.url = "github:hyprwm/Hyprland/v0.49.0";
+    hyprland.url = "github:hyprwm/Hyprland/v0.50.0";
     Hyprspace = {
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
     hypredge = {
-      url = "github:CyrenArkade/hypredge";
-      # url = "git+file:///home/cyren/dev/cpp/hypredge";
+      # url = "github:CyrenArkade/hypredge";
+      url = "git+file:///home/cyren/dev/cpp/hypredge";
       inputs.hyprland.follows = "hyprland";
     };
     nixCats.url = "github:BirdeeHub/nixCats-nvim";

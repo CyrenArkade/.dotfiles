@@ -35,11 +35,12 @@ in {
     bind = [
       ", mouse:276, exec, ${takeScreenshot}"
     ];
-    windowrulev2 = [
+    windowrule = [
       "noanim, class:^(flameshot)$"
       "float, class:^(flameshot)$"
       "move 0 0, class:^(flameshot)$"
       "pin, class:^(flameshot)$"
+      "noinitialfocus, class:^(flameshot)$"
     ];
   };
 }

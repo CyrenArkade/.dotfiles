@@ -38,14 +38,11 @@
     
     gimp3
     kdePackages.dolphin
-    lutris
     mullvad-vpn
-    prismlauncher # jdk 8, 17, 21
+    (prismlauncher.override { jdks = [jdk17 jdk21]; })
     qbittorrent
     xivlauncher
   ];
-
-  xdg.portal.enable = true;
 
   programs.home-manager.enable = true;
   programs.bash.enable = true;
@@ -90,6 +87,10 @@
     options = [ "--cmd cd" ];
   };
 
+  xdg.portal.enable = true;
+
+  services.blueman-applet.enable = true;
+
 
   catppuccin = {
     flavor = "mocha";
@@ -97,6 +98,8 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  news.display = "silent";
 
   home = {
     username = "cyren";

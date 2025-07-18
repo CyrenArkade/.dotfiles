@@ -121,6 +121,7 @@
         disable_hyprland_logo = true;
         background_color = "rgb(000000)";
         middle_click_paste = true; # required or electron will emulate it.
+        enable_anr_dialog = false;
       };
 
       input = {
@@ -143,7 +144,7 @@
 
       cursor.no_warps = true;
 
-      windowrulev2 = [
+      windowrule = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 

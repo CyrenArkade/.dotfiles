@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -21,6 +21,13 @@
 
   services.openssh.enable = true;
 
+  services.blueman.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+
   fonts.enableDefaultPackages = true;
 
   catppuccin = {
@@ -28,14 +35,12 @@
     accent = "lavender";
   };
 
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
   # environment.sessionVariables = {};
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+    "ntsync"
+  ];
 
 }

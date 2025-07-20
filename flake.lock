@@ -191,6 +191,36 @@
         "type": "github"
       }
     },
+    "hypredge": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": [
+          "hypredge",
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hypredge",
+          "hyprland",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1752713523,
+        "narHash": "sha256-0A3I3iXy5wD98udQ1CsZA1FuqizVl+MseHwTxlUAKa0=",
+        "ref": "refs/heads/main",
+        "rev": "b6ba98aa50fd5ffff4660b26dd42095fccbafe9e",
+        "revCount": 11,
+        "type": "git",
+        "url": "file:///home/cyren/dev/cpp/hypredge"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/cyren/dev/cpp/hypredge"
+      }
+    },
     "hyprgraphics": {
       "inputs": {
         "hyprutils": [
@@ -564,6 +594,7 @@
         "Hyprspace": "Hyprspace",
         "catppuccin": "catppuccin",
         "home-manager": "home-manager",
+        "hypredge": "hypredge",
         "hyprland": "hyprland",
         "nixCats": "nixCats",
         "nixcord": "nixcord",

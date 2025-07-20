@@ -28,10 +28,12 @@ in {
         vscode = [
           { run = "code \"$0\""; desc = "VS Code"; }
         ];
+        reveal = [];
       };
       open = {
         append_rules = [
           { name = "*"; use = "vscode"; }
+          { name = "*/"; use = "vscode"; }
         ];
       };
       plugin = {

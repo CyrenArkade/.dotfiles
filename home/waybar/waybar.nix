@@ -17,6 +17,7 @@
 
     settings = {
       main = {
+        # mode = "overlay";
         position = "bottom";
         height = 30;
         margin-top = -7;

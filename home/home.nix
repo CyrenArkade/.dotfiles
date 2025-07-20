@@ -22,9 +22,11 @@
 
   home.packages = with pkgs; [
     brightnessctl
+    bun
     fd
     ffmpeg
     file
+    mediainfo
     ncdu
     nix-tree
     nvd

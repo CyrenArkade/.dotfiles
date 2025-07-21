@@ -41,7 +41,7 @@
     gimp3
     kdePackages.dolphin
     mullvad-vpn
-    (prismlauncher.override { jdks = [jdk17 jdk21]; })
+    prismlauncher
     qbittorrent
     xivlauncher
   ];

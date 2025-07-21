@@ -29,14 +29,19 @@
       patchPhase = ''
         patchShebangs ./build.sh
 
-        # Skip building the other cursors
-        sed -i 's/create svg-dark//g' build.sh
-        sed -i 's/create svg-light-nord//g' build.sh
-        sed -i 's/create svg-dark-nord//g' build.sh
-      '';
-      buildPhase = ''
+        # Skip building the other themes
+        sed -i -E '/create (svg-dark|svg-light-nord|svg-dark-nord)/d' build.sh
+
+        # Skip building the other sizes
+        # Hyprland seems to currently be bugged, requiring 48px/2x in most places and 24px/1x in xwayland
+        sed -i -E '/inkscape.*(x1_25|x1_5)/d' build.sh
+        find src/config -type f -exec sed -i -E '/^(30|36)/d' {} +
+
+        # Recolor to be lavender mocha
         find src/svg-light -type f -exec sed -i 's/#333333/#11111b/g' {} +
         find src/svg-light -type f -exec sed -i 's/#ffffff/#b4befe/g' {} +
+      '';
+      buildPhase = ''
         ./build.sh
       '';
       installPhase = ''

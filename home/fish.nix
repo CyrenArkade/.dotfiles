@@ -8,7 +8,7 @@
       fd = "fd -u";
       fzk = "ps -e | fzf | awk '{print $1}' | xargs kill";
       run = "hyprctl dispatch exec --";
-      mc = "hyprctl dispatch exec -- prismlauncher --launch";
+      mc = "run prismlauncher --launch";
     };
     interactiveShellInit = ''
       function fish_title

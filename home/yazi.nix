@@ -55,6 +55,8 @@ in {
     # https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/keymap-default.toml
     keymap = {
       mgr.prepend_keymap = [
+        { on = "<Enter>"; run = "plugin smart-enter";   desc = "Enter directory or open file"; }
+
         { on = "c"; run = "yank";   desc = "Yank selected files (copy)"; }
         { on = "C"; run = "unyank"; desc = "Yank selected files (copy)"; }
 
@@ -65,6 +67,7 @@ in {
       
         { on = [ "g" "c" ]; run = "cd ~/.dotfiles"; desc = "Go ~/.dotfiles"; }
         { on = [ "g" "d" ]; run = "cd ~/dev"; desc = "Go ~/dev"; }
+        { on = [ "g" "D" ]; run = "cd ~/Downloads"; desc = "Go ~/Downloads"; }
         { on = [ "g" "s" ]; run = "cd ~/Pictures/Screenshots"; desc = "Go Screenshots"; }
 
         { on = "<T>"; run = "close"; desc = "Close the current tab, or quit if it's last"; }
@@ -109,6 +112,7 @@ in {
       git = pkgs.yaziPlugins.git;
       ouch = pkgs.yaziPlugins.ouch;
       pref-by-location = pref-by-location;
+      smart-enter = pkgs.yaziPlugins.smart-enter;
       starship = pkgs.yaziPlugins.starship;
     };
     initLua = ''
@@ -126,6 +130,8 @@ in {
         return " "
       end, 999, Header.LEFT)
       require("starship"):setup()
+
+      require("smart-enter"):setup({})
     '';
   };
 

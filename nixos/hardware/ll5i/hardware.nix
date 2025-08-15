@@ -12,6 +12,9 @@
     "/nix".options = [ "compress=zstd" "noatime" ];
   };
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   # Power management
   services.auto-cpufreq = {
     enable = true;

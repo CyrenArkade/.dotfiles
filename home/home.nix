@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, ... }:
+{ inputs, lib, pkgs, nixpkgs, ... }:
 
 {
   imports = [
@@ -40,7 +40,6 @@
     
     gimp3
     kdePackages.dolphin
-    mullvad-vpn
     prismlauncher
     qbittorrent
     xivlauncher
@@ -50,6 +49,7 @@
   programs.bash.enable = true;
   programs.eza.enable = true;
   programs.firefox.enable = true;
+  programs.obs-studio.enable = true;
   programs.vscode.enable = true;
   
 
@@ -58,6 +58,9 @@
 
   programs.btop = {
     enable = true;
+    package = pkgs.btop.override {
+      cudaSupport = true;
+    };
     settings = {
       disks_filter = "exclude=/nix /home";
     };

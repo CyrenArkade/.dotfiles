@@ -17,11 +17,13 @@
   programs.fish.enable = true; # here AND home-manager
   programs.steam.enable = true;
 
+  services.blueman.enable = true;
+
   services.gnome.gnome-keyring.enable = true;
 
-  services.openssh.enable = true;
+  services.mullvad-vpn.enable = true;
 
-  services.blueman.enable = true;
+  services.openssh.enable = true;
 
   services.pipewire = {
     enable = true;

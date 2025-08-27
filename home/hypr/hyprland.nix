@@ -5,6 +5,7 @@
     ../waybar/waybar.nix
     ../wofi/wofi.nix
     ../flameshot.nix
+    ../swaync.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
@@ -14,6 +15,7 @@
 
   home.packages = with pkgs; [
     hyprpicker
+    networkmanagerapplet
   ];
 
   wayland.windowManager.hyprland = {

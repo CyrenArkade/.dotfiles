@@ -38,6 +38,7 @@
     vivid
     wl-clipboard
     
+    calibre
     gimp3
     kdePackages.dolphin
     prismlauncher

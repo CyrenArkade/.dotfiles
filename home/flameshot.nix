@@ -34,6 +34,7 @@ in {
   wayland.windowManager.hyprland.settings = {
     bind = [
       ", mouse:276, exec, ${takeScreenshot}"
+      ", Print, exec, ${takeScreenshot}" # printscreen
     ];
     windowrule = [
       "noanim, class:^(flameshot)$"

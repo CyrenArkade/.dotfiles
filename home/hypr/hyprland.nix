@@ -4,7 +4,7 @@
   imports = [
     ../waybar/waybar.nix
     ../wofi/wofi.nix
-    ../flameshot.nix
+    ../satty.nix
     ../swaync.nix
     ./hypridle.nix
     ./hyprlock.nix

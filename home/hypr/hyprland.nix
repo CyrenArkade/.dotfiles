@@ -10,7 +10,6 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./hypredge.nix
-    ./hyprspace.nix
   ];
 
   home.packages = with pkgs; [

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports = [
@@ -29,8 +29,10 @@
       };
     };
   };
-  services.logind.lidSwitch = "suspend";
-  services.logind.lidSwitchExternalPower = "suspend";
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend-then-hibernate";
+    HandleLidSwitchExternalPower = "suspend-then-hibernate";
+  };
 
   # Swap
   swapDevices = [{
@@ -41,12 +43,12 @@
 
   # Nvidia
   services.xserver.videoDrivers = [
-    "modesetting"
     "nvidia"
   ];
   hardware.graphics.enable = true;
   hardware.nvidia = {
     open = false;
+    modesetting.enable = true;
     prime = {
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";

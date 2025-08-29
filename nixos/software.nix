@@ -18,7 +18,7 @@
   programs.steam.enable = true;
 
   services.blueman.enable = true;
-
+  
   services.gnome.gnome-keyring.enable = true;
 
   services.mullvad-vpn.enable = true;
@@ -28,6 +28,16 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false;
+    # storageDriver = "btrfs";
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
   };
 
   fonts.enableDefaultPackages = true;

@@ -28,12 +28,16 @@ in {
         vscode = [
           { run = "code \"$0\""; desc = "VS Code"; }
         ];
+        wl-copy = [
+          { run = "wl-copy < \"$0\""; desc = "Copy"; }
+        ];
         reveal = [];
       };
       open = {
         append_rules = [
           { name = "*"; use = "vscode"; }
           { name = "*/"; use = "vscode"; }
+          { name = "*"; use = "wl-copy"; }
         ];
       };
       plugin = {

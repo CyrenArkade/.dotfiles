@@ -21,8 +21,10 @@
   ];
 
   home.packages = with pkgs; [
+    android-tools
     brightnessctl
     bun
+    fanficfare
     fd
     ffmpeg
     file
@@ -41,6 +43,7 @@
     calibre
     gimp3
     kdePackages.dolphin
+    libreoffice-fresh
     prismlauncher
     qbittorrent
     xivlauncher

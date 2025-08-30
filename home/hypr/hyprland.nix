@@ -2,8 +2,9 @@
 
 {
   imports = [
+    ../rofi/rofi.nix
     ../waybar/waybar.nix
-    ../wofi/wofi.nix
+    # ../wofi/wofi.nix
     ../satty.nix
     ../swaync.nix
     ./hypridle.nix
@@ -114,9 +115,12 @@
       master.new_status = "master";
 
       gestures = {
-        workspace_swipe = true;
         workspace_swipe_create_new = false;
       };
+
+      gesture = [
+        "3, horizontal, workspace"
+      ];
 
       misc = {
         disable_hyprland_logo = true;

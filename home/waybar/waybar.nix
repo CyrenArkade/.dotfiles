@@ -19,8 +19,8 @@
       main = {
         # mode = "overlay";
         position = "bottom";
-        height = 30;
-        margin-top = -7;
+        height = 26;
+        margin-top = -8;
         margin-bottom = 6;
         margin-left = 13;
         margin-right = 13;
@@ -104,7 +104,6 @@
           format-linked = "{ifname} (No IP) ";
           format-disconnected = "Disconnected ⚠";
           format-alt = "{essid} ({signalStrength}%) ";
-          on-click-right = "hyprctl dispatch exec \"[float; move 70% 100%-w-40; size 350 400]\" plasmawindowed org.kde.plasma.networkmanagement";
         };
         pulseaudio = {
           format = "{volume}% {icon}";
@@ -125,6 +124,7 @@
         };
         "custom/power" = {
           format = "⏻";
+          tooltip-format = "Power Menu";
           on-click = ./power.sh;
         };
       };

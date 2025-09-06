@@ -24,6 +24,7 @@
     android-tools
     brightnessctl
     bun
+    distrobox
     fanficfare
     fd
     ffmpeg

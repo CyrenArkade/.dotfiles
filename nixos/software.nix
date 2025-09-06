@@ -34,10 +34,6 @@
     enable = true;
     enableOnBoot = false;
     # storageDriver = "btrfs";
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
   };
 
   fonts.enableDefaultPackages = true;

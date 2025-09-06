@@ -39,7 +39,7 @@
 
   users.users.cyren = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" ];
     packages = with pkgs; [];
   };
 

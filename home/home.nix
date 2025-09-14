@@ -6,11 +6,9 @@
 
     ./hypr/hyprland.nix
     ./kitty/kitty.nix
+    ./theme/theme.nix
     ./neovim/neovim.nix
     ./vesktop/vesktop.nix
-
-    ./gtk.nix
-    ./qt.nix
 
     ./cursor.nix
     ./fonts.nix
@@ -29,6 +27,7 @@
     fd
     ffmpeg
     file
+    ghostscript
     mediainfo
     ncdu
     nix-tree

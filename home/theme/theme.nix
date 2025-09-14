@@ -14,16 +14,11 @@
     gtk3.extraCss = (builtins.readFile ./gtk-colors.css);
     gtk4.extraCss = (builtins.readFile ./gtk-colors.css);
   };
-  
-  # gtk = {
-  #   enable = true;
-  #   theme = {
-  #     name = "Catppuccin-GTK-Purple-Dark-Compact";
-  #     package = pkgs.magnetic-catppuccin-gtk.override {
-  #       accent = [ "purple" ];
-  #       shade = "dark";
-  #       size = "compact";
-  #     };
-  #   };
-  # };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "kvantum";
+    style.name = "kvantum";
+  };
+  catppuccin.kvantum.enable = true;
 }

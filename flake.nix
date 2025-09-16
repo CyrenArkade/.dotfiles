@@ -14,8 +14,6 @@
       # url = "git+file:///home/cyren/dev/cpp/hypredge";
       inputs.hyprland.follows = "hyprland";
     };
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    nixcord.url = "github:kaylorben/nixcord";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:

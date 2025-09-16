@@ -7,7 +7,6 @@
     ./hypr/hyprland.nix
     ./kitty/kitty.nix
     ./theme/theme.nix
-    ./neovim/neovim.nix
     ./vesktop/vesktop.nix
 
     ./cursor.nix

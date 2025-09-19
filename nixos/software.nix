@@ -3,6 +3,8 @@
 {
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
+    inputs.nixos-xivlauncher-rb.nixosModules.default
+    
     # ./display_managers/sddm.nix
     # ./display_managers/greetd.nix
     ./display_managers/ly.nix
@@ -11,6 +13,9 @@
 
   environment.systemPackages = with pkgs; [
     gnome-keyring
+    (xivlauncher-rb.override {
+      nvngxPath = "${config.hardware.nvidia.package}/lib/nvidia/wine";
+    })
   ];
 
   programs.nix-ld.enable = true;

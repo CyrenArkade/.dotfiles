@@ -45,7 +45,6 @@
     libreoffice-fresh
     prismlauncher
     qbittorrent
-    xivlauncher
   ];
 
   programs.home-manager.enable = true;

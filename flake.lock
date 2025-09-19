@@ -398,6 +398,26 @@
         "type": "github"
       }
     },
+    "nixos-xivlauncher-rb": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1758021718,
+        "narHash": "sha256-zbQJS+qyo+c9omph85fUwVo30aCVLHmlVqu4H1qObZo=",
+        "owner": "The1Penguin",
+        "repo": "nixos-xivlauncher-rb",
+        "rev": "241b59ea1b6ede7bee886f3c78646e5c7959969a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "The1Penguin",
+        "repo": "nixos-xivlauncher-rb",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1756266583,
@@ -475,6 +495,7 @@
         "home-manager": "home-manager",
         "hypredge": "hypredge",
         "hyprland": "hyprland",
+        "nixos-xivlauncher-rb": "nixos-xivlauncher-rb",
         "nixpkgs": "nixpkgs_3"
       }
     },

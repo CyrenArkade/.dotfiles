@@ -14,6 +14,10 @@
       # url = "git+file:///home/cyren/dev/cpp/hypredge";
       inputs.hyprland.follows = "hyprland";
     };
+    nixos-xivlauncher-rb = {
+      url = "github:The1Penguin/nixos-xivlauncher-rb";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:

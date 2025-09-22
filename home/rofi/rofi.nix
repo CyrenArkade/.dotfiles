@@ -47,8 +47,7 @@ in {
     ];
 
     bindr = [
-        # using pid is faster than pkill rofi || rofi
-        "$mainMod, Super_L, exec, rofi -show drun -pid /tmp/wofi-pid || pkill rofi"
+        "$mainMod, Super_L, exec, rofi -show drun || pkill rofi"
       ];
   };
 

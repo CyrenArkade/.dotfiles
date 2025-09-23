@@ -47,7 +47,7 @@ in {
     ];
 
     bindr = [
-        "$mainMod, Super_L, exec, rofi -show drun || pkill rofi"
+        "$mainMod, Super_L, exec, rofi -show drun -x11 || pkill rofi"
       ];
   };
 
@@ -57,7 +57,7 @@ in {
         # -run-command '{cmd} "''"$@"'"'
         # concatenate '{cmd} "' + "$@" + '"'
         # to form {cmd} "$@" with $@ substituted in
-        { run = "rofi -show drun -run-command '{cmd} \"'\"$@\"'\"'"; desc = "Open With"; }
+        { run = "rofi -show drun -x11 -run-command '{cmd} \"'\"$@\"'\"'"; desc = "Open With"; }
       ];
     };
     open = {

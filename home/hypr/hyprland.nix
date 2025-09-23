@@ -30,9 +30,11 @@
       ];
 
       workspace = [
-        "1, persistent:true"
-        "2, persistent:true, default:true"
-        "3, persistent:true"
+        # specify monitors due to
+        # https://github.com/hyprwm/Hyprland/issues/11762
+        "1, persistent:true, monitor:0"
+        "2, persistent:true, monitor:0, default:true"
+        "3, persistent:true, monitor:0"
         "special:mini, gapsout:128"
       ];
       

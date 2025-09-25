@@ -3,6 +3,12 @@
 {
   home.packages = with pkgs; [
     dconf
+
+    # At least one of these is needed on a new system, but not after
+    # Which one? who knows.
+    # sassc
+    # gtk-engine-murrine
+    # gnome-themes-extra
   ];
 
   gtk = {

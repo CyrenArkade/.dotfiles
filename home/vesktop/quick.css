@@ -18,7 +18,7 @@
 
     /* anti-refresh */
     --custom-app-top-bar-height: 0px;
-    --custom-guild-list-width: 60px;
+    --custom-guild-list-padding: 10px;
 
     --ctp-rainbow-thread-disabled: ;
 }

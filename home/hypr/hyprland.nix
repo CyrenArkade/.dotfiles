@@ -65,8 +65,8 @@
 
         blur = {
           enabled = true;
-          size = 8;
-          passes = 1;
+          size = 5;
+          passes = 2;
           vibrancy = 0.2;
         };
 
@@ -170,8 +170,8 @@
       ];
 
       binde = [
-        "$mainMod SHIFT, left, resizeactive, 10 0"
-        "$mainMod SHIFT, right, resizeactive, -10 0"
+        "$mainMod SHIFT, left, resizeactive, -10 0"
+        "$mainMod SHIFT, right, resizeactive, 10 0"
         "$mainMod SHIFT, up, resizeactive, 0 -10"
         "$mainMod SHIFT, down, resizeactive, 0 10"
       ];

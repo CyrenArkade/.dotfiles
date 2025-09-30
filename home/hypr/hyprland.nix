@@ -157,7 +157,7 @@
 
         "workspace 3 silent, class:^vesktop$"
         "workspace 1 silent, class:^XIVLauncher.Core$"
-        "workspace 1 silent, class:^ffxiv_dx11.exe$"
+        "workspace 1 silent, title:^FINAL FANTASY XIV$"
       ];
 
       layerrule = [];
@@ -181,8 +181,8 @@
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ",XF86MonBrightnessUp, exec, brightnessctl -d intel_backlight s 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl -d intel_backlight s 5%-"
+        ",XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight s 5%+"
+        ",XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight s 5%-"
       ];
 
       bindl = [

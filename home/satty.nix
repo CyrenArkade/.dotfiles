@@ -13,6 +13,7 @@ in {
   xdg.configFile."satty/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
     general = {
       fullscreen = true;
+      corner-roundness = 0;
       initial-tool = "crop";
       actions-on-enter = [ "save-to-clipboard" "save-to-file" "exit" ];
       actions-on-right-click = [ "exit" ];

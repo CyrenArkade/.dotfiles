@@ -19,7 +19,6 @@
 
   home.packages = with pkgs; [
     android-tools
-    brightnessctl
     bun
     distrobox
     fanficfare

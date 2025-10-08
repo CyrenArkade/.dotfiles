@@ -44,6 +44,7 @@
     libreoffice-fresh
     prismlauncher
     qbittorrent
+    zoom-us
   ];
 
   programs.home-manager.enable = true;

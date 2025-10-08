@@ -35,6 +35,10 @@ window#waybar {
     text-shadow: inherit;
 }
 
+/* #workspaces button.active {
+    background: red;
+} */
+
 .modules-right {
     background-color: @base;
     padding: 0 5px;

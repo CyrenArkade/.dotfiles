@@ -158,6 +158,8 @@
         "workspace 3 silent, class:^vesktop$"
         "workspace 1 silent, class:^XIVLauncher.Core$"
         "workspace 1 silent, title:^FINAL FANTASY XIV$"
+
+        "float, class:^Matplotlib$"
       ];
 
       layerrule = [];

@@ -17,6 +17,10 @@
     ./yazi.nix
   ];
 
+  nixpkgs.overlays = [
+    inputs.rust-overlay.overlays.default
+  ];
+
   home.packages = with pkgs; [
     android-tools
     bun
@@ -25,6 +29,7 @@
     fd
     ffmpeg
     file
+    gcc
     ghostscript
     mediainfo
     ncdu
@@ -34,6 +39,12 @@
     ov
     python313
     ripgrep
+    (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
+      extensions = [
+        "rust-src"
+        "rust-analyzer"
+      ];
+    }))
     tree
     vivid
     wl-clipboard

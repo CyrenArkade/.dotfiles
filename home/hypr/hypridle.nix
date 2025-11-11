@@ -23,15 +23,15 @@
       listener = [
         {
           timeout = 270;
-          on-timeout = "brightnessctl -s -d intel_backlight set 10";
-          on-resume = "brightnessctl -r -d intel_backlight";
+          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s -d intel_backlight set 10";
+          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r -d intel_backlight";
         } {
           timeout = 300;
           on-timeout = "loginctl lock-session";
         } {
           timeout = 330;
           on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on && brightnessctl -r -d intel_backlight";
+          on-resume = "hyprctl dispatch dpms on && ${pkgs.brightnessctl}/bin/brightnessctl -r -d intel_backlight";
         } {
           timeout = 900;
           on-timeout = "systemctl suspend";

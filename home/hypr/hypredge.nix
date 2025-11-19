@@ -3,7 +3,7 @@
 {
   wayland.windowManager.hyprland = {
     plugins = [
-      inputs.hypredge.packages.${pkgs.system}.hypredge
+      inputs.hypredge.packages.${pkgs.stdenv.hostPlatform.system}.hypredge
     ];
     
     settings = {
@@ -12,7 +12,8 @@
           # blacklist = [
           #   "class, code"
           # ];
-          edge-effect = [
+          respect_constraints = false;
+          edge_effect = [
             "left, workspace, e-1"
             "left, hypredge:movecursortoedge, right"
             "right, workspace, e+1"

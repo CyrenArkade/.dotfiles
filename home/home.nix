@@ -91,7 +91,7 @@
 
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       init.defaultBranch = "main";
       core.editor = "code --wait";
     };

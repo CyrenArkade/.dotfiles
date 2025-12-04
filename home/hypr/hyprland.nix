@@ -1,6 +1,10 @@
-{ inputs, pkgs, fetchurl, lib, ... }:
+{ inputs, pkgs, fetchurl, lib, config, ... }:
 
-{
+let
+  hdrop = pkgs.hdrop.override {
+    hyprland = config.wayland.windowManager.hyprland.package;
+  };
+in {
   imports = [
     ../rofi/rofi.nix
     ../waybar/waybar.nix
@@ -198,7 +202,7 @@
         "$mainMod, E, exec, kitty"
         "$mainMod, F, exec, firefox"
         "$mainMod, R, exec, kitty fish -C y"
-        "$mainMod, Escape, exec, ${pkgs.hdrop}/bin/hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
+        "$mainMod, Escape, exec, ${hdrop}/bin/hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
 
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"

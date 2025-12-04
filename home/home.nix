@@ -125,10 +125,6 @@
 
     file = {};
 
-    activation.report-changes = lib.hm.dag.entryAnywhere ''
-      ${pkgs.nvd}/bin/nvd diff $oldGenPath $newGenPath
-    '';
-
     sessionVariables = {
       LS_COLORS =  builtins.readFile (
         pkgs.runCommand "vivid-ls-colors" { } ''

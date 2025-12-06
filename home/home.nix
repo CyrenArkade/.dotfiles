@@ -46,7 +46,6 @@
       ];
     }))
     tree
-    vivid
     wl-clipboard
     
     calibre

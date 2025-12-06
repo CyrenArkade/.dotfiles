@@ -9,7 +9,7 @@ in {
     ../rofi/rofi.nix
     ../waybar/waybar.nix
     # ../wofi/wofi.nix
-    ../satty.nix
+    ../screenshot.nix
     ../swaync.nix
     ./hypridle.nix
     ./hyprlock.nix

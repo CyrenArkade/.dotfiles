@@ -130,7 +130,7 @@ in {
 
       misc = {
         disable_hyprland_logo = true;
-        background_color = "rgb(000000)";
+        background_color = "rgb(1e1e2e)";
         middle_click_paste = true; # required or electron will emulate it.
         enable_anr_dialog = false;
       };

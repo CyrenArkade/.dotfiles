@@ -20,22 +20,41 @@ let
   takeScreenshot = pkgs.writeShellScript "takeScreenshot" ''
     folderName="$HOME/Pictures/Screenshots/$(date +%Y)-$(date +%m)"
     fileName="$(date +"%Y-%m-%d_%H:%M:%S").png"
-    fullPath="$folderName/$fileName"
+    export fullPath="$folderName/$fileName"
 
     mkdir -p "$folderName"
 
-    ${still}/bin/still -p -c '${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -d)" "'"$fullPath"'"'
+    function whileStill() {
+      set -e
+    
+      read x y w h < <(${pkgs.slurp}/bin/slurp -d -b 00000060 -c b4befeff | sed 's/[+,x]/ /g')
+      sx=$(echo "$x * 1.25 + 0.5" | ${pkgs.bc}/bin/bc)
+      sy=$(echo "$y * 1.25 + 0.5" | ${pkgs.bc}/bin/bc)
+      sw=$(echo "$w * 1.25 + 0.5" | ${pkgs.bc}/bin/bc)
+      sh=$(echo "$h * 1.25 + 0.5" | ${pkgs.bc}/bin/bc)
 
-    if [ ! -f "$fullPath" ]; then
-      exit
+      ${pkgs.grim}/bin/grim "$fullPath"
+
+      echo ''${sw}x''${sh}+''${sx}+''${sy}
+    }
+    export -f whileStill
+
+    crop="$(${still}/bin/still -p -c whileStill)"
+
+    if [[ -z "$crop" || ! -f "$fullPath" ]]; then
+        exit
     fi
+    
+    ${pkgs.imagemagick}/bin/magick "$fullPath" -crop "$crop" "$fullPath"
+
+    ${pkgs.wl-clipboard}/bin/wl-copy < "$fullPath"
 
     action=$(${pkgs.libnotify}/bin/notify-send "Saved $fullPath" -u low -t 5000 --action=open=Open --action=edit=Edit)
-    if [ $action = 'open' ]; then
+    if [ "$action" = 'open' ]; then
       ${pkgs.xdg-utils}/bin/xdg-open "$folderName"
-    elif [ $action = 'edit' ]; then
+    elif [ "$action" = 'edit' ]; then
       ${pkgs.satty}/bin/satty -f "$fullPath" -o "$fullPath"
-    fi  
+    fi
   '';
 in {
   xdg.configFile."satty/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
@@ -56,13 +75,8 @@ in {
       ", mouse:276, exec, ${takeScreenshot}"
       ", Print, exec, ${takeScreenshot}" # printscreen
     ];
-    windowrule = [
-      "noanim, class:^(com.gabm.satty)$"
-      # "float, class:^(com.gabm.satty)$"
-      # "move 0 0, class:^(com.gabm.satty)$"
-      # "pin, class:^(com.gabm.satty)$"
-      # "size 100% 100%, class:^(com.gabm.satty)$"
-      # "noinitialfocus, class:^(com.gabm.satty)$"
+    layerrule = [
+      "noanim, selection"
     ];
   };
 }

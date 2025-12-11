@@ -33,23 +33,20 @@ let
       sw=$(echo "$w * 1.25 + 0.5" | ${pkgs.bc}/bin/bc)
       sh=$(echo "$h * 1.25 + 0.5" | ${pkgs.bc}/bin/bc)
 
-      ${pkgs.grim}/bin/grim "$fullPath"
-
       echo ''${sw}x''${sh}+''${sx}+''${sy}
     }
     export -f whileStill
 
     crop="$(${still}/bin/still -p -c whileStill)"
 
-    if [[ -z "$crop" || ! -f "$fullPath" ]]; then
+    if [ -z "$crop" ]; then
         exit
     fi
-    
-    ${pkgs.imagemagick}/bin/magick "$fullPath" -crop "$crop" "$fullPath"
 
+    ${pkgs.grim}/bin/grim - | ${pkgs.imagemagick}/bin/magick - -crop "$crop" "$fullPath"
     ${pkgs.wl-clipboard}/bin/wl-copy < "$fullPath"
 
-    action=$(${pkgs.libnotify}/bin/notify-send "Saved $fullPath" -u low -t 5000 --action=open=Open --action=edit=Edit)
+    action=$(${pkgs.libnotify}/bin/notify-send "Saved $fullPath" -i "$fullPath" -u low -t 5000 --action=open=Open --action=edit=Edit)
     if [ "$action" = 'open' ]; then
       ${pkgs.xdg-utils}/bin/xdg-open "$folderName"
     elif [ "$action" = 'edit' ]; then

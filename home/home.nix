@@ -61,7 +61,6 @@
   programs.bash.enable = true;
   programs.eza.enable = true;
   programs.firefox.enable = true;
-  programs.obs-studio.enable = true;
   programs.vscode.enable = true;
   
 
@@ -98,6 +97,13 @@
 
   programs.mpv.enable = true;
   catppuccin.mpv.enable = true;
+
+  programs.obs-studio = {
+    enable = true;
+    package = pkgs.obs-studio.override {
+      cudaSupport = true;
+    };
+  };
 
   programs.zoxide = {
     enable = true;

@@ -496,6 +496,26 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765120186,
+        "narHash": "sha256-erA1pPuo6ZYFD3nNqscR8URisq1XXOaNzS/C/ThJkMQ=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "6fc754104858479e02bf51a55eef5e4e8ad722b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -527,6 +547,7 @@
         "hyprland": "hyprland",
         "nixos-xivlauncher-rb": "nixos-xivlauncher-rb",
         "nixpkgs": "nixpkgs_3",
+        "noctalia": "noctalia",
         "rust-overlay": "rust-overlay"
       }
     },

@@ -157,14 +157,14 @@ in {
       cursor.no_warps = true;
 
       windowrule = [
-        "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "match:class .*, suppress_event maximize"
+        "match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false, no_focus on"
 
-        "workspace 3 silent, class:^vesktop$"
-        "workspace 1 silent, class:^XIVLauncher.Core$"
-        "workspace 1 silent, title:^FINAL FANTASY XIV$"
+        "match:class vesktop, workspace 3 silent"
+        "match:class XIVLauncher.Core, workspace 1 silent"
+        "match:title FINAL FANTASY XIV, workspace 1 silent"
 
-        "float, class:^Matplotlib$"
+        "match:class Matplotlib, float on"
       ];
 
       layerrule = [];

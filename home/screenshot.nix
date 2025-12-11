@@ -73,7 +73,7 @@ in {
       ", Print, exec, ${takeScreenshot}" # printscreen
     ];
     layerrule = [
-      "noanim, selection"
+      "match:namespace selection, no_anim on"
     ];
   };
 }

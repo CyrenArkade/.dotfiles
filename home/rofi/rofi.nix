@@ -42,8 +42,7 @@ in {
 
   wayland.windowManager.hyprland.settings = {
     windowrule = [
-      "stayfocused, class:^Rofi$"
-      "norounding, class:^Rofi$"
+      "match:class Rofi, stay_focused on, rounding 0"
     ];
 
     bindr = [

@@ -6,9 +6,12 @@
     shellAliases = {
       ls = "eza --icons";
       fd = "fd -u";
+      nano = "micro";
+      
       fzk = "ps -e | fzf | awk '{print $1}' | xargs kill";
       run = "hyprctl dispatch exec --";
       mc = "run prismlauncher --launch";
+      zws = "echo -n '​' | ${pkgs.wl-clipboard}/bin/wl-copy";
     };
     interactiveShellInit = ''
       function fish_title

@@ -13,6 +13,7 @@
     ./fonts.nix
 
     ./fish.nix
+    ./micro.nix
     ./starship.nix
     ./yazi.nix
   ];
@@ -49,8 +50,8 @@
     wl-clipboard
     
     calibre
+    cosmic-files
     gimp3
-    kdePackages.dolphin
     libreoffice-fresh
     prismlauncher
     qbittorrent

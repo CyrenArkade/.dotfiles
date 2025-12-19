@@ -4,6 +4,14 @@ let
   hdrop = pkgs.hdrop.override {
     hyprland = config.wayland.windowManager.hyprland.package;
   };
+  zmx-manager = pkgs.writeShellApplication {
+    name = "zmx-manager";
+    runtimeInputs = with pkgs; [ fzf ];
+    text = builtins.readFile ./zmx-manager.sh;
+  };
+  kitty-hdrop = pkgs.writeShellScript "kitty-hdrop" ''
+    kitty --class kitty_hdrop sh -c '${zmx-manager}/bin/zmx-manager default'
+  '';
 in {
   imports = [
     ../rofi/rofi.nix
@@ -203,7 +211,7 @@ in {
         "$mainMod, E, exec, kitty"
         "$mainMod, F, exec, firefox"
         "$mainMod, R, exec, kitty fish -C y"
-        "$mainMod, Escape, exec, ${hdrop}/bin/hdrop -f -p t -g 0 -h 40 -w 67 kitty --class kitty_hdrop"
+        ''$mainMod, Escape, exec, ${hdrop}/bin/hdrop -f -p t -g 0 -h 40 -w 67 ${kitty-hdrop} --class kitty_hdrop''
 
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"

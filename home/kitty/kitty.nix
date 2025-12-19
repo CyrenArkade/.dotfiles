@@ -1,8 +1,11 @@
 { pkgs, ... }:
 
 let
-  # todo: ensure this has fzf and bat available (using wrapProgram?)
-  fzf_history = pkgs.writeScript "fzf_history" (builtins.readFile ./fzf_history.sh);
+  fzf-history = pkgs.writeShellApplication {
+    name = "fzf-history";
+    runtimeInputs = with pkgs; [ fzf bat ];
+    text = builtins.readFile ./fzf-history.sh;
+  };
 in {
   programs.kitty = {
     enable = true;
@@ -11,7 +14,7 @@ in {
       enable_audio_bell = 0;
     };
     extraConfig = ''
-      map ctrl+f launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env ${fzf_history}
+      map ctrl+f launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env ${fzf-history}/bin/fzf-history
     '';
   };
   catppuccin.kitty.enable = true;

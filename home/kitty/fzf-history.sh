@@ -19,7 +19,7 @@ show_context() {
     fi
 
     bat --color always --decorations never \
-        --line-range $start:$end \
+        --line-range "$start:$end" \
         --highlight-line $((n + 1)) \
         "$stdin"
 }
@@ -33,11 +33,10 @@ export stdin
 export total_lines
 export -f show_context
 
-export SHELL=bash
-
 fzf --ansi \
     --no-sort --tac \
     --exact -i \
+    --with-shell bash \
     --preview 'show_context {n}' \
     --preview-window border-none \
     --preview-window noinfo \

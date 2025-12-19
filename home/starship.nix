@@ -10,6 +10,7 @@
       format = lib.strings.concatStrings [
         "$directory"
         "$all"
+        # "\${custom.zmx}"
         "$nix_shell"
         "$character"
       ];
@@ -39,14 +40,21 @@
         disabled = true;
       };
       nix_shell = {
-        format = "$symbol$state";
-        symbol = "[❯](bold blue)";
-        pure_msg = "[❯](bold sky)";
+        format = "$state$symbol";
+        symbol = "[❯](bold sky)";
+        pure_msg = "[❯](bold blue)";
         impure_msg = "";
       };
       username = {
         disabled = true;
       };
+
+      # custom.zmx = {
+      #   symbol = "❯";
+      #   when = ''[ -n "$ZMX_SESSION" ]'';
+      #   shell = "sh";
+      #   style = "bold lavender";
+      # };
     };
   };
   programs.fish.shellInitLast = ''

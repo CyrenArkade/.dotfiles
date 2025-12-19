@@ -9,10 +9,6 @@
     settings = {
       plugin = {
         hypredge = {
-          # blacklist = [
-          #   "class, code"
-          # ];
-          respect_constraints = false;
           edge_effect = [
             "left, workspace, e-1"
             "left, hypredge:movecursortoedge, right"
@@ -21,6 +17,9 @@
           ];
         };
       };
+      windowrule = [
+        "match:title FINAL FANTASY XIV, hypredge:ignore_constraints on"
+      ];
     };
   };
 }

@@ -86,7 +86,14 @@
     nix-direnv.enable = true;
   };
 
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    colors = {
+      selected-bg = "#45475A";
+      border = "#6C7086";
+      label = "#CDD6F4";
+    };
+  };
   catppuccin.fzf.enable = true;
 
   programs.git = {
@@ -142,7 +149,6 @@
       NIXPKGS_ALLOW_UNFREE = 1;
       FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
       QT_SCALE_FACTOR_ROUNDING_POLICY = "Round";
-      # FZF_DEFAULT_OPTS = "--color bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8,fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC,marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8,selected-bg:#45475A,border:#6C7086,label:#CDD6F4";
     };
 
     # DO NOT CHANGE

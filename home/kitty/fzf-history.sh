@@ -36,8 +36,8 @@ export -f show_context
 fzf --ansi \
     --no-sort --tac \
     --exact -i \
-    --with-shell bash \
-    --preview 'show_context {n}' \
+    --with-shell "bash -c" \
+    --preview "show_context {n}" \
     --preview-window border-none \
     --preview-window noinfo \
     < "$stdin"

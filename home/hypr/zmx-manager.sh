@@ -19,36 +19,47 @@ function get_option() {
             first_child=$(pgrep -P "$pid" | head -1)
             cmd="$(tr '\0' ' ' < "/proc/${first_child:-$pid}/cmdline" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
             
-            echo -e "$session\0$session ($cmd)"
+            echo -e "$session\0   $session ($cmd)"
         done
         echo -e "\0"
-        echo -e "[NEW]\0 [NEW]"
-        echo -e "[QUIT]\0 [QUIT]"
+        echo -e "[NEW]\0 󰐕 [NEW]"
+        if [ -v last_session ]; then
+            echo -e "[KILL]\0  [KILL $last_session]"
+        fi
+        echo -e "[QUIT]\0  [QUIT]"
     } \
-    | fzf --no-multi --ansi --border --reverse \
-        --height 40% --prompt 'zmx> ' \
-        --header "Select a session to attach to." \
+    | fzf --no-multi --ansi --reverse --header-first \
+        --header 'Select a session to attach to.' \
+        --prompt '  zmx> ' --height 40% \
+        --separator ' ' --no-info --padding 1,2 \
         --with-nth 2 --accept-nth 1 --delimiter '\0'
 }
 
 function attach() {
     zmx attach "$1" "$SHELL"
     printf '\ec'
+    last_session="$1"
 }
 
 function session_loop() {
     while true; do
 
-        if ! session="$(get_option)"; then
-            session="[QUIT]"
+        session="$(get_option)"
+
+        if [ -z "$session" ]; then
+            continue
         fi
 
         case "$session" in
             "[NEW]" )
-                read -rp "New session name: " name
+                read -rp $'\n New session name: ' name </dev/tty
                 if [ -n "$name" ]; then
                     attach "$name"
                 fi
+            ;;
+            "[KILL]" )
+                zmx kill "$last_session" 1> /dev/null
+                unset last_session
             ;;
             "[QUIT]" )
                 break

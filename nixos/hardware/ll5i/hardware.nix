@@ -74,9 +74,4 @@
       };
     };
   };
-
-  boot.kernelModules = [
-    "rtw89_8852ae"
-  ];
-
 }

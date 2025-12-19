@@ -1,7 +1,3 @@
-#!/usr/bin/env bash
-
-set -o pipefail
-
 function list_sessions() {
   result="$(zmx list)"
 

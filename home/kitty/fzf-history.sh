@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 show_context() {
     local n=$1
     local height=$FZF_PREVIEW_LINES

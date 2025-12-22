@@ -73,6 +73,7 @@ in {
         { on = [ "g" "d" ]; run = "cd ~/dev"; desc = "Go ~/dev"; }
         { on = [ "g" "D" ]; run = "cd ~/Downloads"; desc = "Go ~/Downloads"; }
         { on = [ "g" "s" ]; run = "cd ~/Pictures/Screenshots"; desc = "Go Screenshots"; }
+        { on = [ "g" "v" ]; run = "cd ~/Videos"; desc = "Go Screenshots"; }
 
         { on = "<T>"; run = "close"; desc = "Close the current tab, or quit if it's last"; }
 

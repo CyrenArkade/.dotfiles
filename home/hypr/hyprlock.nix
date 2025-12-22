@@ -33,29 +33,29 @@
 
       background = {
         monitor = "";
-        path = toString ../../images/gracile1.jpg;
-        blur_passes = 2;
+        path = toString ../../images/gracile2.jpg;
+        blur_passes = 0;
         color = "rgb(a093b2)";
       };
 
       label = [
-        {
+        { # Time
           monitor = "";
-          text = "cmd[update:5000] echo \"$(date +\"%R\")\""; # Time
+          text = "cmd[update:5000] date +'%R'";
           color = "rgb(cdd6f4)";
           font_size = 90;
           font_family = "Noto Sans Mono";
-          position = "-30, 0";
+          position = "-30, -50";
           halign = "right";
           valign = "top";
         }
-        {
+        { # Date
           monitor = "";
-          text = "cmd[update:60000] echo \"$(date +\"%A, %d %B %Y\")\""; # Date
+          text = "cmd[update:60000] date +'%A, %d %B %Y'";
           color = "rgb(cdd6f4)";
           font_size = 25;
           font_family = "Noto Sans Mono";
-          position = "-30, -150";
+          position = "-30, -20";
           halign = "right";
           valign = "top";
         }
@@ -79,7 +79,7 @@
         dots_spacing = 0.2;
         dots_center = true;
         outer_color = "rgb(b4befe)";
-        inner_color = "rgb(313244)";
+        inner_color = "rgb(1e1e2e)";
         font_color = "rgb(cdd6f4)";
         fade_on_empty = false;
         placeholder_text = "<span foreground=\"##cdd6f4\"><i>󰌾 Logged in as </i><span foreground=\"##b4befe\">$USER</span></span>";

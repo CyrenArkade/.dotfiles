@@ -65,7 +65,15 @@
         };
         clock = {
           format = "{:%b %d  %R}";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          tooltip-format = "<tt>{calendar}</tt>";
+          calendar.format = {
+            months = "<b>{}</b>";
+            today = "<b>{}</b>";
+          };
+          actions = {
+            on-scroll-up = "shift_down";
+            on-scroll-down = "shift_up";
+          };
         };
         battery = {
           states = {

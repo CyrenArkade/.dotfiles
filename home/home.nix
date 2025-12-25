@@ -26,6 +26,7 @@
     android-tools
     bun
     distrobox
+    entr
     fanficfare
     fd
     ffmpeg

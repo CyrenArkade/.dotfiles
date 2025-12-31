@@ -47,7 +47,9 @@
         "rust-analyzer"
       ];
     }))
+    slurp
     tree
+    wf-recorder
     wl-clipboard
     inputs.zmx.packages.${pkgs.stdenv.hostPlatform.system}.zmx
     

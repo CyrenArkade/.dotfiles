@@ -12,6 +12,7 @@
       fzk = "ps -e | fzf | awk '{print $1}' | xargs kill";
       run = "hyprctl dispatch exec --";
       mc = "run prismlauncher --launch";
+      record = ''wf-recorder --codec h264_nvenc -g "$(slurp)" -f ~/Videos/output.mp4'';
       zws = "echo -n '​' | ${pkgs.wl-clipboard}/bin/wl-copy";
     };
     interactiveShellInit = ''

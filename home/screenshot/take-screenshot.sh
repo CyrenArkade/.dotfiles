@@ -7,9 +7,11 @@ mkdir -p "$folderName"
 function whileStill() {
     set -e
 
-    read -r x y w h < <(slurp -d -b 00000060 -c b4befeff | sed 's/[+,x]/ /g')
+    read -r x y w h < <(slurp -f $'%x %y %w %h\n' -d -b 00000060 -c b4befeff)
     sx=$(((x+2)/4*4))
     sy=$(((y+2)/4*4))
+    w=$((w+x-sx))
+    h=$((h+y-sy))
 
     echo "${sx},${sy} ${w}x${h}"
 }

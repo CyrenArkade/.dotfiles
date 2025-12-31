@@ -69,7 +69,7 @@ in {
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 0;
         rounding_power = 2;
 
         active_opacity = 1;
@@ -175,7 +175,9 @@ in {
         "match:class Matplotlib, float on"
       ];
 
-      layerrule = [];
+      layerrule = [
+        "match:namespace quickshell, no_anim on"
+      ];
 
       "$mainMod" = "SUPER";
 

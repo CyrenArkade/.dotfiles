@@ -42,6 +42,8 @@
     pulse.enable = true;
   };
 
+  services.upower.enable = true;
+
   virtualisation.docker = {
     enable = true;
     enableOnBoot = false;

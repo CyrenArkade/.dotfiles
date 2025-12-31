@@ -51,7 +51,7 @@
     tree
     wf-recorder
     wl-clipboard
-    inputs.zmx.packages.${pkgs.stdenv.hostPlatform.system}.zmx
+    # inputs.zmx.packages.${pkgs.stdenv.hostPlatform.system}.zmx
     
     calibre
     cosmic-files

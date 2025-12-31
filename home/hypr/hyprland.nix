@@ -10,7 +10,8 @@ let
     text = builtins.readFile ./zmx-manager.sh;
   };
   kitty-hdrop = pkgs.writeShellScript "kitty-hdrop" ''
-    kitty --class kitty_hdrop sh -c '${zmx-manager}/bin/zmx-manager default'
+    # kitty --class kitty_hdrop sh -c '${zmx-manager}/bin/zmx-manager default'
+    kitty --class kitty_hdrop
   '';
 in {
   imports = [
@@ -125,6 +126,10 @@ in {
       dwindle = {
         pseudotile = true;
         preserve_split = true;
+      };
+
+      render = {
+        cm_enabled = false;
       };
 
       master.new_status = "master";

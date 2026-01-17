@@ -33,7 +33,7 @@
 
       background = {
         monitor = "";
-        path = toString ../../images/gracile2.jpg;
+        path = "${../../images/gracile2.jpg}";
         blur_passes = 0;
         color = "rgb(a093b2)";
       };

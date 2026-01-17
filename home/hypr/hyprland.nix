@@ -4,6 +4,7 @@ let
   hdrop = pkgs.hdrop.override {
     hyprland = config.wayland.windowManager.hyprland.package;
   };
+  
   zmx-manager = pkgs.writeShellApplication {
     name = "zmx-manager";
     runtimeInputs = with pkgs; [ fzf ];
@@ -13,11 +14,17 @@ let
     # kitty --class kitty_hdrop sh -c '${zmx-manager}/bin/zmx-manager default'
     kitty --class kitty_hdrop
   '';
+
+  clipboard-history = pkgs.writeShellApplication {
+    name = "clipboard-history";
+    runtimeInputs = with pkgs; [ cliphist fzf wl-clipboard ];
+    text = builtins.readFile ./clipboard-history.sh;
+  };
 in {
   imports = [
     ../rofi/rofi.nix
     ../screenshot/screenshot.nix
-    ../waybar/waybar.nix
+    # ../waybar/waybar.nix
     # ../wofi/wofi.nix
     # ../noctalia.nix
     ../swaync.nix
@@ -31,6 +38,8 @@ in {
     hyprpicker
     networkmanagerapplet
   ];
+
+  services.cliphist.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -147,6 +156,8 @@ in {
         background_color = "rgb(1e1e2e)";
         middle_click_paste = true; # required or electron will emulate it.
         enable_anr_dialog = false;
+        enable_swallow = true;
+        swallow_regex = "^(kitty)$";
       };
 
       input = {
@@ -215,17 +226,19 @@ in {
       ];
 
       bind = [
+        "$mainMod, X, submap, launch"
         "$mainMod, E, exec, kitty"
-        "$mainMod, F, exec, firefox"
         "$mainMod, R, exec, kitty fish -C y"
+        "$mainMod, V, exec, [float on; move (monitor_w-window_w)/2 (monitor_h-window_h)/2; size 800 400] kitty ${clipboard-history}/bin/clipboard-history"
         ''$mainMod, Escape, exec, ${hdrop}/bin/hdrop -f -p t -g 0 -h 40 -w 67 ${kitty-hdrop} --class kitty_hdrop''
 
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
+        "$mainMod, F, togglefloating,"
         "$mainMod, C, fullscreen,"
-        "$mainMod, V, togglefloating,"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
+        "$mainMod, O, pin,"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
@@ -252,6 +265,20 @@ in {
           )
           9)
       );
+    };
+
+    submaps = {
+      "launch, reset".settings.bind = [
+        ", F, exec, firefox"
+        ", X, exec, XIVLauncher.Core"
+        ", C, exec, code"
+        ", G, exec, gimp"
+        ", V, exec, vesktop"
+        ", P, exec, prismlauncher"
+        ", O, exec, obs"
+        ", S, exec, steam"
+        ", E, exec, scalc"
+      ];
     };
   };
 }

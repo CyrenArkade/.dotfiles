@@ -33,6 +33,7 @@
     file
     gcc
     ghostscript
+    kdePackages.qtdeclarative # for qmlls
     mediainfo
     ncdu
     nix-tree
@@ -40,6 +41,7 @@
     ouch
     ov
     python313
+    quickshell
     ripgrep
     (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
       extensions = [
@@ -107,8 +109,18 @@
     };
   };
 
-  programs.mpv.enable = true;
-  catppuccin.mpv.enable = true;
+  programs.mpv = {
+    enable = true;
+    config = {
+      background-color = "#000000";
+      osd-back-color = "#11111b";
+      osd-border-color = "#11111b";
+      osd-color = "#cdd6f4";
+      osd-shadow-color = "#1e1e2e";
+      keep-open = true;
+    };
+    bindings = {};
+  };
 
   programs.obs-studio = {
     enable = true;

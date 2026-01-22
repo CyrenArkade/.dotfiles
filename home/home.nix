@@ -61,7 +61,7 @@
     libreoffice-fresh
     prismlauncher
     qbittorrent
-    zoom-us
+    qview
   ];
 
   programs.home-manager.enable = true;
@@ -134,9 +134,24 @@
     options = [ "--cmd cd" ];
   };
 
+  services.blueman-applet.enable = true;
+
   xdg.portal.enable = true;
 
-  services.blueman-applet.enable = true;
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "firefox.desktop";
+      "application/epub+zip" = "epub.zip";
+      "application/xhtml+xml" = "firefox.desktop";
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
+      "audio/*" = "mpv.desktop";
+      "inode/directory" = "yazi.desktop";
+      "image/*" = "qview.desktop";
+      "text/*" = "code.desktop";
+      "video/*" = "mpv.desktop";
+    };
+  };
 
 
   catppuccin = {

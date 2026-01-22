@@ -1,7 +1,7 @@
 { lib, ... }:
 
 let
-  wallpaper = "${../../images/gracile2.jpg}";
+  wallpaper = "${../../images/xiv2.png}";
 in {
   wayland.windowManager.hyprland.settings = {
     exec-once = [

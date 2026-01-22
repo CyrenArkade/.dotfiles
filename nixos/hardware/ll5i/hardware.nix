@@ -29,6 +29,7 @@
       };
     };
   };
+  services.thermald.enable = true;
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend-then-hibernate";
     HandleLidSwitchExternalPower = "suspend-then-hibernate";
@@ -74,4 +75,9 @@
       };
     };
   };
+
+  # Setup symlink so hyprland knows what GPU to use
+  services.udev.extraRules = ''
+    KERNEL=="card*", KERNELS=="0000:00:02.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/hyprland-gpu"
+  '';
 }

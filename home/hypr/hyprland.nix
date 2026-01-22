@@ -234,8 +234,8 @@ in {
 
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
-        "$mainMod, F, togglefloating,"
-        "$mainMod, C, fullscreen,"
+        "$mainMod, C, togglefloating,"
+        "$mainMod, F, fullscreen,"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
         "$mainMod, O, pin,"

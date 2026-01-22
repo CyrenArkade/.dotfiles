@@ -164,6 +164,7 @@
       NIXPKGS_ALLOW_UNFREE = 1;
       FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
       QT_SCALE_FACTOR_ROUNDING_POLICY = "Round";
+      AQ_DRM_DEVICES = "/dev/dri/hyprland-gpu";
     };
 
     # DO NOT CHANGE

@@ -26,7 +26,6 @@ in {
     ../screenshot/screenshot.nix
     # ../waybar/waybar.nix
     # ../wofi/wofi.nix
-    # ../noctalia.nix
     ../swaync.nix
     ./hypridle.nix
     ./hyprlock.nix

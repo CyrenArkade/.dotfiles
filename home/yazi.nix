@@ -59,7 +59,8 @@ in {
     # https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/keymap-default.toml
     keymap = {
       mgr.prepend_keymap = [
-        { on = "<Enter>"; run = "plugin smart-enter";   desc = "Enter directory or open file"; }
+        { on = "<Enter>";   run = "plugin smart-enter"; desc = "Enter directory or open file"; }
+        { on = "<C-Enter>"; run = "open";               desc = "Enter directory or open file"; }
 
         { on = "c"; run = "yank";   desc = "Yank selected files (copy)"; }
         { on = "C"; run = "unyank"; desc = "Yank selected files (copy)"; }
@@ -69,11 +70,12 @@ in {
         { on = [ "<A-c>" "f" ]; run = "copy filename";         desc = "Copy the filename"; }
         { on = [ "<A-c>" "n" ]; run = "copy name_without_ext"; desc = "Copy the filename without extension"; }
       
-        { on = [ "g" "c" ]; run = "cd ~/.dotfiles"; desc = "Go ~/.dotfiles"; }
-        { on = [ "g" "d" ]; run = "cd ~/dev"; desc = "Go ~/dev"; }
-        { on = [ "g" "D" ]; run = "cd ~/Downloads"; desc = "Go ~/Downloads"; }
-        { on = [ "g" "s" ]; run = "cd ~/Pictures/Screenshots"; desc = "Go Screenshots"; }
-        { on = [ "g" "v" ]; run = "cd ~/Videos"; desc = "Go Screenshots"; }
+        { on = [ "g" "c" ]; run = "cd ~/.dotfiles";            desc = "Go ~/.dotfiles"; }
+        { on = [ "g" "d" ]; run = "cd ~/dev";                  desc = "Go ~/dev"; }
+        { on = [ "g" "D" ]; run = "cd ~/Downloads";            desc = "Go ~/Downloads"; }
+        { on = [ "g" "p" ]; run = "cd ~/Pictures";             desc = "Go ~/Pictures"; }
+        { on = [ "g" "s" ]; run = "cd ~/Pictures/Screenshots"; desc = "Go ~/.../Screenshots"; }
+        { on = [ "g" "v" ]; run = "cd ~/Videos";               desc = "Go ~/Videos"; }
 
         { on = "<T>"; run = "close"; desc = "Close the current tab, or quit if it's last"; }
 

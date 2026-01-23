@@ -33,6 +33,7 @@
     file
     gcc
     ghostscript
+    img2pdf
     kdePackages.qtdeclarative # for qmlls
     mediainfo
     ncdu
@@ -145,11 +146,9 @@
       "application/epub+zip" = "epub.zip";
       "application/xhtml+xml" = "firefox.desktop";
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
-      "audio/*" = "mpv.desktop";
       "inode/directory" = "yazi.desktop";
-      "image/*" = "qview.desktop";
-      "text/*" = "code.desktop";
-      "video/*" = "mpv.desktop";
+      "text/html" = "firefox.desktop";
+      "text/plain" = "code.desktop";
     };
   };
 

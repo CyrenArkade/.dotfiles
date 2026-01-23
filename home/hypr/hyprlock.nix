@@ -63,7 +63,7 @@
 
       image = {
         monitor = "";
-        path = toString ../../images/icon.jpg;
+        path = "${../../images/icon.jpg}";
         size = 100;
         border_color = "rgb(b4befe)";
         position = "0, 75";

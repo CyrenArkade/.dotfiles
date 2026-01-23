@@ -157,6 +157,7 @@ in {
         enable_anr_dialog = false;
         enable_swallow = true;
         swallow_regex = "^(kitty)$";
+        session_lock_xray = true;
       };
 
       input = {
@@ -268,6 +269,7 @@ in {
 
     submaps = {
       "launch, reset".settings.bind = [
+        ", Escape, submap, reset"
         ", F, exec, firefox"
         ", X, exec, XIVLauncher.Core"
         ", C, exec, code"

@@ -1,0 +1,5 @@
+module singletons
+singleton BarWidgetManager 1.0 BarWidgetManager.qml
+singleton Catppuccin 1.0 Catppuccin.qml
+singleton Config 1.0 Config.qml
+singleton Time 1.0 Time.qml

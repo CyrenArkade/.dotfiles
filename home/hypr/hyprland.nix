@@ -26,9 +26,10 @@ in {
     ../screenshot/screenshot.nix
     # ../waybar/waybar.nix
     # ../wofi/wofi.nix
+    ../quickshell.nix
     ../swaync.nix
     ./hypridle.nix
-    ./hyprlock.nix
+    # ./hyprlock.nix
     ./hyprpaper.nix
     ./hypredge.nix
   ];

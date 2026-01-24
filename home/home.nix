@@ -42,7 +42,6 @@
     ouch
     ov
     python313
-    quickshell
     ripgrep
     (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
       extensions = [
@@ -62,6 +61,7 @@
     libreoffice-fresh
     prismlauncher
     qbittorrent
+    quickshell
     qview
   ];
 

@@ -88,10 +88,10 @@ ColumnLayout {
         width: parent.width
         height: parent.height
         
-        color: Config.barColorBg
+        color: Config.colors.barBg
         border {
           width: 1
-          color: Config.barColorBorder
+          color: Config.colors.barBorder
         }
 
         opacity: root.popupOpacity

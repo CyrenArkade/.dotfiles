@@ -25,19 +25,35 @@ in {
         show_hidden = true;
       };
       opener = {
-        vscode = [
-          { run = "code \"$0\""; desc = "VS Code"; }
+        extract     = [ { desc = "Extract"; run = "ouch d -y %s"; } ];
+        open        = [ { desc = "Open";    run = "xdg-open %s1"; } ];
+        open-orphan = [ { desc = "Open";    run = "xdg-open %s1"; orphan = true; } ];
+        reveal      = [];
+        open-with = [
+          # -run-command '{cmd} "''"$@"'"'
+          # concatenate '{cmd} "' + "$@" + '"'
+          # to form {cmd} "$@" with $@ substituted in
+          { run = "rofi -show drun -x11 -run-command '{cmd} \"'\"$@\"'\"'"; desc = "Open With"; orphan = true; }
         ];
-        wl-copy = [
-          { run = "wl-copy < \"$0\""; desc = "Copy"; }
+        copy = [
+          { desc = "Copy"; run = "wl-copy < %s1"; }
+          { desc = "Copy Path"; run = "echo -n %s1 | wl-copy"; }
         ];
-        reveal = [];
+
+        gimp    = [ { desc = "GIMP";    run = "gimp %s1"; orphan = true; } ];
+        micro   = [ { desc = "Micro";   run = "micro %s1"; block = true; } ];
+        vscode  = [ { desc = "VS Code"; run = "code %s1"; } ];
       };
       open = {
-        append_rules = [
-          { name = "*"; use = "vscode"; }
-          { name = "*/"; use = "vscode"; }
-          { name = "*"; use = "wl-copy"; }
+        rules = [
+          { url = "*/";                use = [ "vscode" "open-with" ]; }
+          { mime = "text/*";           use = [ "micro" "vscode" "copy" "open-with" ]; }
+          { mime = "image/*";          use = [ "open-orphan" "gimp" "copy" "open-with" ]; }
+          { mime = "{audio,video}/*";  use = [ "open-orphan" "copy" "open-with" ]; }
+          { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"; use = [ "extract" "open-with" ]; }
+          { mime = "application/json"; use = [ "micro" "vscode" "copy" "open-with" ]; }
+          { mime = "*/javascript";     use = [ "micro" "vscode" "copy" "open-with" ]; }
+          { url = "*";                 use = [ "open" "copy" "open-with" ]; }
         ];
       };
       plugin = {

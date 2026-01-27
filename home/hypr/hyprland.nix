@@ -227,7 +227,7 @@ in {
       ];
 
       bind = [
-        "$mainMod, X, submap, launch"
+        "$mainMod, X, exec, hyprctl dispatch submap launch && sleep 3 && hyprctl dispatch submap reset"
         "$mainMod, E, exec, kitty"
         "$mainMod, R, exec, kitty fish -C y"
         "$mainMod, V, exec, [float on; move (monitor_w-window_w)/2 (monitor_h-window_h)/2; size 800 400] kitty ${clipboard-history}/bin/clipboard-history"

@@ -35,7 +35,7 @@ Item {
 
     onCompleted: result => {
 			if (result == PamResult.Success) {
-        root.unsafeUnlock()
+        root.unsafeUnlock() // SAFE: went through pam
       }
 			else
 				root.passwordText = ""
@@ -72,8 +72,8 @@ Item {
     function lock() {
       root.lock()
     }
-    // function unlock() {
-    //   root.unsafeUnlock()
-    // }
+    function unlock() {
+      root.unsafeUnlock() // SAFE: accessing IPC requires auth
+    }
   }
 }

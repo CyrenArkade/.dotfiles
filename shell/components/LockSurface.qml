@@ -27,6 +27,11 @@ WlSessionLockSurface {
       passwordIncorrectAnim.start()
   }
 
+  ScreencopyView {
+    captureSource: root.screen
+    anchors.fill: parent
+  }
+
   Rectangle {
     id: source
     layer.enabled: true
@@ -77,14 +82,11 @@ WlSessionLockSurface {
         id: passwordIncorrectAnim
         alwaysRunToEnd: true
         
-        NumberAnimation { target: user; property: "rotation"; to: -10; duration: 50; easing.type: Easing.InOutSine }
-        NumberAnimation { target: user; property: "rotation"; to:   0; duration: 50; easing.type: Easing.InSine }
-        NumberAnimation { target: user; property: "rotation"; to: 7.5; duration: 50; easing.type: Easing.OutSine }
-        NumberAnimation { target: user; property: "rotation"; to:   0; duration: 50; easing.type: Easing.InSine }
-        NumberAnimation { target: user; property: "rotation"; to:  -5; duration: 50; easing.type: Easing.OutSine }
-        NumberAnimation { target: user; property: "rotation"; to:   0; duration: 50; easing.type: Easing.InSine }
-        NumberAnimation { target: user; property: "rotation"; to: 2.5; duration: 50; easing.type: Easing.OutSine }
-        NumberAnimation { target: user; property: "rotation"; to:   0; duration: 50; easing.type: Easing.InOutSine }
+        NumberAnimation { target: user; property: "rotation"; to: -10; duration: 50;  easing.type: Easing.InOutSine }
+        NumberAnimation { target: user; property: "rotation"; to: 7.5; duration: 100; easing.type: Easing.InOutSine }
+        NumberAnimation { target: user; property: "rotation"; to:  -5; duration: 100; easing.type: Easing.InOutSine }
+        NumberAnimation { target: user; property: "rotation"; to: 2.5; duration: 100; easing.type: Easing.InOutSine }
+        NumberAnimation { target: user; property: "rotation"; to:   0; duration: 50;  easing.type: Easing.InOutSine }
       }
     }
 
@@ -93,12 +95,17 @@ WlSessionLockSurface {
       
       echoMode: TextInput.Password
       inputMethodHints: Qt.ImhHiddenText | Qt.ImhSensitiveData
-      focus: true
       visible: false
+      focus: true
       readOnly: root.unlocking
       
       onTextChanged: root.passwordTextChanged(text)
       onAccepted: root.tryUnlock()
+
+      onActiveFocusChanged: {
+        if (!activeFocus)
+          passwordField.forceActiveFocus()
+      }
     }
   }
 

@@ -18,10 +18,10 @@ Rectangle {
   property alias popupOpacity: popupLoader.opacity
 
   Layout.alignment: Qt.AlignBottom
-  color: Config.barColorBg
+  color: Config.colors.barBg
   border {
     width: 1
-    color: Config.barColorBorder
+    color: Config.colors.barBorder
   }
   clip: true
 

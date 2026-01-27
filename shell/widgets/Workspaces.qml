@@ -9,10 +9,10 @@ import "../singletons"
 WrapperRectangle {
   Layout.preferredHeight: Config.barHeight
 
-  color: Config.barColorBg
+  color: Config.colors.barBg
   border {
     width: 1
-    color: Config.barColorBorder
+    color: Config.colors.barBorder
   }
 
   RowLayout {

@@ -26,13 +26,17 @@ fi
 grim -g "$crop" "$fullPath"
 wl-copy < "$fullPath"
 
-action=$(notify-send "Saved and copied $fileName" -i "$fullPath" -u low -t 5000 --action open=Open --action edit=Edit --action "copyPath=Copy Path")
+action=$(notify-send "Saved and copied $fileName" -i "$fullPath" -u low -t 5000 \
+    --action view=View --action "satty=Edit (Satty)" --action "gimp=Edit (GIMP)" --action "copyPath=Copy Path")
 case "$action" in
-    "open" )
-        xdg-open "$folderName"
+    "view" )
+        xdg-open "$fullPath"
     ;;
-    "edit" )
+    "satty" )
         satty -f "$fullPath" -o "$fullPath"
+    ;;
+    "gimp" )
+        gimp "$fullPath"
     ;;
     "copyPath" )
         echo -n "$fullPath" | wl-copy

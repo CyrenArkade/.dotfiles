@@ -59,10 +59,12 @@
 
   # environment.sessionVariables = {};
 
-  # Use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [
-    "ntsync"
-  ];
+  boot = {
+    # Use latest kernel
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [
+      "ntsync"
+    ];
+  };
 
 }

@@ -49,21 +49,4 @@ in {
         "$mainMod, Super_L, exec, rofi -show drun -x11 || pkill rofi"
       ];
   };
-
-  programs.yazi.settings = {
-    opener = {
-      rofi-open = [
-        # -run-command '{cmd} "''"$@"'"'
-        # concatenate '{cmd} "' + "$@" + '"'
-        # to form {cmd} "$@" with $@ substituted in
-        { run = "rofi -show drun -x11 -run-command '{cmd} \"'\"$@\"'\"'"; desc = "Open With"; }
-      ];
-    };
-    open = {
-      append_rules = [
-        { name = "*"; use = "rofi-open"; }
-        { name = "*/"; use = "rofi-open"; }
-      ];
-    };
-  };
 }

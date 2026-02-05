@@ -9,7 +9,7 @@
       "$mainMod, L, exec, qs -c ~/.dotfiles/shell ipc call lockscreen lock"
     ];
     bindl = [
-      ",switch:on:Lid Switch, exec, qs -c ~/.dotfiles/shell ipc call lockscreen lock"
+      ",switch:on:Lid Switch, exec, qs -c ~/.dotfiles/shell ipc call lockscreen lockImmediate"
     ];
   };
 }

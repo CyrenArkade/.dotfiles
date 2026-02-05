@@ -14,7 +14,7 @@ Item {
   property string passwordText
   property real open: 0
 
-  Behavior on open { NumberAnimation { duration: 400; easing { type: Easing.OutSine } } }
+  Behavior on open { id: openBehavior; NumberAnimation { duration: 400; easing { type: Easing.OutSine } } }
 
   function lock() {
     root.passwordText = ''
@@ -70,6 +70,12 @@ Item {
     target: 'lockscreen'
 
     function lock() {
+      root.lock()
+    }
+    function lockImmediate() {
+      openBehavior.enabled = false
+      root.open = 1
+      openBehavior.enabled = true
       root.lock()
     }
     function unlock() {

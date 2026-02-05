@@ -61,10 +61,12 @@
     cosmic-files
     gimp3
     libreoffice-fresh
+    mullvad-vpn
     prismlauncher
     qbittorrent
     quickshell
     qview
+    inputs.nixos-xivlauncher-rb.packages.${pkgs.stdenv.hostPlatform.system}.xivlauncher-rb
   ];
 
   programs.home-manager.enable = true;

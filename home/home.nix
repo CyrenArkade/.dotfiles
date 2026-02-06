@@ -6,6 +6,7 @@
 
     ./hypr/hyprland.nix
     ./kitty/kitty.nix
+    ./mpd/mpd.nix
     ./theme/theme.nix
     ./vesktop/vesktop.nix
 
@@ -27,6 +28,7 @@
     bun
     distrobox
     entr
+    eyed3
     fanficfare
     fd
     ffmpeg

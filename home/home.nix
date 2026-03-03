@@ -41,9 +41,10 @@
     ncdu
     nix-tree
     nvd
-    (ouch.override {
-      enableUnfree = true;
-    })
+    ouch
+    # (ouch.override {
+    #   enableUnfree = true;
+    # })
     ov
     python313
     libqalculate
@@ -60,7 +61,7 @@
     wl-clipboard
     # inputs.zmx.packages.${pkgs.stdenv.hostPlatform.system}.zmx
     
-    calibre
+    # calibre # https://github.com/NixOS/nixpkgs/issues/493843
     cosmic-files
     fflogs
     gimp3

@@ -23,7 +23,7 @@
         sha256 = "sha256-Kopl2NweYrq9rhw+0EUMhY/pfGo4g387927TZAhI5/A=";
       };
       buildInputs = with pkgs; [
-        xorg.xcursorgen
+        xcursorgen
         inkscape
       ];
       patchPhase = ''

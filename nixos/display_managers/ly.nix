@@ -5,9 +5,6 @@
     sessionPackages = [
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
     ];
-    # Map black->crust, white->base, brightblack->mantle, brightwhite->lavender
-    # https://wiki.gentoo.org/wiki/Terminal_emulator/Colors#Linux_console
-    preStart = "printf '\\e]P0181825\\e]P71e1e2e\\e]P811111b\\e]Pfb4befe'";
     ly = {
       enable = true;
       settings = {
@@ -15,6 +12,10 @@
         hide_version_string = true;
         hide_key_hints = true;
         clear_password = true;
+
+        # Map black->crust, white->base, brightblack->mantle, brightwhite->lavender
+        # https://wiki.gentoo.org/wiki/Terminal_emulator/Colors#Linux_console
+        start_cmd = "printf '\\e]P0181825\\e]P71e1e2e\\e]P811111b\\e]Pfb4befe'";
 
         bg = "0x00555555";
         fg = "0x00ffffff";

@@ -46,6 +46,7 @@
     })
     ov
     python313
+    libqalculate
     ripgrep
     (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
       extensions = [
@@ -61,6 +62,7 @@
     
     calibre
     cosmic-files
+    fflogs
     gimp3
     libreoffice-fresh
     mullvad-vpn
@@ -149,7 +151,7 @@
     enable = true;
     defaultApplications = {
       "application/pdf" = "firefox.desktop";
-      "application/epub+zip" = "epub.zip";
+      "application/epub+zip" = "calibre-ebook-viewer.desktop";
       "application/xhtml+xml" = "firefox.desktop";
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
       "inode/directory" = "yazi.desktop";

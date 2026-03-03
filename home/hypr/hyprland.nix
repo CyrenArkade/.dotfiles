@@ -190,6 +190,7 @@ in {
         "match:title FINAL FANTASY XIV, workspace 1 silent"
 
         "match:class Matplotlib, float on"
+        "match:class com.interversehq.qView, suppress_event fullscreen maximize"
       ];
 
       layerrule = [

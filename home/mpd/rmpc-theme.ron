@@ -40,10 +40,11 @@
         trace: (fg: "magenta", bg: "black"),
     ),
     progress_bar: (
-        symbols: ["", "█", "", "█", "" ],
+        // symbols: ["", "█", "", "█", "" ],
+        symbols: ["─", "─", "●", "─", "─" ],
         track_style: (fg: "#313244"),
         elapsed_style: (fg: "#b4befe"),
-        thumb_style: (fg: "#b4befe", bg: "#313244"),
+        thumb_style: (fg: "#b4befe"),
         use_track_when_empty: false,
     ),
     scrollbar: (
@@ -54,51 +55,61 @@
     ),
     song_table_format: [
         (
-            prop: (kind: Property(Artist),
-                default: (kind: Text("Unknown"))
-            ),
-            width: "20%",
-        ),
-        (
             prop: (kind: Property(Title),
                 default: (kind: Text("Unknown"))
             ),
-            width: "35%",
+            label: "Title",
+            width: "40%",
         ),
         (
             prop: (kind: Property(Album), style: (fg: "white"),
                 default: (kind: Text("Unknown Album"), style: (fg: "white"))
             ),
-            width: "30%",
+            label: "Album",
+            width: "25%",
+        ),
+        (
+            prop: (kind: Property(Artist),
+                default: (kind: Text("Unknown"))
+            ),
+            label: "Artist",
+            width: "20%",
         ),
         (
             prop: (kind: Property(Duration),
                 default: (kind: Text("-"))
             ),
             width: "15%",
+            label: "Duration",
             alignment: Right,
         ),
     ],
-    components: {},
     layout: Split(
         direction: Vertical,
         panes: [
             (
                 pane: Pane(Header),
-                size: "2",
+                size: "4",
+                borders: "ALL",
+                border_symbols: Rounded,
             ),
             (
                 pane: Pane(Tabs),
-                size: "3",
+                size: "2",
+                borders: "BOTTOM | LEFT | RIGHT",
+                border_symbols: Empty,
             ),
             (
                 pane: Pane(TabContent),
                 size: "100%",
+                borders: "LEFT | RIGHT",
+                border_symbols: Empty,
             ),
             (
-                pane: Pane(ProgressBar),
-                size: "3",
-                borders: "ALL",
+                pane: Component("progress_bar"),
+                size: "2",
+                borders: "TOP | LEFT | RIGHT",
+                border_symbols: Empty,
             ),
         ],
     ),
@@ -170,5 +181,30 @@
     ],
     lyrics: (
         timestamp: false
-    )
+    ),
+    components: {
+        "progress_bar": Split(
+            direction: Horizontal,
+            panes: [
+                (
+                    pane: Pane(Property(content: [(kind: Property(Status(StateV2(playing_label: "", paused_label: "", stopped_label: ""))))], align: Left)),
+                    size: "2",
+                ),
+                (
+                    size: "100%",
+                    pane: Pane(ProgressBar),
+                ),
+                (
+                    size: "10",
+                    pane: Pane(Property(
+                        content: [
+                            (kind: Property(Status(Elapsed))),
+                            (kind: Text("/")),
+                            (kind: Property(Status(Duration))),
+                        ], align: Right,
+                    )),
+                ),
+            ],
+        ),
+    },
 )

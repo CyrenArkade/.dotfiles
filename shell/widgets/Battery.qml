@@ -43,7 +43,7 @@ BarWidget {
           ? Catppuccin.green
         : UPower.displayDevice.percentage > 0.35
           ? Catppuccin.yellow
-        : UPower.displayDevice.percentage > 0.2
+        : UPower.displayDevice.percentage > 2 / 11 // the first two are red
           ? Catppuccin.peach
           : Catppuccin.red
       font.pixelSize: 24

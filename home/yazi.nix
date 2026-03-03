@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   pref-by-location = pkgs.stdenvNoCC.mkDerivation {
@@ -158,16 +158,43 @@ in {
     '';
   };
 
-  xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
-    text = ''
-      [filechooser]
-      cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-      default_dir=$HOME
-      open_mode=last
-      save_mode=last
-    '';
-    recursive = true;
-  };
+  xdg.configFile = let
+    cfg = config.catppuccin.yazi;
+  in {
+    # need to augment this due to https://github.com/catppuccin/yazi/issues/35
+    "yazi/theme.toml".text = (builtins.readFile "${config.catppuccin.sources.yazi}/${cfg.flavor}/catppuccin-${cfg.flavor}-${cfg.accent}.toml") + ''
+      conds = [
+        { if = "dir", text = "", fg = "#b4befe" }
+      ]
 
-  catppuccin.yazi.enable = true;
+      dirs  = [
+        { name = ".config", text = "", fg = "#b4befe" },
+        { name = ".git", text = "", fg = "#b4befe" },
+        { name = ".github", text = "", fg = "#b4befe" },
+        { name = ".npm", text = "", fg = "#b4befe" },
+        { name = "Desktop", text = "", fg = "#b4befe" },
+        { name = "Development", text = "", fg = "#b4befe" },
+        { name = "Documents", text = "", fg = "#b4befe" },
+        { name = "Downloads", text = "", fg = "#b4befe" },
+        { name = "Library", text = "", fg = "#b4befe" },
+        { name = "Movies", text = "", fg = "#b4befe" },
+        { name = "Music", text = "", fg = "#b4befe" },
+        { name = "Pictures", text = "", fg = "#b4befe" },
+        { name = "Public", text = "", fg = "#b4befe" },
+        { name = "Videos", text = "", fg = "#b4befe" },
+      ]
+    '';
+    "yazi/Catppuccin-${cfg.flavor}.tmTheme".source = "${config.catppuccin.sources.bat}/Catppuccin ${lib.toSentenceCase cfg.flavor}.tmTheme";
+
+    "xdg-desktop-portal-termfilechooser/config" = {
+      text = ''
+        [filechooser]
+        cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+        default_dir=$HOME
+        open_mode=last
+        save_mode=last
+      '';
+      recursive = true;
+    };
+  };
 }

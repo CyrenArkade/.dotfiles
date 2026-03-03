@@ -133,12 +133,26 @@
         direction: Horizontal,
         panes: [
           (
-            size: "30%",
+            size: "2r",
             pane: Pane(AlbumArt)
           ), 
           (
-            size: "70%",
-            pane: Pane(Queue)
+            size: "100%",
+            borders: "LEFT",
+            border_symbols: Empty,
+            pane: Split(
+              direction: Vertical,
+              panes: [
+                (
+                  size: "2",
+                  pane: Pane(QueueHeader()),
+                ),
+                (
+                  size: "100%",
+                  pane: Pane(Queue),
+                ),
+              ],
+            ),
           ),
         ],
       ),

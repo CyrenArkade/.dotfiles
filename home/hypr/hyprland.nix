@@ -239,7 +239,6 @@ in {
         "$mainMod, C, togglefloating,"
         "$mainMod, F, fullscreen,"
         "$mainMod, P, pseudo,"
-        "$mainMod, J, togglesplit,"
         "$mainMod, O, pin,"
 
         "$mainMod, left, movefocus, l"

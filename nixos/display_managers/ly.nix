@@ -1,6 +1,10 @@
 { inputs, pkgs, ... }:
 
-{
+let
+  ly-startup = pkgs.writeShellScript "ly-startup" ''
+    printf '\e]P0181825\e]P71e1e2e\e]P811111b\e]Pfb4befe'
+  '';
+in {
   services.displayManager = {
     sessionPackages = [
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
@@ -15,7 +19,7 @@
 
         # Map black->crust, white->base, brightblack->mantle, brightwhite->lavender
         # https://wiki.gentoo.org/wiki/Terminal_emulator/Colors#Linux_console
-        start_cmd = "printf '\\e]P0181825\\e]P71e1e2e\\e]P811111b\\e]Pfb4befe'";
+        start_cmd = "${ly-startup}";
 
         bg = "0x00555555";
         fg = "0x00ffffff";

@@ -12,6 +12,7 @@ in {
     settings = {
       confirm_os_window_close = 0;
       enable_audio_bell = 0;
+      allow_remote_control = "yes";
     };
     extraConfig = ''
       map ctrl+f launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env ${fzf-history}/bin/fzf-history

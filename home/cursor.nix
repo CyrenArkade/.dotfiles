@@ -24,7 +24,7 @@
       };
       buildInputs = with pkgs; [
         xcursorgen
-        inkscape
+        resvg
       ];
       patchPhase = ''
         patchShebangs ./build.sh
@@ -37,9 +37,14 @@
         sed -i -E '/inkscape.*(x1_25|x1_5)/d' build.sh
         find src/config -type f -exec sed -i -E '/^(30|36)/d' {} +
 
+        # Use resvg instead of inkscape
+        # this is awful but idc
+        sed -i 's|inkscape -o "\([^"]*\)" \(.*\) \$0|resvg $0 "\1" \2|' build.sh
+        sed -i -E 's|inkscape|resvg|g' build.sh
+
         # Recolor to be lavender mocha
-        find src/svg-light -type f -exec sed -i 's/#333333/#11111b/g' {} +
-        find src/svg-light -type f -exec sed -i 's/#ffffff/#b4befe/g' {} +
+        find src/svg-light -type f -exec sed -i 's|#333333|#11111b|g' {} +
+        find src/svg-light -type f -exec sed -i 's|#ffffff|#b4befe|g' {} +
       '';
       buildPhase = ''
         ./build.sh

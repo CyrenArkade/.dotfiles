@@ -1,8 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   imports = [
     ./software.nix
+  ];
+
+  nixpkgs.overlays = [
+    inputs.self.overlays.local
   ];
 
   # ========= #
@@ -29,8 +33,8 @@
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   systemd.services."NetworkManager-wait-online".enable = false; # reduce boot time
-  # time.timeZone = "America/Chicago";
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = "America/Chicago";
+  # time.timeZone = "America/Los_Angeles";
 
   users.users.cyren = {
     isNormalUser = true;

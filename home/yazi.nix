@@ -1,17 +1,6 @@
 { pkgs, config, lib, ... }:
 
-let
-  pref-by-location = pkgs.stdenvNoCC.mkDerivation {
-    name = "pref-by-location";
-    src = pkgs.fetchFromGitHub {
-      owner = "boydaihungst";
-      repo = "pref-by-location.yazi";
-      rev = "68f006da24870761a3926eed13c877ce2b4a4559";
-      hash = "sha256-mmEQBigbHkxmRBQDEt4WSqlZGC+200k+4/4tjUk+484=";
-    };
-    installPhase = "cp -r . $out/";
-  };
-in {
+{
   home.packages = with pkgs; [
     xdg-desktop-portal-termfilechooser
   ];
@@ -130,13 +119,14 @@ in {
         { on = [ "," "r" ]; run = [ "sort random --reverse=no" "plugin pref-by-location -- save" ];                 desc = "Sort randomly"; }
       ];
     };
-    plugins = {
-      full-border = pkgs.yaziPlugins.full-border;
-      git = pkgs.yaziPlugins.git;
-      ouch = pkgs.yaziPlugins.ouch;
-      pref-by-location = pref-by-location;
-      smart-enter = pkgs.yaziPlugins.smart-enter;
-      starship = pkgs.yaziPlugins.starship;
+    plugins = with pkgs; {
+      full-border = yaziPlugins.full-border;
+      git = yaziPlugins.git;
+      ouch = yaziPlugins.ouch;
+      smart-enter = yaziPlugins.smart-enter;
+      starship = yaziPlugins.starship;
+      
+      pref-by-location = local.pref-by-location;
     };
     initLua = ''
       require("full-border"):setup({

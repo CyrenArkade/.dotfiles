@@ -20,6 +20,7 @@
   ];
 
   nixpkgs.overlays = [
+    inputs.self.overlays.local
     inputs.rust-overlay.overlays.default
   ];
 
@@ -63,7 +64,8 @@
     
     # calibre # https://github.com/NixOS/nixpkgs/issues/493843
     cosmic-files
-    fflogs
+    # fflogs
+    local.fflogs
     gimp3
     libreoffice-fresh
     mullvad-vpn

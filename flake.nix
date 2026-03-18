@@ -34,7 +34,11 @@
       inherit (self) outputs;
       system = "x86_64-linux";
     in {
-      
+
+      overlays.local = final: _prev: {
+        local = import ./packages _prev.pkgs;
+      };
+
       nixosConfigurations = {
         ll5i = nixpkgs.lib.nixosSystem {
           inherit system;

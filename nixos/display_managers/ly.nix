@@ -1,8 +1,12 @@
 { inputs, pkgs, ... }:
 
 let
+  # Map black->crust, white->base, brightblack->mantle, brightwhite->lavender
+  # https://wiki.gentoo.org/wiki/Terminal_emulator/Colors#Linux_console
+  # Redirect to /dev/tty because
+  # https://github.com/NixOS/nixpkgs/issues/427414
   ly-startup = pkgs.writeShellScript "ly-startup" ''
-    printf '\e]P0181825\e]P71e1e2e\e]P811111b\e]Pfb4befe'
+    printf '\e]P0181825\e]P71e1e2e\e]P811111b\e]Pfb4befe' > /dev/tty
   '';
 in {
   services.displayManager = {
@@ -16,9 +20,7 @@ in {
         hide_version_string = true;
         hide_key_hints = true;
         clear_password = true;
-
-        # Map black->crust, white->base, brightblack->mantle, brightwhite->lavender
-        # https://wiki.gentoo.org/wiki/Terminal_emulator/Colors#Linux_console
+        
         start_cmd = "${ly-startup}";
 
         bg = "0x00555555";

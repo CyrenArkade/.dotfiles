@@ -50,6 +50,7 @@
     python313
     libqalculate
     ripgrep
+    river
     (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
       extensions = [
         "rust-src"
@@ -115,6 +116,7 @@
 
   programs.git = {
     enable = true;
+    signing.format = null;
     settings = {
       init.defaultBranch = "main";
       core.editor = "code --wait";

@@ -149,6 +149,7 @@ in {
 
       gesture = [
         "3, horizontal, workspace"
+        "3, swipe, mod: SUPER, resize"
       ];
 
       misc = {
@@ -188,6 +189,7 @@ in {
         "match:class vesktop, workspace 3 silent"
         "match:class XIVLauncher.Core, workspace 1 silent"
         "match:title FINAL FANTASY XIV, workspace 1 silent"
+        "match:title .*Minecraft.*, workspace 1 silent"
 
         "match:class Matplotlib, float on"
         "match:class com.interversehq.qView, suppress_event fullscreen maximize"

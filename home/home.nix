@@ -63,10 +63,9 @@
     wl-clipboard
     # inputs.zmx.packages.${pkgs.stdenv.hostPlatform.system}.zmx
     
-    # calibre # https://github.com/NixOS/nixpkgs/issues/493843
+    calibre
     cosmic-files
-    # fflogs
-    local.fflogs
+    fflogs
     gimp3
     libreoffice-fresh
     mullvad-vpn
@@ -132,6 +131,10 @@
       osd-color = "#cdd6f4";
       osd-shadow-color = "#1e1e2e";
       keep-open = true;
+      screenshot-format = "png";
+    };
+    scriptOpts.osc = {
+      seekbarkeyframes = false;
     };
     bindings = {};
   };

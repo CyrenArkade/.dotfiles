@@ -39,7 +39,7 @@
           { mime = "text/*";           use = [ "micro" "vscode" "copy" "open-with" ]; }
           { mime = "image/*";          use = [ "open-orphan" "gimp" "copy" "open-with" ]; }
           { mime = "{audio,video}/*";  use = [ "open-orphan" "copy" "open-with" ]; }
-          { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"; use = [ "extract" "open-with" ]; }
+          { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"; use = [ "extract" "copy" "open-with" ]; }
           { mime = "application/json"; use = [ "micro" "vscode" "copy" "open-with" ]; }
           { mime = "*/javascript";     use = [ "micro" "vscode" "copy" "open-with" ]; }
           { url = "*";                 use = [ "open" "copy" "open-with" ]; }

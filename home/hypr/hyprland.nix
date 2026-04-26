@@ -48,8 +48,13 @@ in {
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
     settings = {
-      monitor = [
-        ",preferred,auto,1.25"
+      monitorv2 = [
+        {
+          output = "";
+          mode = "preferred";
+          position = "auto";
+          scale = 1.25;
+        }
       ];
 
       workspace = [

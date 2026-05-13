@@ -7,7 +7,6 @@
     package = pkgs.vesktop.override {
       withMiddleClickScroll = true;
     };
+    vencord.extraQuickCss = builtins.readFile ./quick.css;
   };
-
-  xdg.configFile."vesktop/settings/quickCss.css".source = ./quick.css;
 }

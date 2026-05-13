@@ -8,6 +8,7 @@
       fd = "fd -u";
       nano = "micro";
       
+      afk = "systemd-inhibit sleep infinity";
       develop = ''function my_func -a dir; nix develop $dir --command bash -c "code $dir"; end; my_func'';
       fzk = "ps -e | fzf | awk '{print $1}' | xargs kill";
       run = "hyprctl dispatch exec --";

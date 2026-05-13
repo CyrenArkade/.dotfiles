@@ -19,10 +19,10 @@
         open-orphan = [ { desc = "Open";    run = "xdg-open %s1"; orphan = true; } ];
         reveal      = [];
         open-with = [
-          # -run-command '{cmd} "''"$@"'"'
-          # concatenate '{cmd} "' + "$@" + '"'
-          # to form {cmd} "$@" with $@ substituted in
-          { run = "rofi -show drun -x11 -run-command '{cmd} \"'\"$@\"'\"'"; desc = "Open With"; orphan = true; }
+          # -run-command "sh -c '{cmd} \"\$@\"' _ %s"
+          # inserts %s as the args after the zeroth (aka as $@) into
+          # {cmd} "$@"
+          { run = ''rofi -show drun -x11 -run-command "sh -c '{cmd} \"\$@\"' _ %s"''; desc = "Open With"; orphan = true; }
         ];
         copy = [
           { desc = "Copy"; run = "wl-copy < %s1"; }

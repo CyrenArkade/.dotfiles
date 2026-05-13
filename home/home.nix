@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, nixpkgs, ... }:
+{ inputs, lib, pkgs, nixpkgs, config, ... }:
 
 {
   imports = [
@@ -79,7 +79,6 @@
   programs.home-manager.enable = true;
   programs.bash.enable = true;
   programs.eza.enable = true;
-  programs.firefox.enable = true;
   programs.vscode.enable = true;
   
 
@@ -101,6 +100,11 @@
     enable = true;
     silent = true;
     nix-direnv.enable = true;
+  };
+
+  programs.firefox = {
+    enable = true;
+    configPath = ".mozilla/firefox"; # home.stateVersion < 26.05 behavior
   };
 
   programs.fzf = {

@@ -25,7 +25,10 @@
     };
   };
 
-  services.blueman.enable = true;
+  services.blueman = {
+    enable = true;
+    withApplet = false; # https://github.com/NixOS/nixpkgs/issues/514705
+  };
   
   services.gnome.gnome-keyring.enable = true;
 

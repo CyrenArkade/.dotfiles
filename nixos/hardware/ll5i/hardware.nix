@@ -71,6 +71,7 @@
       settings = {
         main = {
           "f23+leftshift+leftmeta" = "layer(control)"; # copilot to ctrl
+          capslock = "overload(meta, esc)";
         };
       };
     };

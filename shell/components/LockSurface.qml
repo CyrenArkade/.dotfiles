@@ -43,7 +43,7 @@ WlSessionLockSurface {
     anchors.fill: parent
     
     Image {
-      source: '/home/cyren/.dotfiles/images/xiv2.png'
+      source: '/home/cyren/.dotfiles/images/xilmo4.jpg'
       anchors.fill: parent
     }
 

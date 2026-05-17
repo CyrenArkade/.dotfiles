@@ -33,7 +33,7 @@
 
       background = {
         monitor = "";
-        path = "${../../images/xiv2.png}";
+        path = "${../../images/xilmo4.jpg}";
         blur_passes = 0;
         color = "rgb(a093b2)";
       };

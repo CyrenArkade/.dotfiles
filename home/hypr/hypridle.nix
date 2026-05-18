@@ -1,10 +1,11 @@
 { inputs, lib, pkgs, ... }:
 
-{
+let
+  inherit (import ./lua_utils.nix { inherit lib; })
+    on_startup;
+in {
   wayland.windowManager.hyprland.settings = {
-    exec-once = [
-      "systemctl --user start hypridle"
-    ];
+    on = on_startup ''hl.exec_cmd("systemctl --user start hypridle")'';
   };
   
 

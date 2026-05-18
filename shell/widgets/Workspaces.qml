@@ -22,7 +22,7 @@ WrapperRectangle {
       id: r
       model: Hyprland.workspaces.values
         .slice()
-        .filter(ws => !ws.name.endsWith('hdrop'))
+        .filter(ws => !ws.name.endsWith('quake'))
         .sort((a, b) => Math.abs(a.id) - Math.abs(b.id))
 
       WrapperMouseArea {

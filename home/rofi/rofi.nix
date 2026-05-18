@@ -1,6 +1,8 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 let
+  inherit (import ../hypr/lua_utils.nix { inherit lib; })
+    call bind_exec with_flags;
   inherit (config.lib.formats.rasi) mkLiteral;
 in {
   programs.rofi = {
@@ -41,12 +43,14 @@ in {
   catppuccin.rofi.enable = true;
 
   wayland.windowManager.hyprland.settings = {
-    windowrule = [
-      "match:class Rofi, stay_focused on, rounding 0"
+    window_rule = [
+      { match.class = "Rofi"; stay_focused = true; rounding = 0; }
     ];
 
-    bindr = [
-        "$mainMod, Super_L, exec, rofi -show drun -x11 || pkill rofi"
-      ];
+    bind = map call (builtins.concatLists [
+      (with_flags { release = true; } [
+        (bind_exec "SUPER + Super_L" "rofi -show drun -x11 || pkill rofi")
+      ])
+    ]);
   };
 }

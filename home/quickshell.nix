@@ -1,15 +1,20 @@
 { lib, config, ... }:
 
-{
+let
+  inherit (import ./hypr/lua_utils.nix { inherit lib; })
+    call bind_exec with_flags on_startup;
+in {
   wayland.windowManager.hyprland.settings = {
-    exec-once = [
-      "quickshell -c ~/.dotfiles/shell" # i'll do it properly soom:tm:
-    ];
-    bind = [
-      "$mainMod, L, exec, qs -c ~/.dotfiles/shell ipc call lockscreen lock"
-    ];
-    bindl = [
-      ",switch:on:Lid Switch, exec, qs -c ~/.dotfiles/shell ipc call lockscreen lockImmediate"
-    ];
+    # i'll do it properly soom:tm:
+    on = on_startup ''hl.exec_cmd("quickshell -c ~/.dotfiles/shell")'';
+
+    bind = map call (builtins.concatLists [
+      (with_flags {} [
+        (bind_exec "SUPER + L" "qs -c ~/.dotfiles/shell ipc call lockscreen lock")
+      ])
+      (with_flags { locked = true; } [
+        (bind_exec "switch:on:[Lid Switch]" "qs -c ~/.dotfiles/shell ipc call lockscreen lockImmediate")
+      ])
+    ]);
   };
 }

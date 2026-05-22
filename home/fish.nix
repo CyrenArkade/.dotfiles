@@ -11,7 +11,6 @@
       afk = "systemd-inhibit sleep infinity";
       develop = ''function my_func -a dir; nix develop $dir --command bash -c "code $dir"; end; my_func'';
       fzk = "ps -e | fzf | awk '{print $1}' | xargs kill";
-      run = "hyprctl dispatch exec --";
       mc = "run prismlauncher --launch";
       record = ''wf-recorder --codec h264_nvenc -g "$(slurp)" -f ~/Videos/output.mp4'';
       zws = "echo -n '​' | ${pkgs.wl-clipboard}/bin/wl-copy";
@@ -20,6 +19,11 @@
       function fish_title
         set -q argv[1] && set suffix ": $argv"; or set suffix ""
         echo (prompt_pwd)$suffix;
+      end
+
+      function run
+        setsid $argv < /dev/null > /dev/null 2>&1 &
+        disown
       end
 
       set fish_greeting

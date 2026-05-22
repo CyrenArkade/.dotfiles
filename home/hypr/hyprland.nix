@@ -20,7 +20,7 @@ in {
     ./hypridle.nix
     # ./hyprlock.nix
     ./hyprpaper.nix
-    # ./hypredge.nix
+    ./hypredge.nix
   ];
 
   home.packages = with pkgs; [
@@ -67,8 +67,8 @@ in {
             enabled = true;
             range = 4;
             render_power = 3;
-            color = "rgba(b4befe77)";
-            color_inactive = "rgba(11111baa)";
+            color = "#b4befe77";
+            color_inactive = "#11111baa";
           };
         };
 
@@ -231,10 +231,7 @@ in {
               hl.dispatch(hl.dsp.window.move({ workspace = "special:mini", follow = false }))
             else
               is_last = #mini_ws:get_windows() == 1
-              hl.dispatch(hl.dsp.window.move({ workspace = "+0", follow = false }))
-              if is_last then
-                hl.dispatch(hl.dsp.workspace.toggle_special("mini"))
-              end
+              hl.dispatch(hl.dsp.window.move({ workspace = "+0", follow = is_last }))
             end
           ''))
 
@@ -249,7 +246,7 @@ in {
             quake = hl.get_windows({ tag = "quake*" })[1]
 
             if quake == nil then
-              hl.exec_cmd("kitty", { tag = "quake", floating = true, move = {x, y}, size = {width, height} })
+              hl.exec_cmd("kitty --class quake", { tag = "quake", floating = true, move = {x, y}, size = {width, height} })
             elseif quake.workspace == hl.get_active_workspace() then
               hl.dispatch(hl.dsp.window.move({ window = quake, workspace = "special:quake", follow = false }))
             else
@@ -257,6 +254,7 @@ in {
               hl.dispatch(hl.dsp.window.move({ window = quake, workspace = "+0", follow = false }))
               hl.dispatch(hl.dsp.window.resize({ window = quake, x = width, y = height }))
               hl.dispatch(hl.dsp.window.move({ window = quake, x = x, y = y }))
+              hl.dispatch(hl.dsp.focus({ window = quake }))
             end
           ''))
         ]
@@ -303,7 +301,6 @@ in {
       launch = {
         onDispatch = "reset";
         settings.bind = map call [
-          (bind "escape" ''hl.dsp.submap("reset")'')
           (bind_exec "F" "firefox")
           (bind_exec "X" "XIVLauncher.Core")
           (bind_exec "C" "code")
@@ -313,6 +310,7 @@ in {
           (bind_exec "O" "obs")
           (bind_exec "S" "steam")
           (bind_exec "E" "scalc")
+          (bind "catchall" ''hl.dsp.submap("reset")'')
         ];
       };
     };

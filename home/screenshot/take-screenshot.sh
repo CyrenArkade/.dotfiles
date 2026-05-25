@@ -1,6 +1,6 @@
 folderName="$HOME/Pictures/Screenshots/$(date +%Y)-$(date +%m)"
 fileName="$(date +"%Y-%m-%d_%H:%M:%S").png"
-fullPath="$folderName/$fileName"
+export fullPath="$folderName/$fileName"
 
 mkdir -p "$folderName"
 
@@ -13,17 +13,16 @@ function whileStill() {
     w=$((w+x-sx))
     h=$((h+y-sy))
 
-    echo "${sx},${sy} ${w}x${h}"
+    grim -g "${sx},${sy} ${w}x${h}" "$fullPath"
 }
 export -f whileStill
 
-crop="$(still -p -c whileStill)"
+still -p -c whileStill
 
-if [ -z "$crop" ]; then
+if [ ! -f "$fullPath" ]; then
     exit
 fi
 
-grim -g "$crop" "$fullPath"
 wl-copy < "$fullPath"
 
 action=$(notify-send "Saved and copied $fileName" -i "$fullPath" -u low -t 5000 \

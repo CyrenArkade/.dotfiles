@@ -6,7 +6,7 @@ let
 
   take-screenshot = pkgs.writeShellApplication {
     name = "take-screenshot";
-    runtimeInputs = with pkgs; [ local.still slurp grim libnotify satty xdg-utils ];
+    runtimeInputs = with pkgs; [ still slurp grim libnotify satty xdg-utils ];
     text = builtins.readFile ./take-screenshot.sh;
   };
 in {

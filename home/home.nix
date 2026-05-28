@@ -55,6 +55,7 @@
       extensions = [
         "rust-src"
         "rust-analyzer"
+        "rustc-codegen-cranelift-preview"
       ];
     }))
     slurp

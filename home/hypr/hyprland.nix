@@ -57,7 +57,7 @@ in {
           dim_special = 0.4;
 
           blur = {
-            enabled = true;
+            enabled = false;
             size = 5;
             passes = 2;
             vibrancy = 0.2;
@@ -180,6 +180,7 @@ in {
 
         { match.class = "Matplotlib"; float = true; }
         { match.class = "com.interversehq.qView"; suppress_event = "fullscreen maximize"; }
+        { match.title = "Please wait.*Prism Launcher.*"; float = true; no_initial_focus = true; }
       ];
 
       layer_rule = [

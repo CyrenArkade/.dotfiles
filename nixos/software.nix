@@ -21,7 +21,7 @@
     enable = true;
     clean = {
       enable = true;
-      extraArgs = "--keep-since 7d";
+      extraArgs = "--keep 3";
     };
   };
 

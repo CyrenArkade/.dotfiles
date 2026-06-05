@@ -141,7 +141,9 @@
     scriptOpts.osc = {
       seekbarkeyframes = false;
     };
-    bindings = {};
+    bindings = {
+      MBTN_LEFT = "no-osd cycle pause";
+    };
   };
 
   programs.obs-studio = {

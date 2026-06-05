@@ -11,11 +11,11 @@ let
   };
 in {
   imports = [
-    ../rofi/rofi.nix
     ../screenshot/screenshot.nix
     # ../waybar/waybar.nix
     # ../wofi/wofi.nix
     ../quickshell.nix
+    ../rofi.nix
     ../swaync.nix
     ./hypridle.nix
     # ./hyprlock.nix
@@ -87,6 +87,7 @@ in {
           touchpad = {
             natural_scroll = true;
             scroll_factor = 0.2;
+            clickfinger_behavior = true;
           };
         };
 
@@ -146,27 +147,26 @@ in {
         (call ["linear"         { type = "bezier"; points = [[0    0]    [1    1]]; }])
         (call ["almostLinear"   { type = "bezier"; points = [[0.5  0.5]  [0.75 1]]; }])
         (call ["quick"          { type = "bezier"; points = [[0.15 0]    [0.1  1]]; }])
-        (call ["easy"           { type = "spring"; mass = 1; stiffness = 71.2633; dampening = 15.8273644; }])
+        (call ["easy"           { type = "spring"; mass = 1; stiffness = 30; dampening = 8; }])
       ];
 
       animation = [
-        { leaf = "global";        enabled = true;  speed = 10;   bezier = "default"; }
-        { leaf = "border";        enabled = true;  speed = 5.39; bezier = "easeOutQuint"; }
-        { leaf = "windows";       enabled = true;  speed = 4.79; spring = "easy"; }
-        { leaf = "windowsIn";     enabled = true;  speed = 4.1;  spring = "easy";           style = "popin 87%"; }
-        { leaf = "windowsOut";    enabled = true;  speed = 1.49; bezier = "linear";         style = "popin 87%"; }
-        { leaf = "fadeIn";        enabled = true;  speed = 1.73; bezier = "almostLinear"; }
-        { leaf = "fadeOut";       enabled = true;  speed = 1.46; bezier = "almostLinear"; }
-        { leaf = "fade";          enabled = true;  speed = 3.03; bezier = "quick"; }
-        { leaf = "layers";        enabled = true;  speed = 3.81; bezier = "easeOutQuint"; }
-        { leaf = "layersIn";      enabled = true;  speed = 4;    bezier = "easeOutQuint";   style = "fade"; }
-        { leaf = "layersOut";     enabled = true;  speed = 1.5;  bezier = "linear";         style = "fade"; }
-        { leaf = "fadeLayersIn";  enabled = true;  speed = 1.79; bezier = "almostLinear"; }
-        { leaf = "fadeLayersOut"; enabled = true;  speed = 1.39; bezier = "almostLinear"; }
-        { leaf = "workspaces";    enabled = true;  speed = 3;    bezier = "easeInOutCubic"; style = "slide"; }
-        { leaf = "workspacesIn";  enabled = true;  speed = 3;    bezier = "easeInOutCubic"; style = "slide"; }
-        { leaf = "workspacesOut"; enabled = true;  speed = 3;    bezier = "easeInOutCubic"; style = "slide"; }
-        { leaf = "zoomFactor";    enabled = true;  speed = 7;    bezier = "quick"; }
+        { leaf = "global";           enabled = true; speed = 10;   bezier = "default"; }
+        { leaf = "border";           enabled = true; speed = 5.39; bezier = "easeOutQuint"; }
+        { leaf = "windows";          enabled = true; speed = 1;    spring = "easy"; }
+        { leaf = "windowsIn";        enabled = true; speed = 1;    spring = "easy";           style = "popin 40%"; }
+        { leaf = "windowsOut";       enabled = true; speed = 3;    bezier = "linear";         style = "popin 60%"; }
+        { leaf = "fadeIn";           enabled = true; speed = 1.73; bezier = "almostLinear"; }
+        { leaf = "fadeOut";          enabled = true; speed = 1.46; bezier = "almostLinear"; }
+        { leaf = "fade";             enabled = true; speed = 3.03; bezier = "quick"; }
+        { leaf = "layers";           enabled = true; speed = 3.81; bezier = "easeOutQuint"; }
+        { leaf = "layersIn";         enabled = true; speed = 4;    bezier = "easeOutQuint";   style = "fade"; }
+        { leaf = "layersOut";        enabled = true; speed = 1.5;  bezier = "linear";         style = "fade"; }
+        { leaf = "fadeLayersIn";     enabled = true; speed = 1.79; bezier = "almostLinear"; }
+        { leaf = "fadeLayersOut";    enabled = true; speed = 1.39; bezier = "almostLinear"; }
+        { leaf = "workspaces";       enabled = true; speed = 3;    bezier = "easeInOutCubic"; style = "slide"; }
+        { leaf = "specialWorkspace"; enabled = true; speed = 3;    bezier = "easeInOutCubic"; style = "slidevert"; }
+        { leaf = "zoomFactor";       enabled = true; speed = 7;    bezier = "quick"; }
       ];
 
       window_rule = [
@@ -227,24 +227,24 @@ in {
 
           (bind "SUPER + W" ''hl.dsp.workspace.toggle_special("mini")'')
           (bind "SUPER + S" (lambda ''
-            mini_ws = hl.get_active_special_workspace()
+            local mini_ws = hl.get_active_special_workspace()
             if mini_ws == nil then
               hl.dispatch(hl.dsp.window.move({ workspace = "special:mini", follow = false }))
             else
-              is_last = #mini_ws:get_windows() == 1
+              local is_last = #mini_ws:get_windows() == 1
               hl.dispatch(hl.dsp.window.move({ workspace = "+0", follow = is_last }))
             end
           ''))
 
           (bind "SUPER + escape" (lambda ''
 
-            monitor = hl.get_active_monitor()
-            x = 1/6 * monitor.width / monitor.scale
-            y = 0
-            width = 2/3 * monitor.width / monitor.scale
-            height = 0.4 * monitor.height / monitor.scale
+            local monitor = hl.get_active_monitor()
+            local x = 1/6 * monitor.width / monitor.scale
+            local y = 0
+            local width = 2/3 * monitor.width / monitor.scale
+            local height = 0.4 * monitor.height / monitor.scale
 
-            quake = hl.get_windows({ tag = "quake*" })[1]
+            local quake = hl.get_windows({ tag = "quake*" })[1]
 
             if quake == nil then
               hl.exec_cmd("kitty --class quake", { tag = "quake", floating = true, move = {x, y}, size = {width, height} })

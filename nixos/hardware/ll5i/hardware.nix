@@ -53,6 +53,7 @@
   hardware.nvidia = {
     open = false;
     modesetting.enable = true;
+    powerManagement.enable = true;
     prime = {
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";

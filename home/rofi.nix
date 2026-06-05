@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (import ../hypr/lua_utils.nix { inherit lib; })
+  inherit (import ./hypr/lua_utils.nix { inherit lib; })
     call bind_exec with_flags;
   inherit (config.lib.formats.rasi) mkLiteral;
 in {

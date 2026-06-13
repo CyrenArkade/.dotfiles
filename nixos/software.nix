@@ -19,10 +19,7 @@
   programs.steam.enable = true;
   programs.nh.enable = true;
 
-  services.blueman = {
-    enable = true;
-    withApplet = false; # https://github.com/NixOS/nixpkgs/issues/514705
-  };
+  services.blueman.enable = true;
   
   services.gnome.gnome-keyring.enable = true;
 
@@ -54,6 +51,8 @@
   fonts.enableDefaultPackages = true;
 
   catppuccin = {
+    enable = true;
+    autoEnable = false;
     flavor = "mocha";
     accent = "lavender";
   };

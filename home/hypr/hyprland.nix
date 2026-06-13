@@ -147,7 +147,7 @@ in {
         (call ["linear"         { type = "bezier"; points = [[0    0]    [1    1]]; }])
         (call ["almostLinear"   { type = "bezier"; points = [[0.5  0.5]  [0.75 1]]; }])
         (call ["quick"          { type = "bezier"; points = [[0.15 0]    [0.1  1]]; }])
-        (call ["easy"           { type = "spring"; mass = 1; stiffness = 30; dampening = 8; }])
+        (call ["easy"           { type = "spring"; mass = 1; stiffness = 500; dampening = 32; }])
       ];
 
       animation = [
@@ -155,7 +155,8 @@ in {
         { leaf = "border";           enabled = true; speed = 5.39; bezier = "easeOutQuint"; }
         { leaf = "windows";          enabled = true; speed = 1;    spring = "easy"; }
         { leaf = "windowsIn";        enabled = true; speed = 1;    spring = "easy";           style = "popin 40%"; }
-        { leaf = "windowsOut";       enabled = true; speed = 3;    bezier = "linear";         style = "popin 60%"; }
+        { leaf = "windowsOut";       enabled = true; speed = 1;    spring = "easy";           style = "popin 60%"; }
+        { leaf = "windowsMove";      enabled = true; speed = 1;    spring = "easy";           style = "popin 40%"; }
         { leaf = "fadeIn";           enabled = true; speed = 1.73; bezier = "almostLinear"; }
         { leaf = "fadeOut";          enabled = true; speed = 1.46; bezier = "almostLinear"; }
         { leaf = "fade";             enabled = true; speed = 3.03; bezier = "quick"; }

@@ -111,11 +111,6 @@
 
   programs.fzf = {
     enable = true;
-    colors = {
-      selected-bg = "#45475A";
-      border = "#6C7086";
-      label = "#CDD6F4";
-    };
   };
   catppuccin.fzf.enable = true;
 
@@ -178,6 +173,8 @@
 
 
   catppuccin = {
+    enable = true;
+    autoEnable = false;
     flavor = "mocha";
     accent = "lavender";
   };

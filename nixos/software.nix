@@ -17,13 +17,7 @@
   programs.nix-ld.enable = true;
   programs.fish.enable = true; # here AND home-manager
   programs.steam.enable = true;
-  programs.nh = {
-    enable = true;
-    clean = {
-      enable = true;
-      extraArgs = "--keep 3";
-    };
-  };
+  programs.nh.enable = true;
 
   services.blueman = {
     enable = true;

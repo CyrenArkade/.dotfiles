@@ -239,8 +239,8 @@ in {
           (bind "SUPER + escape" (lambda ''
 
             local monitor = hl.get_active_monitor()
-            local x = 1/6 * monitor.width / monitor.scale
-            local y = 0
+            local x = monitor.x + 1/6 * monitor.width / monitor.scale
+            local y = monitor.y
             local width = 2/3 * monitor.width / monitor.scale
             local height = 0.4 * monitor.height / monitor.scale
 
@@ -250,6 +250,7 @@ in {
               hl.exec_cmd("kitty --class quake", { tag = "quake", floating = true, move = {x, y}, size = {width, height} })
             elseif quake.workspace == hl.get_active_workspace() then
               hl.dispatch(hl.dsp.window.move({ window = quake, workspace = "special:quake", follow = false }))
+              hl.dispatch(hl.dsp.window.move({ window = quake, x = x, y = -height/8 }))
             else
               hl.dispatch(hl.dsp.window.float({ window = quake, action = "on" }))
               hl.dispatch(hl.dsp.window.move({ window = quake, workspace = "+0", follow = false }))

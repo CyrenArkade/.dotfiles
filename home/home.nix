@@ -36,6 +36,7 @@
     file
     gcc
     ghostscript
+    grim
     img2pdf
     kdePackages.qtdeclarative # for qmlls
     mediainfo

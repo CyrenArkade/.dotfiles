@@ -35,9 +35,7 @@
       system = "x86_64-linux";
     in {
 
-      overlays.local = final: _prev: {
-        local = import ./packages _prev.pkgs;
-      };
+      overlays.local = import ./packages;
 
       nixosConfigurations = {
         ll5i = nixpkgs.lib.nixosSystem {

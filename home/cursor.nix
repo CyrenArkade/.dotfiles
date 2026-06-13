@@ -6,6 +6,6 @@
     x11.enable = true;
     name = "graphite-light";
     size = 24;
-    package = pkgs.local.cursor;
+    package = pkgs.custom-cursor;
   };
 }

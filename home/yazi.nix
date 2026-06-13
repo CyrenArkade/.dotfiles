@@ -126,7 +126,7 @@
       smart-enter = yaziPlugins.smart-enter;
       starship = yaziPlugins.starship;
       
-      pref-by-location = local.pref-by-location;
+      pref-by-location = pref-by-location;
     };
     initLua = ''
       require("full-border"):setup({

@@ -21,7 +21,7 @@ Loader {
     objects: [root.node]
   }
 
-  active: root.node.ready
+  active: node.ready
 
   sourceComponent: RowLayout {
 
@@ -38,6 +38,12 @@ Loader {
       
       sourceSize.height: height
       sourceSize.width: width
+
+      MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: root.node.audio.muted ^= true 
+      }
     }
 
     ColumnLayout {
@@ -62,6 +68,7 @@ Loader {
       CustomSlider {
         id: slider
         value: root.node.audio.volume
+        dead: root.node.audio.muted
         onValueChanged: root.node.audio.volume = value
         Layout.fillWidth: true
       }

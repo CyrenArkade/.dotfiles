@@ -25,7 +25,7 @@ BarWidget {
       spacing: 0
       
       Image {
-        source: `../assets/audio/speaker${Pipewire.defaultAudioSink?.audio.volume ? '' : '-muted'}.svg`
+        source: `../assets/audio/speaker${(!Pipewire.defaultAudioSink?.audio.muted && Pipewire.defaultAudioSink?.audio.volume) ? '' : '-muted'}.svg`
         Layout.margins: 4
         Layout.preferredHeight: Config.barHeight - 8
         Layout.preferredWidth: height
@@ -75,7 +75,7 @@ BarWidget {
     AudioItem {
       node: Pipewire.defaultAudioSink
       name: Pipewire.defaultAudioSink.description
-      icon: `../assets/audio/speaker${Pipewire.defaultAudioSink?.audio.volume ? '' : '-muted'}.svg`
+      icon: `../assets/audio/speaker${(!Pipewire.defaultAudioSink?.audio.muted && Pipewire.defaultAudioSink?.audio.volume) ? '' : '-muted'}.svg`
       bold: true
       Layout.topMargin: 10
     }

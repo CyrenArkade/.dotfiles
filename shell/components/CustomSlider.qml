@@ -5,6 +5,8 @@ import '../singletons'
 Slider {
   id: control
 
+  property bool dead: false
+
   padding: 0
 
   background: Rectangle {
@@ -19,7 +21,7 @@ Slider {
     Rectangle {
       width: control.visualPosition * parent.width
       height: parent.height
-      color: Catppuccin.lavender
+      color: control.dead ? Catppuccin.overlay1 : Catppuccin.lavender
       radius: 2
     }
   }

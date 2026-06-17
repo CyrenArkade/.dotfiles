@@ -10,7 +10,6 @@
       format = lib.strings.concatStrings [
         "$directory"
         "$all"
-        # "\${custom.zmx}"
         "$nix_shell"
         "$character"
       ];
@@ -48,13 +47,6 @@
       username = {
         disabled = true;
       };
-
-      # custom.zmx = {
-      #   symbol = "❯";
-      #   when = ''[ -n "$ZMX_SESSION" ]'';
-      #   shell = "sh";
-      #   style = "bold lavender";
-      # };
     };
   };
   programs.fish.shellInitLast = ''

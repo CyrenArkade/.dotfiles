@@ -541,6 +541,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1779877693,
+        "narHash": "sha256-NOF9NAREhxr50bbBfVcVOq+ArCMSoe8dP79Pk2uyARk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4100e830e085863741bc69b156ec4ccd53ab5be0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -573,7 +589,7 @@
         "nixos-xivlauncher-rb": "nixos-xivlauncher-rb",
         "nixpkgs": "nixpkgs_3",
         "rust-overlay": "rust-overlay",
-        "zmx": "zmx"
+        "yazi": "yazi"
       }
     },
     "rust-overlay": {
@@ -588,6 +604,27 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "5b929d8c854149d926d05ea0cd6469bf4e54db27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
+          "yazi",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779851998,
+        "narHash": "sha256-UkkMh3bX9QW4Luqkm98nUaOqKWrU6i65mUnph3WeSSw=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "6cddd512fa2bf7231f098d3a2f92f6e4cff71e0a",
         "type": "github"
       },
       "original": {
@@ -667,42 +704,23 @@
         "type": "github"
       }
     },
-    "zig2nix": {
+    "yazi": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_4",
+        "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1778610364,
-        "narHash": "sha256-0rhkhp+Vi2gfwblOB138lOpfHTKOvR0xHZYWnRcA0DU=",
-        "owner": "Cloudef",
-        "repo": "zig2nix",
-        "rev": "4541f97bd2f114e304c518fc058d1ebc45440315",
+        "lastModified": 1781438303,
+        "narHash": "sha256-cBw2N3U0hoZO33s24Z/022AthIJtTnZk1jwgnxObfBY=",
+        "owner": "sxyazi",
+        "repo": "yazi",
+        "rev": "f1e93d7f528b22fdeaf66b198c73e32a7040a90c",
         "type": "github"
       },
       "original": {
-        "owner": "Cloudef",
-        "repo": "zig2nix",
-        "type": "github"
-      }
-    },
-    "zmx": {
-      "inputs": {
-        "zig2nix": "zig2nix"
-      },
-      "locked": {
-        "lastModified": 1781312800,
-        "narHash": "sha256-7fJ/+3OdSgVUXYPQRZqQuUnPs6RF/e6COj68GB9/hYY=",
-        "owner": "neurosnap",
-        "repo": "zmx",
-        "rev": "ba77064c854d7f73721abbb742150a1307774015",
-        "type": "github"
-      },
-      "original": {
-        "owner": "neurosnap",
-        "repo": "zmx",
+        "owner": "sxyazi",
+        "repo": "yazi",
         "type": "github"
       }
     }

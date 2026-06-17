@@ -23,10 +23,7 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zmx = {
-      url = "github:neurosnap/zmx";
-      inputs.zig2nix.inputs.nixpkgs.follows = "nixpkgs";
-    };
+    yazi.url = "github:sxyazi/yazi";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:

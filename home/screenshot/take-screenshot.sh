@@ -7,13 +7,7 @@ mkdir -p "$folderName"
 function whileStill() {
     set -e
 
-    read -r x y w h < <(slurp -f $'%x %y %w %h\n' -d -b 00000060 -c b4befeff)
-    sx=$(((x+2)/4*4))
-    sy=$(((y+2)/4*4))
-    w=$((w+x-sx))
-    h=$((h+y-sy))
-
-    grim -g "${sx},${sy} ${w}x${h}" "$fullPath"
+    grim -g "$(slurp -d -b 00000060 -c b4befeff)" "$fullPath"
 }
 export -f whileStill
 

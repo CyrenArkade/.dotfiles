@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ inputs, pkgs, config, lib, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,6 +7,7 @@
 
   programs.yazi = {
     enable = true;
+    package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
     shellWrapperName = "y";
     settings = {
       mgr = {
@@ -25,7 +26,7 @@
           { run = ''rofi -show drun -x11 -run-command "sh -c '{cmd} \"\$@\"' _ %s"''; desc = "Open With"; orphan = true; }
         ];
         copy = [
-          { desc = "Copy"; run = "wl-copy < %s1"; }
+          { desc = "Copy";      run = "wl-copy < %s1"; }
           { desc = "Copy Path"; run = "echo -n %s1 | wl-copy"; }
         ];
 
@@ -47,8 +48,8 @@
       };
       plugin = {
         prepend_fetchers = [
-          { id = "git"; name = "*";  run = "git"; }
-          { id = "git"; name = "*/"; run = "git"; }
+          { group = "git"; url = "*";  run = "git"; }
+          { group = "git"; url = "*/"; run = "git"; }
         ];
         prepend_previewers = [
           { mime = "application/*zip";            run = "ouch"; }
@@ -136,7 +137,11 @@
       require("git"):setup()
 
       -- requires keymaps to work
-      require("pref-by-location"):setup({})
+      require("pref-by-location"):setup({
+        prefs = {
+          { location = os.getenv("HOME") .. "/Pictures/Screenshots.*", sort = { "mtime", reverse = true } }
+        },
+      })
       
       -- Add padding before starship
       Header:children_add(function(self)
@@ -153,6 +158,8 @@
   in {
     # need to augment this due to https://github.com/catppuccin/yazi/issues/35
     "yazi/theme.toml".text = (builtins.readFile "${config.catppuccin.sources.yazi}/${cfg.flavor}/catppuccin-${cfg.flavor}-${cfg.accent}.toml") + ''
+      [icon]
+      
       conds = [
         { if = "dir", text = "", fg = "#b4befe" }
       ]

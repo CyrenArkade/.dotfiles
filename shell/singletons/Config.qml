@@ -12,4 +12,8 @@ Singleton {
     readonly property color barBg: Catppuccin.base
     readonly property color barBorder: Catppuccin.surface0
   }
+
+  function asset(path: string): string {
+    return Quickshell.shellDir + '/assets/' + path
+  }
 }

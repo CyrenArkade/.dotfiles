@@ -16,7 +16,7 @@ BarWidget {
 
     Image {
       id: img
-      source: `../assets/battery/${UPower.onBattery ? 'normal' : 'charging'}/${Math.min(Math.max(Math.floor(UPower.displayDevice.percentage * 11), 0), 10)}.svg`
+      source: Config.asset(`battery/${UPower.onBattery ? 'normal' : 'charging'}/${Math.min(Math.max(Math.floor(UPower.displayDevice.percentage * 11), 0), 10)}.svg`)
 
       height: parent.height - 8
       width: height

@@ -15,7 +15,7 @@ BarWidget {
     implicitWidth: height
 
     Image {
-      source: '../assets/power/power.svg'
+      source: Config.asset('power/power.svg')
       height: parent.height - 6
       width: height
       x: 3
@@ -51,7 +51,7 @@ BarWidget {
         color: mouseArea.containsMouse ? Catppuccin.withAlpha(Catppuccin.lavender, 0.2) : 'transparent'
 
         Image {
-          source: `../assets/power/${item.modelData.icon}.svg`
+          source: Config.asset(`power/${item.modelData.icon}.svg`)
           height: parent.height - 6
           width: height
           x: 3

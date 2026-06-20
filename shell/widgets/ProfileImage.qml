@@ -8,7 +8,7 @@ Item {
   Layout.alignment: Qt.AlignBottom
 
   Image {
-    source: "../assets/strawberry.svg"
+    source: Config.asset('strawberry.svg')
 
     width: parent.width
     height: parent.height

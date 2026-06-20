@@ -5,7 +5,6 @@ import QtQuick.Controls
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Widgets
 import '../singletons'
 
 Button {
@@ -45,7 +44,7 @@ Button {
         Layout.leftMargin: active ? 2 : 0
         Layout.rightMargin: active ? 2 : 0
         sourceComponent: Image {
-          source: `../assets/${root.entry.buttonType === QsMenuButtonType.CheckBox ? 'checkbox' : 'radiobutton'}/${root.entry.checkState ? 'checked' : 'unchecked'}`
+          source: Config.asset(`${root.entry.buttonType === QsMenuButtonType.CheckBox ? 'checkbox' : 'radiobutton'}/${root.entry.checkState ? 'checked' : 'unchecked'}`)
           sourceSize.height: height
           sourceSize.width: width
         }
@@ -62,7 +61,7 @@ Button {
       
       Image {
         source: root.entry.hasChildren
-          ? '../assets/chevron/right.svg'
+          ? Config.asset('chevron/right.svg')
           : ''
         Layout.fillHeight: true
         Layout.preferredWidth: root.entry.hasChildren ? height : 0

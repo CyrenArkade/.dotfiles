@@ -15,7 +15,7 @@ Rectangle {
   
   Image {
     id: img
-    source: `../assets/chevron/${root.direction}.svg`
+    source: Config.asset(`chevron/${root.direction}.svg`)
     readonly property int margin: 4
     height: parent.height - margin * 2
     width: height

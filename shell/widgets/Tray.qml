@@ -5,8 +5,8 @@ import QtQuick.Controls.Basic
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.SystemTray
-import "../components"
-import "../singletons"
+import qs.components
+import qs.singletons
 
 BarWidget {
   id: root

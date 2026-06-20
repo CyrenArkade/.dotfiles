@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-import "../singletons"
+import qs.singletons
 
 Item {
   Layout.preferredHeight: Config.barHeight

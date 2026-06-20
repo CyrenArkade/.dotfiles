@@ -6,7 +6,7 @@ import QtQuick.Controls.Basic
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
-import '../singletons'
+import qs.singletons
 
 Button {
   id: root

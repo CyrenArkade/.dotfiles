@@ -4,8 +4,8 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
-import "../components"
-import "../singletons"
+import qs.components
+import qs.singletons
 
 Loader {
   id: root

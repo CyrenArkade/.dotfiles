@@ -4,7 +4,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Widgets
-import "../singletons"
+import qs.singletons
 
 WrapperRectangle {
   Layout.preferredHeight: Config.barHeight
@@ -40,7 +40,7 @@ WrapperRectangle {
 
         cursorShape: Qt.PointingHandCursor
         hoverEnabled: true
-        onClicked: Hyprland.dispatch(`workspace ${ma.workspace.name}`)
+        onClicked: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${ma.workspace.name} })`)
 
         Loader {
           readonly property Component special: ClippingWrapperRectangle {

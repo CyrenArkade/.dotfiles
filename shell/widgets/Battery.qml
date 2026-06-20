@@ -3,8 +3,8 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.UPower
-import '../components'
-import '../singletons'
+import qs.components
+import qs.singletons
 
 BarWidget {
   id: root

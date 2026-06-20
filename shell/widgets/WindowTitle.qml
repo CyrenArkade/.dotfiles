@@ -1,6 +1,6 @@
 import QtQuick
 import Quickshell.Hyprland
-import "../singletons"
+import qs.singletons
 
 
 Text {

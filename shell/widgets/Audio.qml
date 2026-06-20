@@ -3,8 +3,8 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.Pipewire
-import "../components"
-import "../singletons"
+import qs.components
+import qs.singletons
 
 BarWidget {
   id: root
@@ -81,27 +81,14 @@ BarWidget {
     }
 
     // why this no work :(
-    // PwObjectTracker {
-    //   objects: [Pipewire.defaultAudioSource]
-    // }
-    // Text {
-    //   text: [Pipewire.defaultAudioSource.name, Pipewire.defaultAudioSource.description, Pipewire.defaultAudioSource.nickname, Pipewire.defaultAudioSource.ready, Pipewire.defaultAudioSource.audio.volume].join('\n')
-    //   color: Catppuccin.text
-    // }
-    // Timer {
-    //   interval: 1000
-    //   running: true
-    //   repeat: true
-    //   onTriggered: {
-    //     Pipewire.defaultAudioSink.audio.volume = Pipewire.defaultAudioSink.audio.volume + 1 - 1
-    //     console.log(Pipewire.defaultAudioSource.audio.volume)
-    //   }
-    // }
-    // AudioItem {
-    //   node: Pipewire.defaultAudioSource
-    //   name: Pipewire.defaultAudioSource.description
-    //   icon: '../assets/audio/microphone.svg'
-    // }
+    PwObjectTracker {
+      objects: [Pipewire.defaultAudioSource]
+    }
+    AudioItem {
+      node: Pipewire.defaultAudioSource
+      name: Pipewire.defaultAudioSource.description
+      icon: '../assets/audio/microphone.svg'
+    }
 
     Repeater {
       model: linkTracker.linkGroups

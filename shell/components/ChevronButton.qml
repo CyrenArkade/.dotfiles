@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-import '../singletons'
+import qs.singletons
 
 Rectangle {
   id: root

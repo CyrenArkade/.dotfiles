@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 
-import "./singletons"
-import "./widgets"
+import qs.widgets
+import qs.singletons
 
 PanelWindow {
   id: window

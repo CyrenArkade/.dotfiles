@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Notifications 
-import './singletons'
+import qs.singletons
 
 PanelWindow {
   anchors {

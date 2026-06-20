@@ -4,7 +4,7 @@ import QtQuick
 import Quickshell.Io
 import Quickshell.Services.Pam
 import Quickshell.Wayland
-import './components'
+import qs.components
 
 Item {
   id: root

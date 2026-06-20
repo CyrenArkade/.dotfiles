@@ -35,18 +35,18 @@
     ffmpeg
     file
     gcc
+    gdu
     ghostscript
     grim
     img2pdf
     kdePackages.qtdeclarative # for qmlls
     mediainfo
-    ncdu
     nix-tree
     nvd
-    ouch
-    # (ouch.override {
-    #   enableUnfree = true;
-    # })
+    # ouch
+    (ouch.override {
+      enableUnfree = true;
+    })
     ov
     python313
     libqalculate

@@ -22,7 +22,7 @@ in {
         end)
 
         hl.window_rule({
-          match = {title = "FINAL FANTASY XIV"},
+          match = { title = "FINAL FANTASY XIV|Pathfinder Wrath Of The Righteous" },
           hypredge_ignore_constraints = "on",
         })
       end

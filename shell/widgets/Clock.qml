@@ -3,8 +3,8 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import qs.components
-import qs.singletons
+import "../components"
+import "../singletons"
 
 BarWidget {
   id: root

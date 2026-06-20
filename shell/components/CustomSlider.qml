@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Basic
-import qs.singletons
+import '../singletons'
 
 Slider {
   id: control

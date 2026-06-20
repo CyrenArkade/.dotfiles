@@ -3,7 +3,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import qs.singletons
+import '../singletons'
 
 ColumnLayout {
   id: root

@@ -5,7 +5,7 @@ import QtQuick.Controls.Fusion
 import QtQuick.Effects
 import Quickshell.Wayland
 import Quickshell.Widgets
-import qs.singletons
+import '../singletons'
 
 WlSessionLockSurface {
   id: root

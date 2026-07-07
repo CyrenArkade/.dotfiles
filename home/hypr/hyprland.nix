@@ -11,12 +11,12 @@ let
   };
 in {
   imports = [
+    ../programs/rofi.nix
+    ../programs/swaync.nix
     ../screenshot/screenshot.nix
     # ../waybar/waybar.nix
     # ../wofi/wofi.nix
     ../quickshell.nix
-    ../rofi.nix
-    ../swaync.nix
     ./hypridle.nix
     # ./hyprlock.nix
     ./hyprpaper.nix

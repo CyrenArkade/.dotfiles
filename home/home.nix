@@ -13,10 +13,10 @@
     ./cursor.nix
     ./fonts.nix
 
-    ./fish.nix
-    ./micro.nix
-    ./starship.nix
-    ./yazi.nix
+    ./programs/fish.nix
+    ./programs/micro.nix
+    ./programs/starship.nix
+    ./programs/yazi.nix
   ];
 
   nixpkgs.overlays = [

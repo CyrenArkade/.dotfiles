@@ -7,6 +7,7 @@
       ls = "eza --icons";
       fd = "fd -u";
       nano = "micro";
+      try = "nix-shell -p";
       
       afk = "systemd-inhibit sleep infinity";
       develop = ''function my_func -a dir; nix develop $dir --command bash -c "code $dir"; end; my_func'';

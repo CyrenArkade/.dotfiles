@@ -31,6 +31,8 @@ Slider {
     y: control.topPadding + control.availableHeight / 2 - height / 2
     implicitWidth: 14
     implicitHeight: 14
-    color: control.pressed ? Catppuccin.lavender : Catppuccin.text
+    color: control.dead ? Catppuccin.overlay2
+      : control.pressed ? Catppuccin.lavender
+      : Catppuccin.text
   }
 }

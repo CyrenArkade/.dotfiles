@@ -86,6 +86,7 @@ BarWidget {
       node: Pipewire.defaultAudioSource
       name: Pipewire.defaultAudioSource.description
       icon: Config.asset('audio/microphone.svg')
+      bold: true
     }
 
     Repeater {

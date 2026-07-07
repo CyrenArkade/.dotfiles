@@ -30,7 +30,12 @@ Loader {
     Layout.fillWidth: true
 
     Image {
-      source: root.icon || Quickshell.iconPath(DesktopEntries.heuristicLookup(root.node.name).icon, true)
+      // glitchy on first run, so it's in a function.
+      // somehow binding heuristicLookup stops it from being null.
+      source: {
+        const entry = DesktopEntries.heuristicLookup(root.node.name)
+        return root.icon || Quickshell.iconPath(entry.icon, true)
+      }
 
       Layout.preferredHeight: Config.barHeight
       Layout.preferredWidth: height

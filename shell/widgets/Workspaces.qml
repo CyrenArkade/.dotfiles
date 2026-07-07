@@ -40,7 +40,7 @@ WrapperRectangle {
 
         cursorShape: Qt.PointingHandCursor
         hoverEnabled: true
-        onClicked: Hyprland.dispatch(`workspace ${ma.workspace.name}`)
+        onClicked: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${ma.workspace.name} })`)
 
         Loader {
           readonly property Component special: ClippingWrapperRectangle {

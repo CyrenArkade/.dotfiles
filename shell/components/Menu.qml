@@ -85,6 +85,7 @@ ColumnLayout {
       color: 'transparent'
       
       Rectangle {
+        x: -1
         width: parent.width
         height: parent.height
         

@@ -43,10 +43,10 @@
     mediainfo
     nix-tree
     nvd
-    # ouch
-    (ouch.override {
-      enableUnfree = true;
-    })
+    ouch
+    # (ouch.override {
+    #   enableUnfree = true;
+    # })
     ov
     python313
     libqalculate

@@ -5,6 +5,8 @@
     xdg-desktop-portal-termfilechooser
   ];
 
+  catppuccin.yazi.enable = true;
+
   programs.yazi = {
     enable = true;
     package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -153,36 +155,7 @@
     '';
   };
 
-  xdg.configFile = let
-    cfg = config.catppuccin.yazi;
-  in {
-    # need to augment this due to https://github.com/catppuccin/yazi/issues/35
-    "yazi/theme.toml".text = (builtins.readFile "${config.catppuccin.sources.yazi}/${cfg.flavor}/catppuccin-${cfg.flavor}-${cfg.accent}.toml") + ''
-      [icon]
-      
-      conds = [
-        { if = "dir", text = "", fg = "#b4befe" }
-      ]
-
-      dirs  = [
-        { name = ".config", text = "", fg = "#b4befe" },
-        { name = ".git", text = "", fg = "#b4befe" },
-        { name = ".github", text = "", fg = "#b4befe" },
-        { name = ".npm", text = "", fg = "#b4befe" },
-        { name = "Desktop", text = "", fg = "#b4befe" },
-        { name = "Development", text = "", fg = "#b4befe" },
-        { name = "Documents", text = "", fg = "#b4befe" },
-        { name = "Downloads", text = "", fg = "#b4befe" },
-        { name = "Library", text = "", fg = "#b4befe" },
-        { name = "Movies", text = "", fg = "#b4befe" },
-        { name = "Music", text = "", fg = "#b4befe" },
-        { name = "Pictures", text = "", fg = "#b4befe" },
-        { name = "Public", text = "", fg = "#b4befe" },
-        { name = "Videos", text = "", fg = "#b4befe" },
-      ]
-    '';
-    "yazi/Catppuccin-${cfg.flavor}.tmTheme".source = "${config.catppuccin.sources.bat}/Catppuccin ${lib.toSentenceCase cfg.flavor}.tmTheme";
-
+  xdg.configFile = {
     "xdg-desktop-portal-termfilechooser/config" = {
       text = ''
         [filechooser]

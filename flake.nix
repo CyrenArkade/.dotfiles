@@ -12,7 +12,6 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hypredge = {
       url = "github:CyrenArkade/hypredge";
-      # url = "git+file:///home/cyren/dev/cpp/hypredge";
       inputs.hyprland.follows = "hyprland";
     };
     nixos-xivlauncher-rb = {

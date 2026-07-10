@@ -57,7 +57,7 @@ in {
           dim_special = 0.4;
 
           blur = {
-            enabled = false;
+            enabled = true;
             size = 5;
             passes = 2;
             vibrancy = 0.2;
@@ -182,6 +182,7 @@ in {
         { match.class = "Matplotlib"; float = true; }
         { match.class = "com.interversehq.qView"; suppress_event = "fullscreen maximize"; }
         { match.title = "Please wait.*Prism Launcher.*"; float = true; no_initial_focus = true; }
+        { match.class = "kitty"; opacity = "1.0 override"; }
       ];
 
       layer_rule = [
@@ -248,7 +249,7 @@ in {
             local quake = hl.get_windows({ tag = "quake*" })[1]
 
             if quake == nil then
-              hl.exec_cmd("kitty --class quake", { tag = "quake", floating = true, move = {x, y}, size = {width, height} })
+              hl.exec_cmd("kitty --class quake -o background_opacity=1", { tag = "quake", floating = true, move = {x, y}, size = {width, height} })
             elseif quake.workspace == hl.get_active_workspace() then
               hl.dispatch(hl.dsp.window.move({ window = quake, workspace = "special:quake", follow = false }))
               hl.dispatch(hl.dsp.window.move({ window = quake, x = x, y = -height/8 }))

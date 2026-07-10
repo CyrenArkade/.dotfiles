@@ -10,9 +10,10 @@ in {
   programs.kitty = {
     enable = true;
     settings = {
+      allow_remote_control = "yes";
       confirm_os_window_close = 0;
       enable_audio_bell = 0;
-      allow_remote_control = "yes";
+      background_opacity = 0.9375;
     };
     extraConfig = ''
       map ctrl+f launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env ${fzf-history}/bin/fzf-history

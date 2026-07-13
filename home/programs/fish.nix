@@ -4,9 +4,10 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ls = "eza --icons";
-      fd = "fd -u";
+      ls = "eza --icons"; # --hyperlink=auto once it hits nixpkgs
+      fd = "fd -u --hyperlink=auto";
       nano = "micro";
+      rg = "command rg --hyperlink-format=default";
       try = "nix-shell -p";
       
       afk = "systemd-inhibit sleep infinity";

@@ -5,8 +5,6 @@
     xdg-desktop-portal-termfilechooser
   ];
 
-  catppuccin.yazi.enable = true;
-
   programs.yazi = {
     enable = true;
     package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -50,8 +48,8 @@
       };
       plugin = {
         prepend_fetchers = [
-          { group = "git"; url = "*";  run = "git"; }
-          { group = "git"; url = "*/"; run = "git"; }
+          { url = "*";  group = "git"; run = "git"; }
+          { url = "*/"; group = "git"; run = "git"; }
         ];
         prepend_previewers = [
           { mime = "application/*zip";            run = "ouch"; }
@@ -155,7 +153,23 @@
     '';
   };
 
-  xdg.configFile = {
+  xdg.configFile = let
+    cfg = config.catppuccin.yazi;
+  in {
+    "yazi/theme.toml".text = (builtins.readFile "${config.catppuccin.sources.yazi}/${cfg.flavor}/catppuccin-${cfg.flavor}-${cfg.accent}.toml") + ''
+      [git]
+      modified_sign  = "M"
+      updated_sign   = "M"
+      added_sign     = "A"
+      deleted_sign   = "D"
+      untracked_sign = "U"
+      clean_sign     = ""
+      unknown_sign   = ""
+      excluded_sign  = "-"
+      ignored_sign   = "-"
+    '';
+    "yazi/Catppuccin-${cfg.flavor}.tmTheme".source = "${config.catppuccin.sources.bat}/Catppuccin ${lib.toSentenceCase cfg.flavor}.tmTheme";
+
     "xdg-desktop-portal-termfilechooser/config" = {
       text = ''
         [filechooser]

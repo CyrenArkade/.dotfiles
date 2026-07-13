@@ -41,6 +41,7 @@
     grim
     img2pdf
     kdePackages.qtdeclarative # for qmlls
+    gnumake
     mediainfo
     nix-tree
     nvd

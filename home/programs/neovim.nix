@@ -4,6 +4,9 @@
   home.packages = with pkgs; [
     neovim
 
+    gnumake
+    imagemagick
+
     lua-language-server
     ruff
   ];

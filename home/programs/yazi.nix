@@ -19,7 +19,7 @@
         open        = [ { desc = "Open";    run = "xdg-open %s1"; } ];
         open-orphan = [ { desc = "Open";    run = "xdg-open %s1"; orphan = true; } ];
         reveal      = [];
-        open-with = [
+        open-with   = [
           # -run-command "sh -c '{cmd} \"\$@\"' _ %s"
           # inserts %s as the args after the zeroth (aka as $@) into
           # {cmd} "$@"
@@ -30,19 +30,19 @@
           { desc = "Copy Path"; run = "echo -n %s1 | wl-copy"; }
         ];
 
-        gimp    = [ { desc = "GIMP";    run = "gimp %s1"; orphan = true; } ];
-        micro   = [ { desc = "Micro";   run = "micro %s1"; block = true; } ];
-        vscode  = [ { desc = "VS Code"; run = "code %s1"; } ];
+        gimp   = [ { desc = "GIMP";    run = "gimp %s1";   orphan = true; } ];
+        neovim = [ { desc = "Neovim";  run = "nvim %s1"; block = true; } ];
+        vscode = [ { desc = "VS Code"; run = "code %s1"; } ];
       };
       open = {
         rules = [
           { url = "*/";                use = [ "vscode" "open-with" ]; }
-          { mime = "text/*";           use = [ "micro" "vscode" "copy" "open-with" ]; }
+          { mime = "text/*";           use = [ "neovim" "vscode" "copy" "open-with" ]; }
           { mime = "image/*";          use = [ "open-orphan" "gimp" "copy" "open-with" ]; }
           { mime = "{audio,video}/*";  use = [ "open-orphan" "copy" "open-with" ]; }
           { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"; use = [ "extract" "copy" "open-with" ]; }
-          { mime = "application/json"; use = [ "micro" "vscode" "copy" "open-with" ]; }
-          { mime = "*/javascript";     use = [ "micro" "vscode" "copy" "open-with" ]; }
+          { mime = "application/json"; use = [ "neovim" "vscode" "copy" "open-with" ]; }
+          { mime = "*/javascript";     use = [ "neovim" "vscode" "copy" "open-with" ]; }
           { url = "*";                 use = [ "open" "copy" "open-with" ]; }
         ];
       };

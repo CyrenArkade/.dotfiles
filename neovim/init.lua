@@ -46,5 +46,4 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
 
 require('options')
 require('keymaps')
-require('lsps')
 

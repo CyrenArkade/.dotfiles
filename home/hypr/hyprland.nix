@@ -196,7 +196,7 @@ in {
       ];
 
       on = on_startup ''
-        hl.exec_cmd("${pkgs.wl-clipboard}/bin/wl-paste -p --watch ${pkgs.wl-clipboard}/bin/wl-copy -pc")
+        -- hl.exec_cmd("${pkgs.wl-clipboard}/bin/wl-paste -p --watch ${pkgs.wl-clipboard}/bin/wl-copy -pc")
         hl.exec_cmd("firefox", { workspace = "2"; })
         hl.exec_cmd("vesktop", { workspace = "3 silent"; })
       '';
@@ -288,6 +288,10 @@ in {
         (with_flags { mouse = true; } [
           (bind "SUPER + mouse:272" "hl.dsp.window.drag()")
           (bind "SUPER + mouse:273" "hl.dsp.window.resize()")
+        ])
+
+        (with_flags { mouse = true; non_consuming = true; } [
+          (bind_exec "mouse:274" "wl-copy -pc")
         ])
 
         (builtins.concatLists (builtins.genList (i:

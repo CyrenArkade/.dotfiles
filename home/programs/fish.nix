@@ -6,6 +6,7 @@
     shellAliases = {
       ls = "eza --icons"; # --hyperlink=auto once it hits nixpkgs
       fd = "fd -u --hyperlink=auto";
+      n = "nvim";
       nano = "micro";
       rg = "command rg --hyperlink-format=default";
       try = "nix-shell -p";

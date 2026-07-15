@@ -1,7 +1,6 @@
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('ruff')
 
--- I got it from the documentations, but I don't think this works...
 vim.lsp.config('lua_ls', {
   on_init = function(client)
     if client.workspace_folders then
@@ -46,4 +45,20 @@ vim.lsp.config('lua_ls', {
     Lua = {},
   },
 })
+vim.lsp.enable('lua_ls')
+
+vim.lsp.config('nixd', {
+  settinsg = {
+    nixd = {
+      nixpkgs = {
+        expr = 'import <nixpkgs> {}',
+      },
+      options = {
+        nixos = { expr = '(builtins.getFlake "/home/cyren/.dotfiles").nixosConfigurations.nixos.options' },
+        ['home-manager'] = { expr = '(builtins.getFlake "/home/cyren/.dotfiles").homeConfigurations.cyren.options'},
+      }
+    }
+  }
+})
+vim.lsp.enable('nixd')
 

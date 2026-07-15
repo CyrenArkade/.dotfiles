@@ -5,7 +5,7 @@ Config.now(function()
   require('catppuccin').setup({
     transparent_background = true,
   })
-  
+
   vim.cmd.colorscheme('catppuccin-mocha')
   palette = require('catppuccin.palettes').get_palette('mocha')
 end)
@@ -19,6 +19,33 @@ Config.later(function()
   require('mini.pairs').setup({})
   require('mini.ai').setup({})
   require('mini.surround').setup({})
+  require('mini.move').setup({})
+  require('mini.splitjoin').setup({})
+
+  require('mini.keymap').setup({})
+  MiniKeymap.map_multistep('i', '<Tab>', { 'jump_after_tsnode' })
+  MiniKeymap.map_multistep('i', '<S-Tab>', { 'jump_before_tsnode' })
+  MiniKeymap.map_multistep('i', '<CR>', { 'minipairs_cr' })
+  MiniKeymap.map_multistep('i', '<S-CR>', { 'blink_accept' })
+  MiniKeymap.map_multistep('i', '<BS>', { 'minipairs_bs' })
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/sh1Nome/mini-pick-preview.nvim'})
+
+  require('mini.pick').setup({
+    window = { config = { width = 80 } }
+  })
+  require('mini.extra').setup({})
+  require('mini-pick-preview').setup({})
+
+  vim.keymap.set('n', '<leader>fb', '<Cmd>Pick buffers<CR>')
+  vim.keymap.set('n', '<leader>fB', '<Cmd>Pick gut_branches<CR>')
+  vim.keymap.set('n', '<leader>fc', '<Cmd>Pick git_commits<CR>')
+  vim.keymap.set('n', '<leader>ff', '<Cmd>Pick files<CR>')
+  vim.keymap.set('n', '<leader>fg', '<Cmd>Pick grep_live<CR>')
+  vim.keymap.set('n', '<leader>fk', '<Cmd>Pick keymaps<CR>')
+  vim.keymap.set('n', '<leader>fr', '<Cmd>Pick resume<CR>')
 end)
 
 Config.now(function()
@@ -42,6 +69,11 @@ Config.now(function()
       lualine_z = { { 'location', separator = { right = '' } } }
     },
   })
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/neovim/nvim-lspconfig'})
+  require('lsps')
 end)
 
 Config.later(function()
@@ -70,14 +102,17 @@ Config.later(function()
 end)
 
 Config.now(function()
-  vim.pack.add({'https://github.com/mikavilpas/yazi.nvim'})
+  vim.pack.add({
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/mikavilpas/yazi.nvim',
+  })
 
   vim.g.loaded_netrwPlugin = 1
   Config.on_event('UIEnter', function()
     require("yazi").setup({
       open_for_directories = true,
     })
-    vim.keymap.set("n", "<leader>f", function() require("yazi").yazi() end)
+    vim.keymap.set("n", "<leader>t", function() require("yazi").yazi() end)
   end)
 end)
 
@@ -91,13 +126,7 @@ end)
 
 Config.later(function()
   vim.pack.add({'https://github.com/folke/flash.nvim'})
-  require('flash').setup({
-    modes = {
-      search = {
-        enabled = true,
-      },
-    },
-  })
+  require('flash').setup({})
 
   vim.keymap.set({'n', 'x', 'o'}, '<leader>s', function() require("flash").jump() end)
   vim.keymap.set({'n', 'x', 'o'}, '<leader>S', function() require("flash").treesitter() end)
@@ -106,40 +135,42 @@ Config.later(function()
   vim.keymap.set({'o', 'x'}, 'R', function() require("flash").treesitter_search() end)
 end)
 
-Config.now(function()
-  Config.build('telescope-fzf-native.nvim', { 'install', 'update' }, function(data)
-    vim.system({'make'}, { cwd = data.path })
+Config.later(function()
+  Config.build('fff', { 'install', 'update', }, function(data)
+    if not data.active then
+      vim.cmd.packadd('fff')
+    end
+    require('fff.download').download_or_build_binary()
   end)
 
-  vim.pack.add {
-    'https://github.com/nvim-lua/plenary.nvim',
-    'https://github.com/nvim-telescope/telescope.nvim',
-    'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
+  vim.pack.add({'https://github.com/dmtrKovalenko/fff'})
+
+  vim.g.fff = {
+    lazy_sync = true,
+    debug = { enabled = true, show_scores = true },
   }
 
-  require('telescope').setup {
-    extensions = {
-      fzf = {
-        fuzzy = true,
-        override_generic_sorter = true,
-        override_file_sorter = true,
-        case_mode = 'smart_case',
-      },
-    },
-  }
+  vim.keymap.set('n', '<leader>wf', function() require('fff').find_files() end)
 end)
 
 Config.on_event('ModeChanged~*:[vV\22]', function()
   vim.pack.add({'https://github.com/mcauley-penney/visual-whitespace.nvim'})
 
   require('visual-whitespace').setup({
-    vim.api.nvim_set_hl(0, "VisualNonText", { fg = palette.surface2 })
+    vim.api.nvim_set_hl(0, "VisualNonText", { fg = palette.subtext0, bg = palette.surface1 })
   })
 end)
 
 Config.later(function()
-  vim.pack.add({'https://github.com/kawre/neotab.nvim'})
+  vim.pack.add({'https://github.com/rachartier/tiny-glimmer.nvim'})
 
-  require('neotab').setup({})
+  require("tiny-glimmer").setup({
+    overwrite = {
+      paste = { default_animation = 'fade' },
+    },
+    animations = {
+      fade = { to_color = palette.base }
+    },
+  })
 end)
 

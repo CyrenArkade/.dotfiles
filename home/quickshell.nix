@@ -12,9 +12,6 @@ in {
       (with_flags {} [
         (bind_exec "SUPER + L" "qs -c ~/.dotfiles/shell ipc call lockscreen lock")
       ])
-      (with_flags { locked = true; } [
-        (bind_exec "switch:on:[Lid Switch]" "qs -c ~/.dotfiles/shell ipc call lockscreen lockImmediate")
-      ])
     ]);
   };
 }

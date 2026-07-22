@@ -178,6 +178,7 @@ in {
         { match.class = "XIVLauncher.Core"; workspace = "1 silent"; }
         { match.title = "FINAL FANTASY XIV"; workspace = "1 silent"; }
         { match.title = ".*Minecraft.*"; workspace = "1 silent"; }
+        { match.title = "waywall"; workspace = "1 silent"; }
 
         { match.class = "Matplotlib"; float = true; }
         { match.class = "com.interversehq.qView"; suppress_event = "fullscreen maximize"; }

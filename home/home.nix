@@ -6,6 +6,7 @@
 
     ./hypr/hyprland.nix
     ./kitty/kitty.nix
+    ./minecraft/minecraft.nix
     ./mpd/mpd.nix
     ./theme/theme.nix
     ./vesktop/vesktop.nix
@@ -72,7 +73,6 @@
     gimp3
     libreoffice-fresh
     mullvad-vpn
-    prismlauncher
     qbittorrent
     quickshell
     qview

@@ -33,22 +33,44 @@ end)
 Config.later(function()
   vim.pack.add({'https://github.com/sh1Nome/mini-pick-preview.nvim'})
 
+  function choose_all()
+    local mappings = MiniPick.get_picker_opts().mappings
+    vim.api.nvim_input(mappings.mark_all .. mappings.choose_marked)
+  end
+  function pick_buffer()
+    MiniPick.builtin.buffers({}, {
+      mappings = {
+        close_buffer = {
+          char = '<C-d>',
+          func = function()
+            vim.api.nvim_buf_delete(MiniPick.get_picker_matches().current.bufnr, {})
+            pick_buffer()
+          end
+        },
+      },
+    })
+  end
+
   require('mini.pick').setup({
-    window = { config = { width = 80 } }
+    window = { config = { width = 80 } },
+    mappings = {
+      choose_all = { char = '<C-q>', func = choose_all },
+    },
   })
   require('mini.extra').setup({})
   require('mini-pick-preview').setup({})
 
-  vim.keymap.set('n', '<leader>fb', '<Cmd>Pick buffers<CR>')
+  vim.keymap.set('n', '<leader>fb', pick_buffer)
   vim.keymap.set('n', '<leader>fB', '<Cmd>Pick gut_branches<CR>')
   vim.keymap.set('n', '<leader>fc', '<Cmd>Pick git_commits<CR>')
   vim.keymap.set('n', '<leader>ff', '<Cmd>Pick files<CR>')
   vim.keymap.set('n', '<leader>fg', '<Cmd>Pick grep_live<CR>')
   vim.keymap.set('n', '<leader>fk', '<Cmd>Pick keymaps<CR>')
   vim.keymap.set('n', '<leader>fr', '<Cmd>Pick resume<CR>')
+  vim.keymap.set('n', '<leader>fs', '<Cmd>AutoSession search<CR>')
 end)
 
-Config.now(function()
+Config.later(function()
   vim.pack.add({
     'https://github.com/nvim-tree/nvim-web-devicons',
     'https://github.com/nvim-lualine/lualine.nvim',
@@ -63,10 +85,13 @@ Config.now(function()
     sections = {
       lualine_a = { { 'mode', separator = { left = '' } } },
       lualine_b = { 'branch', 'diff', 'diagnostics' },
-      lualine_c = { 'filename' },
-      lualine_x = { 'filetype' },
-      lualine_y = { 'progress' },
-      lualine_z = { { 'location', separator = { right = '' } } }
+      lualine_c = { { 'filename', symbols = { modified = '•︎' } } },
+      lualine_x = { { 'lsp_status', symbols = { done = '✔' } } },
+      lualine_y = { { 'filetype', padding = { left = 0, right = 1 } } },
+      lualine_z = {
+        { 'progress', separator = '', padding = 0 },
+        { 'location', separator = { right = '' }, padding = 0 },
+      }
     },
   })
 end)
@@ -109,14 +134,12 @@ Config.now(function()
 
   vim.g.loaded_netrwPlugin = 1
   Config.on_event('UIEnter', function()
-    require("yazi").setup({
-      open_for_directories = true,
-    })
+    require("yazi").setup({})
     vim.keymap.set("n", "<leader>t", function() require("yazi").yazi() end)
   end)
 end)
 
-Config.later(function()
+Config.now(function()
   vim.pack.add({'https://github.com/3rd/image.nvim'})
 
   require('image').setup({
@@ -166,11 +189,53 @@ Config.later(function()
 
   require("tiny-glimmer").setup({
     overwrite = {
-      paste = { default_animation = 'fade' },
+      paste = {
+        default_animation = 'fade',
+      },
     },
     animations = {
       fade = { to_color = palette.base }
     },
+  })
+end)
+
+Config.now(function()
+  vim.pack.add({'https://github.com/rmagatti/auto-session'})
+
+  require('auto-session').setup({
+    auto_create = function()
+      return vim.fn.argc() > 0
+    end
+  })
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/lewis6991/gitsigns.nvim'})
+
+  require('gitsigns').setup({})
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/luukvbaal/statuscol.nvim'})
+
+  local builtin = require('statuscol.builtin')
+  require('statuscol').setup({
+    segments = {
+      { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
+      {
+        sign = {
+          text = { '.*' },
+          maxwidth = 2,
+          align = 'right',
+        },
+        click = 'v:lua.ScSa',
+      },
+      {
+        text = { builtin.lnumfunc, ' ' },
+        condition = { true, builtin.not_empty },
+        click = 'v:lua.ScLa',
+      },
+    }
   })
 end)
 

@@ -1,5 +1,7 @@
+vim.lsp.enable('cssls')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('ruff')
+vim.lsp.enable('qmlls')
 
 vim.lsp.config('lua_ls', {
   on_init = function(client)

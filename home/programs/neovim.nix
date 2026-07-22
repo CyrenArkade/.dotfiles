@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, ... }:
+{ inputs, pkgs, config, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,9 +7,11 @@
     gnumake
     imagemagick
 
+    kdePackages.qtdeclarative # qmlls
     lua-language-server
-    ruff
     nixd
+    ruff
+    vscode-langservers-extracted
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];

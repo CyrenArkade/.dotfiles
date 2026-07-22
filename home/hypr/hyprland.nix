@@ -200,6 +200,7 @@ in {
         -- hl.exec_cmd("${pkgs.wl-clipboard}/bin/wl-paste -p --watch ${pkgs.wl-clipboard}/bin/wl-copy -pc")
         hl.exec_cmd("firefox", { workspace = "2"; })
         hl.exec_cmd("vesktop", { workspace = "3 silent"; })
+        hl.exec_cmd("nm-applet")
       '';
 
       bind = map call (builtins.concatLists [

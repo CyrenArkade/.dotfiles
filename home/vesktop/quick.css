@@ -2,43 +2,73 @@
 @import url("https://catppuccin.github.io/discord/dist/catppuccin-mocha-lavender.theme.css");
 
 :root {
-    --message-mentioned-background-default: #b7bdf826 !important;
-    --message-mentioned-background-hover: #b7bdf819 !important;
-    --message-background-hover: #b7bdf819 !important;
+  /* Change message backgrounds on hover/mention */
+  --message-mentioned-background-default: #b7bdf826 !important;
+  --message-mentioned-background-hover: #b7bdf819 !important;
+  --message-background-hover: #b7bdf819 !important;
 
-    /* anti-refresh */
-    --custom-app-top-bar-height: 0px;
-    --custom-guild-list-padding: 8px;
+  /* anti-refresh */
+  --custom-app-top-bar-height: 0px; /* Remove title bar */
+  --custom-guild-list-padding: 8px; /* Reduce guild list width */
 
-    --ctp-rainbow-thread-disabled: ;
+  /* Disable rainbow-colored threads */
+  --ctp-rainbow-thread-disabled: ;
 }
 
+/* Use the system's default font */
+/* * {
+font-family: system-ui !important; 
+} */
+
+/* transparency: set background color */
+html {
+  background-color: #1e1e2ef2 !important;
+}
+
+/* transparency: make various things transparent */
+.visual-refresh.theme-dark,
+.visual-refresh .theme-dark {
+  --background-base-lowest: transparent !important;
+  --background-base-lower: transparent !important;
+  --__header-bar-background: transparent !important;
+  --background-gradient-chat: transparent !important;
+}
+
+/* Make all scrollbars thinner */
 div[class^="messagesWrapper"] ::-webkit-scrollbar {
-    width: 12px;
+  width: 12px;
 }
 
+/* Set color of bar on left side of mention */
 div[class*='mentioned_']::before {
-    background: rgb(183, 189, 248);
+  background: rgb(183, 189, 248);
 }
 
+/* Remove various chatbox buttons */
 .app-launcher-entrypoint,
 div[class^="channelTextArea_"] div[aria-label="Send a gift"],
 div[class^="channelTextArea_"] div[aria-label="Open sticker picker"] {
-    display: none !important;
+  display: none !important;
 }
 
 /* Hide "Invite to channel" button on channels in channel list */
 div[aria-label="Invite to Channel"] {
-    display: none !important;
+  display: none !important;
 }
 
-/* anti-refresh */
+/* anti-refresh: add padding to top of guild list to counteract custom-app-top-bar-height */
 nav[class*="guilds_"] {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-/* Items in right click menus */
+/* Change padding of entries in right click menus */
 div[role="menuitem"] {
-    padding-top: 0;
-    padding-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
+
+/* transparency: Remove darkening filter from channel list */
+div[class^="sidebarList_"] {
+  backdrop-filter: none !important;
+}
+

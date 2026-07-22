@@ -3,7 +3,7 @@
 let
   inherit (import ./lua_utils.nix { inherit lib; })
     on_startup;
-  wallpaper = "${../../images/xilmo4.jpg}";
+  wallpaper = "${../../images/illdian.png}";
 in {
   wayland.windowManager.hyprland.settings = {
     on = on_startup ''hl.exec_cmd("systemctl --user start hyprpaper")'';

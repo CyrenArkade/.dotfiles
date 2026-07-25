@@ -1,8 +1,8 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, pkgs, ... }:
 
 let
-  inherit (import ./lua_utils.nix { inherit lib; })
-    luaify lambda call;
+  # inherit (import ./lua_utils.nix { inherit lib; })
+  # luaify lambda call;
 in {
   wayland.windowManager.hyprland = {
     plugins = [

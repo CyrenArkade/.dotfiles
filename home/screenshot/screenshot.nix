@@ -2,7 +2,7 @@
 
 let
   inherit (import ../hypr/lua_utils.nix { inherit lib; })
-    call bind_exec;
+    bind exec;
 
   take-screenshot = pkgs.writeShellApplication {
     name = "take-screenshot";
@@ -24,9 +24,9 @@ in {
   };
 
   wayland.windowManager.hyprland.settings = {
-    bind = map call [
-      (bind_exec "mouse:276" "${take-screenshot}/bin/take-screenshot")
-      (bind_exec "print" "${take-screenshot}/bin/take-screenshot")
+    bind = map bind [
+      ["mouse:276" (exec "${take-screenshot}/bin/take-screenshot")]
+      ["print" (exec "${take-screenshot}/bin/take-screenshot")]
     ];
     layer_rule = [
       { match.namespace = "selection"; no_anim = true; }

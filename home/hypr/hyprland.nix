@@ -1,8 +1,8 @@
-{ inputs, pkgs, fetchurl, lib, config, ... }:
+{ inputs, pkgs, lib, ... }:
 
 let
   inherit (import ./lua_utils.nix { inherit lib; })
-    luaify lambda call bind_flags bind bind_exec with_flags on_startup;
+    luaify lambda call bind exec bind_flags bind_exec with_flags on_startup;
 
   clipboard-history = pkgs.writeShellApplication {
     name = "clipboard-history";
@@ -203,33 +203,36 @@ in {
         hl.exec_cmd("nm-applet")
       '';
 
-      bind = map call (builtins.concatLists [
+      bind = map bind (builtins.concatLists [
         [
-          (bind "SUPER + M" "hl.dsp.exit()")
-          (bind "SUPER + Q" "hl.dsp.window.close()")
-          (bind "SUPER + C" "hl.dsp.window.float()")
-          (bind "SUPER + F" "hl.dsp.window.fullscreen()")
-          (bind "SUPER + P" "hl.dsp.window.pseudo()")
-          (bind "SUPER + O" "hl.dsp.window.pin()")
+          ["SUPER + M" "hl.dsp.exit()"]
+          ["SUPER + Q" "hl.dsp.window.close()"]
+          ["SUPER + C" "hl.dsp.window.float()"]
+          ["SUPER + F" "hl.dsp.window.fullscreen()"]
+          ["SUPER + P" "hl.dsp.window.pseudo()"]
+          ["SUPER + O" "hl.dsp.window.pin()"]
           
-          (bind "SUPER + X" ''hl.dsp.submap("launch")'')
+          ["SUPER + X" ''hl.dsp.submap("launch")'']
 
-          (bind_exec "SUPER + E" "kitty")
-          (bind_exec "SUPER + R" "kitty fish -C y")
-          (bind "SUPER + V" ''hl.dsp.exec_cmd("kitty ${clipboard-history}/bin/clipboard-history", { float = true, size = {800, 400}, center = true })'')
+          ["SUPER + E" (exec "kitty")]
+          ["SUPER + R" (exec "kitty fish -C y")]
+          ["SUPER + V" ''hl.dsp.exec_cmd("kitty ${clipboard-history}/bin/clipboard-history", { float = true, size = {800, 400}, center = true })'']
 
-          (bind "SUPER + up"    ''hl.dsp.focus({ direction = "u" })'')
-          (bind "SUPER + down"  ''hl.dsp.focus({ direction = "d" })'')
-          (bind "SUPER + left"  ''hl.dsp.focus({ direction = "l" })'')
-          (bind "SUPER + right" ''hl.dsp.focus({ direction = "r" })'')
+          ["SUPER + up"    ''hl.dsp.focus({ direction = "u" })'']
+          ["SUPER + down"  ''hl.dsp.focus({ direction = "d" })'']
+          ["SUPER + left"  ''hl.dsp.focus({ direction = "l" })'']
+          ["SUPER + right" ''hl.dsp.focus({ direction = "r" })'']
 
-          (bind "SUPER + A" ''hl.dsp.focus({ workspace = "e-1" })'')
-          (bind "SUPER + D" ''hl.dsp.focus({ workspace = "e+1" })'')
-          (bind "SUPER + SHIFT + A" ''hl.dsp.window.move({ workspace = "e-1" })'')
-          (bind "SUPER + SHIFT + D" ''hl.dsp.window.move({ workspace = "e+1" })'')
+          ["SUPER + A" ''hl.dsp.focus({ workspace = "e-1" })'']
+          ["SUPER + D" ''hl.dsp.focus({ workspace = "e+1" })'']
+          ["SUPER + SHIFT + A" ''hl.dsp.window.move({ workspace = "e-1" })'']
+          ["SUPER + SHIFT + D" ''hl.dsp.window.move({ workspace = "e+1" })'']
 
-          (bind "SUPER + W" ''hl.dsp.workspace.toggle_special("mini")'')
-          (bind "SUPER + S" (lambda ''
+          ["f6" ''hl.dsp.global("com.obsproject.Studio:OBSBasic.StartRecording")'']
+          ["f7" ''hl.dsp.global("com.obsproject.Studio:OBSBasic.StopRecording")'']
+
+          ["SUPER + W" ''hl.dsp.workspace.toggle_special("mini")'']
+          ["SUPER + S" (lambda ''
             local mini_ws = hl.get_active_special_workspace()
             if mini_ws == nil then
               hl.dispatch(hl.dsp.window.move({ workspace = "special:mini", follow = false }))
@@ -237,9 +240,9 @@ in {
               local is_last = #mini_ws:get_windows() == 1
               hl.dispatch(hl.dsp.window.move({ workspace = "+0", follow = is_last }))
             end
-          ''))
+          '')]
 
-          (bind "SUPER + escape" (lambda ''
+          ["SUPER + escape" (lambda ''
 
             local monitor = hl.get_active_monitor()
             local x = monitor.x + 1/6 * monitor.width / monitor.scale
@@ -261,46 +264,46 @@ in {
               hl.dispatch(hl.dsp.window.move({ window = quake, x = x, y = y }))
               hl.dispatch(hl.dsp.focus({ window = quake }))
             end
-          ''))
+          '')]
         ]
 
         (with_flags { repeating = true; } [
-          (bind "SUPER + SHIFT + left"  "hl.dsp.window.resize({ x = -10, y = 0   })")
-          (bind "SUPER + SHIFT + right" "hl.dsp.window.resize({ x = 10,  y = 0   })")
-          (bind "SUPER + SHIFT + up"    "hl.dsp.window.resize({ x = 0,   y = -10 })")
-          (bind "SUPER + SHIFT + down"  "hl.dsp.window.resize({ x = 0,   y = 10  })")
+          ["SUPER + SHIFT + left"  "hl.dsp.window.resize({ x = -10, y = 0   })"]
+          ["SUPER + SHIFT + right" "hl.dsp.window.resize({ x = 10,  y = 0   })"]
+          ["SUPER + SHIFT + up"    "hl.dsp.window.resize({ x = 0,   y = -10 })"]
+          ["SUPER + SHIFT + down"  "hl.dsp.window.resize({ x = 0,   y = 10  })"]
         ])
 
         (with_flags { locked = true; } [
-          (bind_exec "XF86AudioNext"  "playerctl next")
-          (bind_exec "XF86AudioPause" "playerctl play-pause")
-          (bind_exec "XF86AudioPlay"  "playerctl play-pause")
-          (bind_exec "XF86AudioPrev"  "playerctl previous")
+          ["XF86AudioNext"  (exec "playerctl next")]
+          ["XF86AudioPause" (exec "playerctl play-pause")]
+          ["XF86AudioPlay"  (exec "playerctl play-pause")]
+          ["XF86AudioPrev"  (exec "playerctl previous")]
         ])
 
         (with_flags { repeating = true; locked = true; } [
-          (bind_exec "XF86AudioRaiseVolume"  "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
-          (bind_exec "XF86AudioLowerVolume"  "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
-          (bind_exec "XF86AudioMute"         "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
-          (bind_exec "XF86AudioMicMute"      "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
-          (bind_exec "XF86MonBrightnessUp"   "${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight s 5%+")
-          (bind_exec "XF86MonBrightnessDown" "${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight s 5%-")
+          ["XF86AudioRaiseVolume"  (exec "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")]
+          ["XF86AudioLowerVolume"  (exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")]
+          ["XF86AudioMute"         (exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")]
+          ["XF86AudioMicMute"      (exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")]
+          ["XF86MonBrightnessUp"   (exec "${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight s 5%+")]
+          ["XF86MonBrightnessDown" (exec "${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight s 5%-")]
         ])
 
         (with_flags { mouse = true; } [
-          (bind "SUPER + mouse:272" "hl.dsp.window.drag()")
-          (bind "SUPER + mouse:273" "hl.dsp.window.resize()")
+          ["SUPER + mouse:272" "hl.dsp.window.drag()"]
+          ["SUPER + mouse:273" "hl.dsp.window.resize()"]
         ])
 
         (with_flags { mouse = true; non_consuming = true; } [
-          (bind_exec "mouse:274" "wl-copy -pc")
+          ["mouse:274" (exec "wl-copy -pc")]
         ])
 
         (builtins.concatLists (builtins.genList (i:
           let ws = i + 1;
           in [
-            (bind "SUPER + ${toString ws}" ''hl.dsp.focus({ workspace = "${toString ws}" })'')
-            (bind "SUPER + SHIFT + ${toString ws}" ''hl.dsp.window.move({ workspace = "${toString ws}" })'')
+            ["SUPER + ${toString ws}" ''hl.dsp.focus({ workspace = "${toString ws}" })'']
+            ["SUPER + SHIFT + ${toString ws}" ''hl.dsp.window.move({ workspace = "${toString ws}" })'']
           ]
         ) 9))
       ]);
@@ -309,17 +312,17 @@ in {
     submaps = {
       launch = {
         onDispatch = "reset";
-        settings.bind = map call [
-          (bind_exec "F" "firefox")
-          (bind_exec "X" "XIVLauncher.Core")
-          (bind_exec "C" "code")
-          (bind_exec "G" "gimp")
-          (bind_exec "V" "vesktop")
-          (bind_exec "P" "prismlauncher")
-          (bind_exec "O" "obs")
-          (bind_exec "S" "steam")
-          (bind_exec "E" "scalc")
-          (bind "catchall" ''hl.dsp.submap("reset")'')
+        settings.bind = map bind [
+          ["F" (exec "firefox")]
+          ["X" (exec "XIVLauncher.Core")]
+          ["C" (exec "code")]
+          ["G" (exec "gimp")]
+          ["V" (exec "vesktop")]
+          ["P" (exec "prismlauncher")]
+          ["O" (exec "obs")]
+          ["S" (exec "steam")]
+          ["E" (exec "scalc")]
+          ["catchall" ''hl.dsp.submap("reset")'']
         ];
       };
     };

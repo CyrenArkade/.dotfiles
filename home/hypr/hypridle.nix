@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   inherit (import ./lua_utils.nix { inherit lib; })

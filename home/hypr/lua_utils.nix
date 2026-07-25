@@ -4,9 +4,11 @@ rec {
   luaify = lib.generators.mkLuaInline;
   lambda = body: "function()\n${body}\nend";
   call = list: { _args = list; };
-  bind_flags = keys: dispatcher: flags: [keys (luaify dispatcher) flags];
-  bind = keys: dispatcher: bind_flags keys dispatcher {};
-  bind_exec = keys: cmd: bind keys (''hl.dsp.exec_cmd("${cmd}")'');
+  bind = bind_args:
+    call (lib.imap0
+      (i: x: if i == 1 then luaify x else x)
+    bind_args);
+  exec = cmd: ''hl.dsp.exec_cmd("${cmd}")'';
 
   merge_flags = flags: bind:
     let

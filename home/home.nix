@@ -28,6 +28,7 @@
 
   home.packages = with pkgs; [
     android-tools
+    a2ln
     bun
     distrobox
     entr
@@ -148,6 +149,9 @@
     package = pkgs.obs-studio.override {
       cudaSupport = true;
     };
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-wayland-hotkeys
+    ];
   };
 
   programs.zoxide = {

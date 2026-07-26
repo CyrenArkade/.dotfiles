@@ -22,7 +22,7 @@ font-family: system-ui !important;
 
 /* transparency: set background color */
 html {
-  background-color: #1e1e2ef2 !important;
+  background-color: #1e1e2ef6 !important;
 }
 
 /* transparency: make various things transparent */
@@ -32,6 +32,8 @@ html {
   --background-base-lower: transparent !important;
   --__header-bar-background: transparent !important;
   --background-gradient-chat: transparent !important;
+  --background-gradient-highest: #18182530 !important;
+  --background-gradient-low: #18182530 !important;
 }
 
 /* Make all scrollbars thinner */

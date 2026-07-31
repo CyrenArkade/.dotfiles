@@ -22,9 +22,15 @@ Config.later(function()
   require('mini.move').setup({})
   require('mini.splitjoin').setup({})
 
+  require('mini.bufremove').setup({})
+  vim.keymap.set({ 'n', 'v' }, '<leader>bd', function() MiniBufremove.delete() end)
+  vim.keymap.set({ 'n', 'v' }, '<leader>bD', '<Cmd>bd<CR>')
+  vim.keymap.set({ 'n', 'v' }, '<leader>bw', function() MiniBufremove.wipeout() end)
+  vim.keymap.set({ 'n', 'v' }, '<leader>bW', '<Cmd>bw<CR>')
+
   require('mini.keymap').setup({})
-  MiniKeymap.map_multistep('i', '<Tab>', { 'jump_after_tsnode' })
-  MiniKeymap.map_multistep('i', '<S-Tab>', { 'jump_before_tsnode' })
+  MiniKeymap.map_multistep('i', '<Tab>', { 'jump_after_close' })
+  MiniKeymap.map_multistep('i', '<S-Tab>', { 'jump_before_open' })
   MiniKeymap.map_multistep('i', '<CR>', { 'minipairs_cr' })
   MiniKeymap.map_multistep('i', '<S-CR>', { 'blink_accept' })
   MiniKeymap.map_multistep('i', '<BS>', { 'minipairs_bs' })
@@ -237,5 +243,12 @@ Config.later(function()
       },
     }
   })
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/stevearc/oil.nvim'})
+
+  require('oil').setup({})
+  vim.keymap.set({ 'n', 'v' }, '<leader>o', '<Cmd>Oil --float<CR>')
 end)
 

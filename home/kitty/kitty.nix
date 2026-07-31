@@ -16,9 +16,11 @@ in {
       background_opacity = 0.95;
       cursor_trail = 50;
     };
-    extraConfig = ''
-      map ctrl+f launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env ${fzf-history}/bin/fzf-history
-    '';
+    keybindings = {
+      "ctrl+f" = "launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env ${fzf-history}/bin/fzf-history";
+      "kitty_mod+h" = "";
+      "kitty_mod+l" = "";
+    };
   };
   catppuccin.kitty.enable = true;
 }

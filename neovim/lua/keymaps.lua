@@ -32,3 +32,9 @@ vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-l>', '<Cmd>vertical resize +1<CR>')
 vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-j>', '<Cmd>resize +1<CR>')
 vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-k>', '<Cmd>resize -1<CR>')
 
+-- Move windows with ctrl+shift+direction
+vim.keymap.set("n", "<C-S-h>", "<C-w>H")
+vim.keymap.set("n", "<C-S-j>", "<C-w>J")
+vim.keymap.set("n", "<C-S-k>", "<C-w>K")
+vim.keymap.set("n", "<C-S-l>", "<C-w>L")
+

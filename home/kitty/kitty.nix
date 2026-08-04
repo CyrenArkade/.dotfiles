@@ -15,6 +15,7 @@ in {
       enable_audio_bell = 0;
       background_opacity = 0.95;
       cursor_trail = 50;
+      font_size = 12;
     };
     keybindings = {
       "ctrl+f" = "launch --type=overlay --stdin-source=@screen_scrollback --stdin-add-formatting --copy-env ${fzf-history}/bin/fzf-history";

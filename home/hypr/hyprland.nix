@@ -165,7 +165,7 @@ in {
         { leaf = "layersOut";        enabled = true; speed = 1.5;  bezier = "linear";         style = "fade"; }
         { leaf = "fadeLayersIn";     enabled = true; speed = 1.79; bezier = "almostLinear"; }
         { leaf = "fadeLayersOut";    enabled = true; speed = 1.39; bezier = "almostLinear"; }
-        { leaf = "workspaces";       enabled = true; speed = 3;    bezier = "easeInOutCubic"; style = "slide"; }
+        { leaf = "workspaces";       enabled = true; speed = 2;    bezier = "easeOutQuint"; style = "slide"; }
         { leaf = "specialWorkspace"; enabled = true; speed = 3;    bezier = "easeInOutCubic"; style = "slidevert"; }
         { leaf = "zoomFactor";       enabled = true; speed = 7;    bezier = "quick"; }
       ];
@@ -219,10 +219,15 @@ in {
           ["SUPER + R" (exec "kitty fish -C y")]
           ["SUPER + V" ''hl.dsp.exec_cmd("kitty ${clipboard-history}/bin/clipboard-history", { float = true, size = {800, 400}, center = true })'']
 
-          ["SUPER + up"    ''hl.dsp.focus({ direction = "u" })'']
-          ["SUPER + down"  ''hl.dsp.focus({ direction = "d" })'']
-          ["SUPER + left"  ''hl.dsp.focus({ direction = "l" })'']
-          ["SUPER + right" ''hl.dsp.focus({ direction = "r" })'']
+          ["SUPER + K" ''hl.dsp.focus({ direction = "u" })'']
+          ["SUPER + J" ''hl.dsp.focus({ direction = "d" })'']
+          ["SUPER + H" ''hl.dsp.focus({ direction = "l" })'']
+          ["SUPER + L" ''hl.dsp.focus({ direction = "r" })'']
+
+          ["SUPER + SHIFT + K" ''hl.dsp.window.swap({ direction = "u" })'']
+          ["SUPER + SHIFT + J" ''hl.dsp.window.swap({ direction = "d" })'']
+          ["SUPER + SHIFT + H" ''hl.dsp.window.swap({ direction = "l" })'']
+          ["SUPER + SHIFT + L" ''hl.dsp.window.swap({ direction = "r" })'']
 
           ["SUPER + A" ''hl.dsp.focus({ workspace = "e-1" })'']
           ["SUPER + D" ''hl.dsp.focus({ workspace = "e+1" })'']

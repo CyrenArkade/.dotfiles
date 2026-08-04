@@ -9,7 +9,7 @@ in {
     on = on_startup ''hl.exec_cmd("quickshell -c ~/.dotfiles/shell")'';
 
     bind = map bind [
-      ["SUPER + L" (exec "qs -c ~/.dotfiles/shell ipc call lockscreen lock")]
+      ["SUPER + Z" (exec "qs -c ~/.dotfiles/shell ipc call lockscreen lock")]
     ];
   };
 }

@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{  pkgs, ... }:
 
 {
   imports = [
@@ -16,20 +16,7 @@
   hardware.bluetooth.powerOnBoot = true;
 
   # Power management
-  services.auto-cpufreq = {
-    enable = true;
-    settings = {
-      battery = {
-        governor = "powersave";
-        turbo = "never";
-      };
-      charger = {
-        governor = "performance";
-        turbo = "auto";
-      };
-    };
-  };
-  services.thermald.enable = true;
+  services.watt.enable = true;
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend-then-hibernate";
     HandleLidSwitchExternalPower = "suspend-then-hibernate";

@@ -46,6 +46,7 @@
     gnumake
     mediainfo
     nix-tree
+    nodejs
     nvd
     ouch
     # (ouch.override {
@@ -55,7 +56,6 @@
     python313
     libqalculate
     ripgrep
-    river
     (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
       extensions = [
         "rust-src"

@@ -65,12 +65,13 @@
     }))
     slurp
     tree
+    vitejs
     wf-recorder
     wl-clipboard
     
+    archon-lite # fflogs
     calibre
     cosmic-files
-    fflogs
     gimp3
     libreoffice-fresh
     mullvad-vpn

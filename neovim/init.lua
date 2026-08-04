@@ -29,6 +29,7 @@ Config.later = function(f) misc.safely('later', f) end
 Config.on_event = function(ev, f) misc.safely('event:' .. ev, f) end
 Config.on_filetype = function(ft, f) misc.safely('filetype:' .. ft, f) end
 
+-- Better scrolloff
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
     group = vim.api.nvim_create_augroup("ScrollOffEOF", {}),
     callback = function()
@@ -42,6 +43,13 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
             vim.fn.winrestview(view)
         end
     end,
+})
+
+-- Automatically enable treesitter highlighting
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
 })
 
 require('options')

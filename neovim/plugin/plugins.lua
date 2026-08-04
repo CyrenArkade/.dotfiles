@@ -141,7 +141,7 @@ Config.now(function()
   vim.g.loaded_netrwPlugin = 1
   Config.on_event('UIEnter', function()
     require("yazi").setup({})
-    vim.keymap.set("n", "<leader>t", function() require("yazi").yazi() end)
+    vim.keymap.set("n", "<leader>e", function() require("yazi").yazi() end)
   end)
 end)
 
@@ -205,23 +205,13 @@ Config.later(function()
   })
 end)
 
-Config.now(function()
-  vim.pack.add({'https://github.com/rmagatti/auto-session'})
-
-  require('auto-session').setup({
-    auto_create = function()
-      return vim.fn.argc() > 0
-    end
-  })
-end)
-
 Config.later(function()
   vim.pack.add({'https://github.com/lewis6991/gitsigns.nvim'})
 
   require('gitsigns').setup({})
 end)
 
-Config.later(function()
+Config.now(function()
   vim.pack.add({'https://github.com/luukvbaal/statuscol.nvim'})
 
   local builtin = require('statuscol.builtin')
@@ -245,10 +235,75 @@ Config.later(function()
   })
 end)
 
+Config.now(function()
+  Config.build('nvim-treesitter', { 'install', 'update', }, function(data)
+    if not data.active then
+      vim.cmd.packadd('nvim-treesitter')
+    end
+    vim.cmd('TSUpdate')
+  end)
+
+  vim.pack.add({'https://github.com/nvim-treesitter/nvim-treesitter'})
+
+  require('nvim-treesitter').install({
+    'bash',
+    'c',
+    'cmake',
+    'cpp',
+    'css',
+    'fish',
+    'html',
+    'java',
+    'javascript',
+    'json',
+    'latex',
+    'lua',
+    'markdown',
+    'nix',
+    'python',
+    'qmljs',
+    'toml',
+    'tsx',
+    'typescript',
+    'rust',
+    'yaml',
+  })
+end)
+
+Config.now(function()
+  vim.pack.add({'https://github.com/rmagatti/auto-session'})
+
+  vim.o.sessionoptions = "blank,buffers,curdir,help,tabpages,winsize,winpos,terminal,localoptions"
+  require('auto-session').setup({
+    bypass_save_filetypes = { 'toggleterm' },
+    close_filetypes_on_save = { 'toggleterm' },
+    auto_create = function()
+      return vim.fn.argc() > 0
+    end,
+  })
+end)
+
 Config.later(function()
   vim.pack.add({'https://github.com/stevearc/oil.nvim'})
 
-  require('oil').setup({})
+  require('oil').setup({
+    delete_to_trash = true,
+  })
   vim.keymap.set({ 'n', 'v' }, '<leader>o', '<Cmd>Oil --float<CR>')
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/akinsho/toggleterm.nvim'})
+
+  require('toggleterm').setup({})
+  vim.keymap.set('n', '<leader>t', '<Cmd>ToggleTerm<CR>')
+  vim.keymap.set('n', '<leader>T', '<Cmd>TermNew<CR>')
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/NeogitOrg/neogit'})
+
+  require('neogit')
+  vim.keymap.set('n', '<leader>gg', '<Cmd>Neogit<CR>')
 end)
 

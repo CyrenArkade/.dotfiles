@@ -6,6 +6,8 @@ vim.keymap.set({'n', 'v', 'o', 'i'}, '<right>', '<nop>')
 vim.keymap.set('n', '<space>', '<nop>')
 vim.keymap.set('v', '<space>', '<nop>')
 
+vim.keymap.set('t', '<C-escape>', [[<C-\><C-n>]])
+
 -- Recenter when moving up/down
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -29,8 +31,8 @@ vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-k>', [[<C-\><C-n><C-w>k]])
 -- Resize windows with ctrl+alt+direction
 vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-h>', '<Cmd>vertical resize -1<CR>')
 vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-l>', '<Cmd>vertical resize +1<CR>')
-vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-j>', '<Cmd>resize +1<CR>')
-vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-k>', '<Cmd>resize -1<CR>')
+vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-j>', '<Cmd>resize -1<CR>')
+vim.keymap.set({ 'n', 't', 'i', 'v' }, '<C-M-k>', '<Cmd>resize +1<CR>')
 
 -- Move windows with ctrl+shift+direction
 vim.keymap.set("n", "<C-S-h>", "<C-w>H")

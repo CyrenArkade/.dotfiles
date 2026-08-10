@@ -28,8 +28,9 @@ vim.opt.expandtab = true
 
 vim.opt.undofile = true
 vim.opt.switchbuf = 'usetab'
-vim.opt.smartcase = true
 vim.opt.shell = 'fish'
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Set up automatic folding
 vim.api.nvim_create_autocmd('LspAttach', {

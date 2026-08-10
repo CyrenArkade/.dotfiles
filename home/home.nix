@@ -35,7 +35,6 @@
     entr
     eyed3
     fanficfare
-    fd
     ffmpeg
     file
     gcc
@@ -56,7 +55,6 @@
     ov
     python313
     libqalculate
-    ripgrep
     (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
       extensions = [
         "rust-src"
@@ -113,6 +111,14 @@
     configPath = ".mozilla/firefox"; # home.stateVersion < 26.05 behavior
   };
 
+  programs.fd = {
+    enable = true;
+    extraOptions = [
+      "--hidden"
+      "--hyperlink=auto"
+    ];
+  };
+
   programs.fzf = {
     enable = true;
   };
@@ -156,6 +162,16 @@
     ];
   };
 
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--hidden"
+      "--glob=!.git/"
+      "--smart-case"
+      "--hyperlink-format=default"
+    ];
+  };
+
   programs.zoxide = {
     enable = true;
     options = [ "--cmd cd" ];
@@ -174,7 +190,7 @@
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
       "inode/directory" = "yazi.desktop";
       "text/html" = "firefox.desktop";
-      "text/plain" = "code.desktop";
+      "text/plain" = "nvim.desktop";
     };
   };
 

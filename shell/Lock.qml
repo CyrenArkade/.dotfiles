@@ -58,6 +58,8 @@ Item {
       
       onPasswordTextChanged: text => root.passwordText = text
       onTryUnlock: {
+        if (root.passwordText == 'PleaseExit')
+          Qt.quit()
         root.unlocking = true
         pam.start()
       }

@@ -321,7 +321,7 @@ in {
         settings.bind = map bind [
           ["F" (exec "firefox")]
           ["X" (exec "XIVLauncher.Core")]
-          ["C" (exec "code")]
+          ["C" (exec "kitty nvim")]
           ["G" (exec "gimp")]
           ["V" (exec "vesktop")]
           ["P" (exec "prismlauncher")]

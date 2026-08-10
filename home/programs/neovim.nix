@@ -15,6 +15,8 @@
     lua-language-server
     nixd
     ruff
+    shopify-cli
+    tailwindcss-language-server
     ty
     typescript-go
     vscode-langservers-extracted

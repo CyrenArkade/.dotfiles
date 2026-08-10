@@ -67,7 +67,7 @@ Config.later(function()
   require('mini-pick-preview').setup({})
 
   vim.keymap.set('n', '<leader>fb', pick_buffer)
-  vim.keymap.set('n', '<leader>fB', '<Cmd>Pick gut_branches<CR>')
+  vim.keymap.set('n', '<leader>fB', '<Cmd>Pick git_branches<CR>')
   vim.keymap.set('n', '<leader>fc', '<Cmd>Pick git_commits<CR>')
   vim.keymap.set('n', '<leader>ff', '<Cmd>Pick files<CR>')
   vim.keymap.set('n', '<leader>fg', '<Cmd>Pick grep_live<CR>')
@@ -198,6 +198,15 @@ Config.later(function()
       paste = {
         default_animation = 'fade',
       },
+      search = {
+        enabled = true,
+      },
+      undo = {
+        enabled = true,
+      },
+      redo = {
+        enabled = true,
+      },
     },
     animations = {
       fade = { to_color = palette.base }
@@ -257,6 +266,7 @@ Config.now(function()
     'javascript',
     'json',
     'latex',
+    'liquid',
     'lua',
     'markdown',
     'nix',
@@ -288,6 +298,9 @@ Config.later(function()
 
   require('oil').setup({
     delete_to_trash = true,
+    view_options = {
+      show_hidden = true,
+    },
   })
   vim.keymap.set({ 'n', 'v' }, '<leader>o', '<Cmd>Oil --float<CR>')
 end)

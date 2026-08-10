@@ -234,9 +234,6 @@ in {
           ["SUPER + SHIFT + A" ''hl.dsp.window.move({ workspace = "e-1" })'']
           ["SUPER + SHIFT + D" ''hl.dsp.window.move({ workspace = "e+1" })'']
 
-          ["f6" ''hl.dsp.global("com.obsproject.Studio:OBSBasic.StartRecording")'']
-          ["f7" ''hl.dsp.global("com.obsproject.Studio:OBSBasic.StopRecording")'']
-
           ["SUPER + W" ''hl.dsp.workspace.toggle_special("mini")'']
           ["SUPER + S" (lambda ''
             local mini_ws = hl.get_active_special_workspace()
@@ -303,6 +300,11 @@ in {
 
         (with_flags { mouse = true; non_consuming = true; } [
           ["mouse:274" (exec "wl-copy -pc")]
+        ])
+
+        (with_flags { non_consuming = true; } [
+         ["f6" ''hl.dsp.global("com.obsproject.Studio:OBSBasic.StartRecording")'']
+         ["f7" ''hl.dsp.global("com.obsproject.Studio:OBSBasic.StopRecording")'']
         ])
 
         (builtins.concatLists (builtins.genList (i:

@@ -13,6 +13,7 @@
 
     ./cursor.nix
     ./fonts.nix
+    ./use-xdg.nix
 
     ./programs/fish.nix
     ./programs/micro.nix
@@ -192,7 +193,8 @@
   home = {
     username = "cyren";
     homeDirectory = "/home/cyren";
-
+    
+    preferXdgDirectories = true;
     file = {};
 
     sessionVariables = {

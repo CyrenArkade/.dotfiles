@@ -20,6 +20,7 @@ in {
         hide_version_string = true;
         hide_key_hints = true;
         clear_password = true;
+        session_log = ".local/state/ly-session.log";
         
         start_cmd = "${ly-startup}";
 

@@ -1,10 +1,10 @@
-{ pkgs, fetchurl, ... }:
+{ pkgs, ... }:
 
 {
   programs.fish = {
     enable = true;
     shellAliases = {
-      ls = "eza --icons"; # --hyperlink=auto once it hits nixpkgs
+      ls = "eza --icons auto";
       n = "nvim";
       try = "nix-shell -p";
       

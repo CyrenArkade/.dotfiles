@@ -5,7 +5,6 @@
     inputs.catppuccin.homeModules.catppuccin
 
     ./hypr/hyprland.nix
-    ./kitty/kitty.nix
     ./minecraft/minecraft.nix
     ./mpd/mpd.nix
     ./theme/theme.nix
@@ -16,6 +15,7 @@
     ./use-xdg.nix
 
     ./programs/fish.nix
+    ./programs/kitty.nix
     ./programs/micro.nix
     ./programs/neovim.nix
     ./programs/starship.nix
@@ -67,6 +67,7 @@
     vitejs
     wf-recorder
     wl-clipboard
+    yad
     
     archon-lite # fflogs
     calibre
@@ -83,6 +84,7 @@
   programs.home-manager.enable = true;
   programs.bash.enable = true;
   programs.eza.enable = true;
+  programs.tealdeer.enable = true;
   programs.vscode.enable = true;
   
 

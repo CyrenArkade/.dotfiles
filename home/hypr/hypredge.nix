@@ -1,9 +1,6 @@
 { inputs, pkgs, ... }:
 
-let
-  # inherit (import ./lua_utils.nix { inherit lib; })
-  # luaify lambda call;
-in {
+{
   wayland.windowManager.hyprland = {
     plugins = [
       inputs.hypredge.packages.${pkgs.stdenv.hostPlatform.system}.hypredge

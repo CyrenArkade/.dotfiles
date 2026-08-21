@@ -120,7 +120,11 @@ Config.later(function()
       keymap = { preset = 'inherit' },
       completion = { menu = { auto_show = true } },
     },
+    completion = {
+      trigger = { show_on_insert = true },
+    },
   })
+  vim.keymap.set('i', '<C-Space>', cmp.show)
 end)
 
 Config.later(function()
@@ -278,6 +282,24 @@ Config.now(function()
     'rust',
     'yaml',
   })
+
+  vim.api.nvim_create_autocmd('FileType', {
+    callback = function(args)
+      local lang = vim.treesitter.language.get_lang(args.match)
+
+      if not lang then
+        return
+      end
+
+      if not vim.treesitter.language.add(lang) then
+        return
+      end
+
+      if vim.treesitter.query.get(lang, 'indents') then
+        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end
+    end,
+  })
 end)
 
 Config.now(function()
@@ -308,7 +330,11 @@ end)
 Config.later(function()
   vim.pack.add({'https://github.com/akinsho/toggleterm.nvim'})
 
-  require('toggleterm').setup({})
+  require('toggleterm').setup({
+    on_open = function(term)
+      vim.opt_local.winfixbuf = true
+    end,
+  })
   vim.keymap.set('n', '<leader>t', '<Cmd>ToggleTerm<CR>')
   vim.keymap.set('n', '<leader>T', '<Cmd>TermNew<CR>')
 end)
@@ -318,5 +344,17 @@ Config.later(function()
 
   require('neogit')
   vim.keymap.set('n', '<leader>gg', '<Cmd>Neogit<CR>')
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/windwp/nvim-ts-autotag'})
+
+  require('nvim-ts-autotag').setup({})
+end)
+
+Config.on_event("User~KittyScrollbackLaunch", function()
+  vim.pack.add({'https://github.com/mikesmithgh/kitty-scrollback.nvim'})
+
+  require('kitty-scrollback').setup({})
 end)
 

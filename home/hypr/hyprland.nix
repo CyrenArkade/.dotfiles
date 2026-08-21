@@ -183,6 +183,7 @@ in {
         { match.class = "Matplotlib"; float = true; }
         { match.class = "com.interversehq.qView"; suppress_event = "fullscreen maximize"; }
         { match.title = "Please wait.*Prism Launcher.*"; float = true; no_initial_focus = true; }
+        { match.title = "FINAL FANTASY XIV"; no_anim = true; }
       ];
 
       layer_rule = [

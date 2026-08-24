@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,7 +7,6 @@
 
   programs.yazi = {
     enable = true;
-    package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
     shellWrapperName = "y";
     settings = {
       mgr = {

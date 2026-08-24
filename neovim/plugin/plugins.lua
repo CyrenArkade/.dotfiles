@@ -16,11 +16,11 @@ Config.now(function()
 end)
 
 Config.later(function()
-  require('mini.pairs').setup({})
   require('mini.ai').setup({})
-  require('mini.surround').setup({})
   require('mini.move').setup({})
+  require('mini.pairs').setup({})
   require('mini.splitjoin').setup({})
+  require('mini.surround').setup({})
 
   require('mini.bufremove').setup({})
   vim.keymap.set({ 'n', 'v' }, '<leader>bd', function() MiniBufremove.delete() end)
@@ -356,5 +356,22 @@ Config.on_event("User~KittyScrollbackLaunch", function()
   vim.pack.add({'https://github.com/mikesmithgh/kitty-scrollback.nvim'})
 
   require('kitty-scrollback').setup({})
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/rachartier/tiny-inline-diagnostic.nvim'})
+
+  require("tiny-inline-diagnostic").setup({
+    
+    transparent_cursorline = true,
+    transparent_bg = true,
+    options = {
+      multilines = {
+        enabled = true,
+        always_show = true,
+        severity = { vim.diagnostic.severity.ERROR },
+      },
+    },
+  })
 end)
 

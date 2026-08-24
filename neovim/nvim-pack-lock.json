@@ -88,6 +88,10 @@
       "rev": "9a48d8a7436231cb16d47c88f924702e5602870a",
       "src": "https://github.com/rachartier/tiny-glimmer.nvim"
     },
+    "tiny-inline-diagnostic.nvim": {
+      "rev": "6264451f14119d63a52580e5198d6baf8518b0b2",
+      "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
+    },
     "toggleterm.nvim": {
       "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
       "src": "https://github.com/akinsho/toggleterm.nvim"

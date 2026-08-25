@@ -46,3 +46,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+if vim.g.neovide then
+  vim.o.guifont = "Noto_Sans_Mono:h12"
+  vim.g.neovide_normal_opacity = 0.95
+end
+

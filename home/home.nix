@@ -191,7 +191,7 @@
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
       "inode/directory" = "yazi.desktop";
       "text/html" = "firefox.desktop";
-      "text/plain" = "nvim.desktop";
+      "text/plain" = "neovide.desktop";
     };
   };
 

@@ -30,18 +30,17 @@
         ];
 
         gimp   = [ { desc = "GIMP";    run = "gimp %s1";   orphan = true; } ];
-        neovim = [ { desc = "Neovim";  run = "nvim %s1"; block = true; } ];
-        vscode = [ { desc = "VS Code"; run = "code %s1"; } ];
+        neovim = [ { desc = "Neovide";  run = "neovide %s1"; block = true; } ];
       };
       open = {
         rules = [
-          { url = "*/";                use = [ "vscode" "open-with" ]; }
+          { url = "*/";                use = [ "neovim" "open-with" ]; }
           { mime = "text/*";           use = [ "neovim" "vscode" "copy" "open-with" ]; }
           { mime = "image/*";          use = [ "open-orphan" "gimp" "copy" "open-with" ]; }
           { mime = "{audio,video}/*";  use = [ "open-orphan" "copy" "open-with" ]; }
           { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"; use = [ "extract" "copy" "open-with" ]; }
-          { mime = "application/json"; use = [ "neovim" "vscode" "copy" "open-with" ]; }
-          { mime = "*/javascript";     use = [ "neovim" "vscode" "copy" "open-with" ]; }
+          { mime = "application/json"; use = [ "neovim" "copy" "open-with" ]; }
+          { mime = "*/javascript";     use = [ "neovim" "copy" "open-with" ]; }
           { url = "*";                 use = [ "open" "copy" "open-with" ]; }
         ];
       };

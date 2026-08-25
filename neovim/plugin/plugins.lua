@@ -4,6 +4,11 @@ Config.now(function()
 
   require('catppuccin').setup({
     transparent_background = true,
+    custom_highlights = vim.g.neovide and function(colors)
+      return {
+        Normal = { bg = colors.base },
+      }
+    end
   })
 
   vim.cmd.colorscheme('catppuccin-mocha')
@@ -49,8 +54,23 @@ Config.later(function()
         close_buffer = {
           char = '<C-d>',
           func = function()
-            vim.api.nvim_buf_delete(MiniPick.get_picker_matches().current.bufnr, {})
-            pick_buffer()
+            local matches = MiniPick.get_picker_matches()
+            local current_bufnr = matches.current.bufnr
+
+            bufs = MiniPick.get_picker_items()
+            for i, buf in ipairs(bufs) do
+              if buf.bufnr == current_bufnr then
+                vim.api.nvim_buf_delete(current_bufnr, {})
+                table.remove(bufs, i)
+                break
+              end
+            end
+
+            MiniPick.set_picker_items(bufs)
+            MiniPick.refresh()
+            if #bufs > 0 then
+              MiniPick.set_picker_match_inds({ math.min(matches.current_ind, #bufs) }, "current")
+            end
           end
         },
       },
@@ -84,7 +104,6 @@ Config.later(function()
 
   require('lualine').setup({
     options = {
-      theme = 'catppuccin-mocha',
       component_separators = { left = '', right = ''},
       section_separators = { left = '', right = ''},
     },
@@ -136,20 +155,21 @@ Config.later(function()
   require('blink.indent').setup({})
 end)
 
-Config.now(function()
+Config.later(function()
   vim.pack.add({
     'https://github.com/nvim-lua/plenary.nvim',
     'https://github.com/mikavilpas/yazi.nvim',
   })
 
-  vim.g.loaded_netrwPlugin = 1
-  Config.on_event('UIEnter', function()
-    require("yazi").setup({})
-    vim.keymap.set("n", "<leader>e", function() require("yazi").yazi() end)
-  end)
+  require("yazi").setup({})
+  vim.keymap.set("n", "<leader>e", function() require("yazi").yazi() end)
 end)
 
-Config.now(function()
+Config.later(function()
+  if vim.g.neovide then
+    return
+  end
+
   vim.pack.add({'https://github.com/3rd/image.nvim'})
 
   require('image').setup({
@@ -331,6 +351,7 @@ Config.later(function()
   vim.pack.add({'https://github.com/akinsho/toggleterm.nvim'})
 
   require('toggleterm').setup({
+    shade_terminals = false,
     on_open = function(term)
       vim.opt_local.winfixbuf = true
     end,

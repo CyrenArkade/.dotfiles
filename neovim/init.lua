@@ -1,6 +1,8 @@
 vim.pack.add({'https://github.com/nvim-mini/mini.nvim'})
 
-Config = {}
+Config = {
+  is_termux = (vim.env.PREFIX or ''):find('com.termux') ~= nil,
+}
 
 Config.autocmd = function(events, pattern, callback)
   local opts = { pattern = pattern, callback = callback, once = true }

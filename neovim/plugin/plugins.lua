@@ -248,23 +248,32 @@ Config.now(function()
   vim.pack.add({'https://github.com/luukvbaal/statuscol.nvim'})
 
   local builtin = require('statuscol.builtin')
+
+  local segments = {
+    {
+      sign = {
+        text = { '.*' },
+        maxwidth = Config.is_termux and 1 or 2,
+        align = 'right',
+      },
+      click = 'v:lua.ScSa',
+    },
+    {
+      text = { builtin.lnumfunc, ' ' },
+      condition = { true, builtin.not_empty },
+      click = 'v:lua.ScLa',
+    },
+  }
+
+  if not Config.is_termux then
+    segments:insert(1, {
+      text = { builtin.foldfunc },
+      click = 'v:lua.ScFa',
+    })
+  end
+
   require('statuscol').setup({
-    segments = {
-      { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
-      {
-        sign = {
-          text = { '.*' },
-          maxwidth = 2,
-          align = 'right',
-        },
-        click = 'v:lua.ScSa',
-      },
-      {
-        text = { builtin.lnumfunc, ' ' },
-        condition = { true, builtin.not_empty },
-        click = 'v:lua.ScLa',
-      },
-    }
+    segments = segments,
   })
 end)
 

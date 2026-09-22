@@ -16,7 +16,6 @@
 
     ./programs/fish.nix
     ./programs/kitty.nix
-    ./programs/micro.nix
     ./programs/neovim.nix
     ./programs/starship.nix
     ./programs/yazi.nix

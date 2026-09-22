@@ -25,4 +25,9 @@
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/neovim";
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }
+

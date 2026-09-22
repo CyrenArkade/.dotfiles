@@ -29,8 +29,8 @@
           { desc = "Copy Path"; run = "echo -n %s1 | wl-copy"; }
         ];
 
-        gimp   = [ { desc = "GIMP";    run = "gimp %s1";   orphan = true; } ];
-        neovim = [ { desc = "Neovide";  run = "neovide %s1"; block = true; } ];
+        gimp   = [ { desc = "GIMP";    run = "gimp %s1";     orphan = true; } ];
+        neovim = [ { desc = "Neovide"; run = "neovide %s1"; orphan = true; } ];
       };
       open = {
         rules = [

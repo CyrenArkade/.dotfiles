@@ -4,9 +4,13 @@ Config.now(function()
 
   require('catppuccin').setup({
     transparent_background = true,
-    custom_highlights = vim.g.neovide and function(colors)
+    term_colors = true,
+    custom_highlights = function(colors)
       return {
-        Normal = { bg = colors.base },
+        Normal = vim.g.neovide and { bg = colors.base },
+        LineNr = { fg = colors.lavender, style = { "bold" } },
+        LineNrAbove = { fg = colors.surface1 },
+        LineNrBelow = { fg = colors.surface1 },
       }
     end
   })
@@ -89,9 +93,13 @@ Config.later(function()
   vim.keymap.set('n', '<leader>fb', pick_buffer)
   vim.keymap.set('n', '<leader>fB', '<Cmd>Pick git_branches<CR>')
   vim.keymap.set('n', '<leader>fc', '<Cmd>Pick git_commits<CR>')
+  vim.keymap.set('n', '<leader>fd', '<Cmd>Pick diagnostic<CR>')
   vim.keymap.set('n', '<leader>ff', '<Cmd>Pick files<CR>')
   vim.keymap.set('n', '<leader>fg', '<Cmd>Pick grep_live<CR>')
   vim.keymap.set('n', '<leader>fk', '<Cmd>Pick keymaps<CR>')
+  vim.keymap.set('n', '<leader>flr', '<Cmd>Pick lsp scope="references"<CR>')
+  vim.keymap.set('n', '<leader>fli', '<Cmd>Pick lsp scope="implementation"<CR>')
+  vim.keymap.set('n', '<leader>fls', '<Cmd>Pick lsp scope="workspace_symbol_live"<CR>')
   vim.keymap.set('n', '<leader>fr', '<Cmd>Pick resume<CR>')
   vim.keymap.set('n', '<leader>fs', '<Cmd>AutoSession search<CR>')
 end)
@@ -266,7 +274,7 @@ Config.now(function()
   }
 
   if not Config.is_termux then
-    segments:insert(1, {
+    table.insert(segments, 1, {
       text = { builtin.foldfunc },
       click = 'v:lua.ScFa',
     })
@@ -344,16 +352,22 @@ Config.now(function()
   })
 end)
 
-Config.later(function()
+Config.now(function()
   vim.pack.add({'https://github.com/stevearc/oil.nvim'})
 
-  require('oil').setup({
+  local oil = require('oil')
+  oil.setup({
     delete_to_trash = true,
     view_options = {
       show_hidden = true,
     },
+    float = {
+      preview_split = 'right',
+    },
   })
-  vim.keymap.set({ 'n', 'v' }, '<leader>o', '<Cmd>Oil --float<CR>')
+  vim.keymap.set({ 'n', 'v' }, '<leader>o', function()
+    oil.toggle_float(nil, { preview = {} })
+  end)
 end)
 
 Config.later(function()
@@ -392,7 +406,6 @@ Config.later(function()
   vim.pack.add({'https://github.com/rachartier/tiny-inline-diagnostic.nvim'})
 
   require("tiny-inline-diagnostic").setup({
-    
     transparent_cursorline = true,
     transparent_bg = true,
     options = {

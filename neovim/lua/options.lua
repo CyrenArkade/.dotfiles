@@ -49,5 +49,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
 if vim.g.neovide then
   vim.o.guifont = "Noto_Sans_Mono:h12"
   vim.g.neovide_normal_opacity = 0.95
+
+  vim.api.nvim_create_autocmd("BufLeave", {
+    callback = function()
+      vim.g.neovide_scroll_animation_length = 0
+      vim.g.neovide_cursor_animation_length = 0
+    end,
+  })
+  vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+      vim.defer_fn(function()
+        vim.g.neovide_scroll_animation_length = 0.3
+        vim.g.neovide_cursor_animation_length = 0.08
+      end, 50)
+    end,
+  })
 end
 

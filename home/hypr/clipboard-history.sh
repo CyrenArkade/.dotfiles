@@ -18,3 +18,5 @@ id="$(cliphist list | \
 test -z "$id" && exit
 
 echo "$id" | cliphist decode | wl-copy
+kill $PPID -9 # kitty won't exit on its own for some reason
+

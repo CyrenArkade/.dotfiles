@@ -18,7 +18,7 @@
     ruff
     tailwindcss-language-server
     ty
-    typescript-go
+    typescript
     vscode-langservers-extracted
   ];
 

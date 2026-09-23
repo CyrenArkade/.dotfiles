@@ -22,8 +22,11 @@ WrapperRectangle {
       id: r
       model: Hyprland.workspaces.values
         .slice()
-        .filter(ws => !ws.name.endsWith('quake'))
-        .sort((a, b) => Math.abs(a.id) - Math.abs(b.id))
+        .filter(ws => ws.name != 'special:quake')
+        .sort((a, b) => (
+          a.name.startsWith('special:') - b.name.startsWith('special:') ||
+          a.id - b.id
+        ))
 
       WrapperMouseArea {
         id: ma
@@ -91,7 +94,7 @@ WrapperRectangle {
             ]
           }
 
-          sourceComponent: ma.workspace ? (ma.workspace.id < 0 ? special : numeric) : undefined
+          sourceComponent: ma.workspace ? (ma.workspace.name.startsWith('special:') ? special : numeric) : undefined
         }
       }
     }

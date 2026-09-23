@@ -4,7 +4,7 @@ vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('ruff')
 vim.lsp.enable('shopify_theme_ls')
 vim.lsp.enable('tailwindcss')
-vim.lsp.enable('tsgo')
+vim.lsp.enable('tsc')
 vim.lsp.enable('ty')
 vim.lsp.enable('qmlls')
 

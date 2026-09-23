@@ -7,7 +7,7 @@ let
 in {
   programs.rofi = {
     enable = true;
-    extraConfig = {
+    settings = {
       dpi = 144;
       show-icons = true;
       cycle = false;

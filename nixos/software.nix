@@ -40,6 +40,11 @@
     pulse.enable = true;
   };
 
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
+
   services.upower.enable = true;
 
   virtualisation.docker = {

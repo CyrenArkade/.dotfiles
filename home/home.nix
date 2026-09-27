@@ -75,10 +75,20 @@
   ];
 
   programs.home-manager.enable = true;
-  programs.bash.enable = true;
   programs.eza.enable = true;
   programs.tealdeer.enable = true;
   
+
+  programs.bash = {
+    enable = true;
+    # Make logins to bash automatically enter fish (ex. over ssh)
+    # https://wiki.nixos.org/wiki/Fish#Setting_fish_as_the_login_shell
+    initExtra = ''
+      if grep -qv fish /proc/$PPID/comm && [[ $SHLVL == [12] ]]; then
+        SHELL=${pkgs.fish}/bin/fish exec fish
+      fi
+    '';
+  };
 
   programs.bat.enable = true;
   catppuccin.bat.enable = true;

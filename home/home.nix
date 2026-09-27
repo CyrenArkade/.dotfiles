@@ -41,7 +41,6 @@
     ghostscript
     grim
     img2pdf
-    kdePackages.qtdeclarative # for qmlls
     gnumake
     mediainfo
     nix-tree
@@ -54,6 +53,7 @@
     ov
     python313
     libqalculate
+    ripgrep-all
     (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
       extensions = [
         "rust-src"
@@ -83,7 +83,6 @@
   programs.bash.enable = true;
   programs.eza.enable = true;
   programs.tealdeer.enable = true;
-  programs.vscode.enable = true;
   
 
   programs.bat.enable = true;

@@ -184,6 +184,7 @@ in {
         { match.class = "com.interversehq.qView"; suppress_event = "fullscreen maximize"; }
         { match.title = "Please wait.*Prism Launcher.*"; float = true; no_initial_focus = true; }
         { match.title = "FINAL FANTASY XIV"; no_anim = true; }
+        { match.title = "Picture-in-Picture"; float = true; size = [854 480]; move = ["(monitor_w-window_w)" 0]; }
       ];
 
       layer_rule = [

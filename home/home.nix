@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, nixpkgs, config, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   imports = [
@@ -28,11 +28,9 @@
 
   home.packages = with pkgs; [
     android-tools
-    a2ln
     bun
     distrobox
     entr
-    eyed3
     fanficfare
     ffmpeg
     file
@@ -45,12 +43,10 @@
     mediainfo
     nix-tree
     nodejs
-    nvd
     ouch
     # (ouch.override {
     #   enableUnfree = true;
     # })
-    ov
     python313
     libqalculate
     ripgrep-all
@@ -63,7 +59,6 @@
     }))
     slurp
     tree
-    vitejs
     wf-recorder
     wl-clipboard
     yad

@@ -203,7 +203,6 @@ in {
         hl.exec_cmd("firefox", { workspace = "2"; })
         hl.exec_cmd("vesktop", { workspace = "3 silent"; })
         hl.exec_cmd("nm-applet")
-        hl.exec_cmd("a2ln")
       '';
 
       bind = map bind (builtins.concatLists [

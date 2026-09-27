@@ -53,7 +53,7 @@
     packages = with pkgs; [];
   };
 
-  networking.firewall.allowedTCPPorts = [ 23045 ];
+  networking.firewall.allowedTCPPorts = [];
 
   # DO NOT CHANGE
   system.stateVersion = "24.11";

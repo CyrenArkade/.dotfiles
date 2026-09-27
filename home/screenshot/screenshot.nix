@@ -6,20 +6,18 @@ let
 
   take-screenshot = pkgs.writeShellApplication {
     name = "take-screenshot";
-    runtimeInputs = with pkgs; [ still slurp grim libnotify satty xdg-utils ];
+    runtimeInputs = with pkgs; [ grabit libnotify xdg-utils ];
     text = builtins.readFile ./take-screenshot.sh;
   };
 in {
-  xdg.configFile."satty/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
-    general = {
-      corner-roundness = 0;
-      actions-on-enter = [ "save-to-clipboard" "save-to-file" "exit" ];
-      actions-on-right-click = [ "exit" ];
-      copy-command = "${pkgs.wl-clipboard}/bin/wl-copy";
-      disable-notifications = true;
-    };
-    color-palette = {
-      palette = [ "#f38ba8" "#fab387" "#f9e2af" "#a6e3a1" "#89dceb" "#89b4fa" "#b4befe" "#000000" "#ffffff" ];
+  xdg.configFile."grabit/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
+    notifications = false;
+    save_dir = "/tmp";
+    filename_preset = "uuid";
+    preview.enabled = true;
+    edit = {
+      instant_capture = true;
+      swatches = "#f38ba8,#fab387,#f9e2af,#a6e3a1,#89b4fa,#b4befe";
     };
   };
 

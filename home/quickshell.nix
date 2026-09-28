@@ -1,15 +1,16 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   inherit (import ./hypr/lua_utils.nix { inherit lib; })
     bind exec on_startup;
 in {
+  home.packages = with pkgs; [ strawb ];
+
   wayland.windowManager.hyprland.settings = {
-    # i'll do it properly soom:tm:
-    on = on_startup ''hl.exec_cmd("quickshell -c ~/.dotfiles/shell")'';
+    on = on_startup ''hl.exec_cmd("${pkgs.strawb}/bin/strawb")'';
 
     bind = map bind [
-      ["SUPER + Z" (exec "qs -c ~/.dotfiles/shell ipc call lockscreen lock")]
+      ["SUPER + Z" (exec "${pkgs.strawb}/bin/strawb lock")]
     ];
   };
 }

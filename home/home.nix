@@ -37,7 +37,6 @@
     gcc
     gdu
     ghostscript
-    grim
     img2pdf
     gnumake
     mediainfo
@@ -77,6 +76,7 @@
   programs.home-manager.enable = true;
   programs.eza.enable = true;
   programs.tealdeer.enable = true;
+  programs.man.generateCaches = false;
   
 
   programs.bash = {

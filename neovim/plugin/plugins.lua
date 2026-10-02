@@ -48,41 +48,87 @@ end)
 Config.later(function()
   vim.pack.add({'https://github.com/sh1Nome/mini-pick-preview.nvim'})
 
-  function choose_all()
+  local function choose_all()
     local mappings = MiniPick.get_picker_opts().mappings
     vim.api.nvim_input(mappings.mark_all .. mappings.choose_marked)
   end
-  function pick_buffer()
+  local function map_delete(config)
+    return {
+      char = '<C-d>',
+      func = function()
+        local items = MiniPick.get_picker_items()
+        local matches = MiniPick.get_picker_matches()
+
+        for i, item in ipairs(items) do
+          if config.eq(item, matches.current) then
+            config.delete(item)
+            table.remove(items, i)
+            break
+          end
+        end
+
+        MiniPick.set_picker_items(items)
+        MiniPick.refresh()
+        if #items > 0 then
+          MiniPick.set_picker_match_inds({ math.min(matches.current_ind, #items) }, 'current')
+        end
+      end
+    }
+  end
+
+  local function pick_buffer()
     MiniPick.builtin.buffers({}, {
       mappings = {
-        close_buffer = {
-          char = '<C-d>',
-          func = function()
-            local matches = MiniPick.get_picker_matches()
-            local current_bufnr = matches.current.bufnr
+        close_buffer = map_delete({
+          eq = function(buf1, buf2)
+            return buf1.bufnr == buf2.bufnr
+          end,
+          delete = function(buf)
+            MiniBufremove.delete(buf.bufnr)
+          end,
+        })
+      }
+    })
+  end
 
-            bufs = MiniPick.get_picker_items()
-            for i, buf in ipairs(bufs) do
-              if buf.bufnr == current_bufnr then
-                vim.api.nvim_buf_delete(current_bufnr, {})
-                table.remove(bufs, i)
-                break
-              end
-            end
+  local AutoSession = require('auto-session')
+  local ASLib = require('auto-session.lib')
+  local function pick_sessions()
+    local sessions = ASLib.get_session_list(AutoSession.get_root_dir())
+    for _, session in ipairs(sessions) do
+      session.text = session.display_name
+    end
 
-            MiniPick.set_picker_items(bufs)
-            MiniPick.refresh()
-            if #bufs > 0 then
-              MiniPick.set_picker_match_inds({ math.min(matches.current_ind, #bufs) }, "current")
-            end
-          end
-        },
+    MiniPick.start({
+      source = {
+        name = 'Session',
+        items = sessions,
+        choose = function(session)
+          AutoSession.autosave_and_restore(session.session_name)
+        end,
+        preview = function(buf_id, item)
+          local lines = vim.split(vim.inspect(item), '\n')
+          vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, lines)
+        end,
       },
+      mappings = {
+        delete_session = map_delete({
+          eq = function(session1, session2)
+            return session1.path == session2.path
+        end,
+          delete = function(session)
+            AutoSession.delete_session_file(session.path, session.display_name)
+          end,
+        })
+      }
     })
   end
 
   require('mini.pick').setup({
-    window = { config = { width = 80 } },
+    window = { config = function()
+      local width = vim.o.columns < 90 and vim.o.columns or math.min(math.floor(vim.o.columns / 2), 80)
+      return { width = width }
+    end },
     mappings = {
       choose_all = { char = '<C-q>', func = choose_all },
     },
@@ -101,7 +147,7 @@ Config.later(function()
   vim.keymap.set('n', '<leader>fli', '<Cmd>Pick lsp scope="implementation"<CR>')
   vim.keymap.set('n', '<leader>fls', '<Cmd>Pick lsp scope="workspace_symbol_live"<CR>')
   vim.keymap.set('n', '<leader>fr', '<Cmd>Pick resume<CR>')
-  vim.keymap.set('n', '<leader>fs', '<Cmd>AutoSession search<CR>')
+  vim.keymap.set('n', '<leader>fs', pick_sessions)
 end)
 
 Config.later(function()
@@ -250,6 +296,11 @@ Config.later(function()
   vim.pack.add({'https://github.com/lewis6991/gitsigns.nvim'})
 
   require('gitsigns').setup({})
+  vim.keymap.set('n', '<leader>gb', '<Cmd>Gitsigns blame_line<CR>')
+  vim.keymap.set('n', '<leader>gB', '<Cmd>Gitsigns blame<CR>')
+  vim.keymap.set('n', '<leader>ghh', '<Cmd>Gitsigns preview_hunk<CR>')
+  vim.keymap.set('n', '<leader>ghr', '<Cmd>Gitsigns reset_hunk<CR>')
+  vim.keymap.set('n', '<leader>ghs', '<Cmd>Gitsigns stage_hunk<CR>')
 end)
 
 Config.now(function()
@@ -306,7 +357,6 @@ Config.now(function()
     'java',
     'javascript',
     'json',
-    'latex',
     'liquid',
     'lua',
     'markdown',
@@ -416,5 +466,11 @@ Config.later(function()
       },
     },
   })
+end)
+
+Config.later(function()
+  vim.pack.add({'https://github.com/NMAC427/guess-indent.nvim'})
+
+  require('guess-indent').setup({})
 end)
 

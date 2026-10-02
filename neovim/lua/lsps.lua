@@ -1,4 +1,5 @@
 vim.lsp.enable('cssls')
+vim.lsp.enable('jdtls')
 vim.lsp.enable('jsonls')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('ruff')
@@ -8,11 +9,13 @@ vim.lsp.enable('tsc')
 vim.lsp.enable('ty')
 vim.lsp.enable('qmlls')
 
-vim.lsp.config('clangd', {
-  init_options = {
-    fallbackFlags = { "-std=c++23" },
-  },
-})
+
+-- look into --query-driver?
+-- vim.lsp.config('clangd', {
+--   init_options = {
+--     fallbackFlags = { "-std=c++23" },
+--   },
+-- })
 vim.lsp.enable('clangd')
 
 vim.lsp.config('lua_ls', {

@@ -14,6 +14,7 @@
     clang-tools
     kdePackages.qtdeclarative # qmlls
     lua-language-server
+    jdt-language-server
     nixd
     ruff
     tailwindcss-language-server

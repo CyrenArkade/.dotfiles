@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   # Map black->crust, white->base, brightblack->mantle, brightwhite->lavender
@@ -10,9 +10,6 @@ let
   '';
 in {
   services.displayManager = {
-    sessionPackages = [
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-    ];
     ly = {
       enable = true;
       settings = {

@@ -183,8 +183,6 @@
 
   services.blueman-applet.enable = true;
 
-  xdg.portal.enable = true;
-
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {

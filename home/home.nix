@@ -5,7 +5,6 @@
     inputs.catppuccin.homeModules.catppuccin
 
     ./hypr/hyprland.nix
-    ./minecraft/minecraft.nix
     ./mpd/mpd.nix
     ./theme/theme.nix
     ./vesktop/vesktop.nix
@@ -67,6 +66,7 @@
     gimp3
     libreoffice-stable
     mullvad-vpn
+    prismlauncher
     qbittorrent
     quickshell
     qview

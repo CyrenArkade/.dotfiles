@@ -4,20 +4,15 @@
   imports = [
     inputs.catppuccin.homeModules.catppuccin
 
+    ./programs
+    ./music
+
     ./hypr/hyprland.nix
-    ./mpd/mpd.nix
     ./theme/theme.nix
-    ./vesktop/vesktop.nix
 
     ./cursor.nix
     ./fonts.nix
     ./use-xdg.nix
-
-    ./programs/fish.nix
-    ./programs/kitty.nix
-    ./programs/neovim.nix
-    ./programs/starship.nix
-    ./programs/yazi.nix
   ];
 
   nixpkgs.overlays = [

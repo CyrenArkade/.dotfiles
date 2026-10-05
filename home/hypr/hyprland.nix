@@ -1,8 +1,8 @@
-{ inputs, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 let
   inherit (import ./lua_utils.nix { inherit lib; })
-    luaify lambda call bind exec bind_flags bind_exec with_flags on_startup;
+    lambda call bind exec with_flags on_startup;
 
   clipboard-history = pkgs.writeShellApplication {
     name = "clipboard-history";

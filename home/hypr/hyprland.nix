@@ -331,6 +331,7 @@ in {
           ["O" (exec "obs")]
           ["S" (exec "steam")]
           ["E" (exec "scalc")]
+          ["M" (exec "mullvad-vpn")]
           ["catchall" ''hl.dsp.submap("reset")'']
         ];
       };

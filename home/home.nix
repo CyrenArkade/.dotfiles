@@ -65,7 +65,7 @@
     qbittorrent
     quickshell
     qview
-    # inputs.nixos-xivlauncher-rb.packages.${pkgs.stdenv.hostPlatform.system}.xivlauncher-rb
+    inputs.nixos-xivlauncher-rb.packages.${pkgs.stdenv.hostPlatform.system}.xivlauncher-rb
   ];
 
   programs.home-manager.enable = true;
@@ -181,13 +181,16 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      "image/*" = "com.interversehq.qView.desktop";
+      "video/*" = "mpv.desktop";
+      "text/*" = "neovide.desktop";
+
       "application/pdf" = "firefox.desktop";
       "application/epub+zip" = "calibre-ebook-viewer.desktop";
       "application/xhtml+xml" = "firefox.desktop";
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
       "inode/directory" = "yazi.desktop";
       "text/html" = "firefox.desktop";
-      "text/plain" = "neovide.desktop";
     };
   };
 

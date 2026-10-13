@@ -40,6 +40,7 @@
   hardware.nvidia = {
     open = true;
     modesetting.enable = true;
+    dynamicBoost.enable = true;
     powerManagement = {
       enable = true;
       finegrained = true;
